@@ -11,6 +11,8 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.chess.Chess</exec.mainClass>
     </properties>
+    <dependencies>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
