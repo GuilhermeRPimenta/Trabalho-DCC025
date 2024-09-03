@@ -4,18 +4,22 @@
  */
 package com.mycompany.chess;
 
+import java.awt.Color;
+
 /**
  *
  * @author guilh
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    private javax.swing.JButton currentClickedSidebarButton = null;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
         this.setVisible(true);
+        currentClickedSidebarButton = playButton;
+        updateSidebarButton(playButton);
     }
 
     /**
@@ -29,10 +33,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         Sidebar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
+        rankingButton = new javax.swing.JButton();
+        replaysButton = new javax.swing.JButton();
+        contentPanel = new javax.swing.JPanel();
+        gamePanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        registerPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        rankingPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        replaysPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -45,30 +58,53 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/resizedLogo.png"))); // NOI18N
         jLabel1.setText("CHESS");
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("JOGAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        playButton.setBackground(new java.awt.Color(51, 51, 51));
+        playButton.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
+        playButton.setForeground(new java.awt.Color(255, 255, 255));
+        playButton.setText("JOGAR");
+        playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        playButton.setFocusable(false);
+        playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                playButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("CADASTRO");
+        registerButton.setBackground(new java.awt.Color(51, 51, 51));
+        registerButton.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
+        registerButton.setForeground(new java.awt.Color(255, 255, 255));
+        registerButton.setText("CADASTRO");
+        registerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registerButton.setFocusable(false);
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("RANKING");
+        rankingButton.setBackground(new java.awt.Color(51, 51, 51));
+        rankingButton.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
+        rankingButton.setForeground(new java.awt.Color(255, 255, 255));
+        rankingButton.setText("RANKING");
+        rankingButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rankingButton.setFocusable(false);
+        rankingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rankingButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(51, 51, 51));
-        jButton4.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("REPLAYS");
+        replaysButton.setBackground(new java.awt.Color(51, 51, 51));
+        replaysButton.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 30)); // NOI18N
+        replaysButton.setForeground(new java.awt.Color(255, 255, 255));
+        replaysButton.setText("REPLAYS");
+        replaysButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        replaysButton.setFocusable(false);
+        replaysButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                replaysButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
         Sidebar.setLayout(SidebarLayout);
@@ -82,11 +118,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(SidebarLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(registerButton)
+                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(replaysButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         SidebarLayout.setVerticalGroup(
             SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,15 +130,102 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(playButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(registerButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(rankingButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addComponent(replaysButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        contentPanel.setBackground(new java.awt.Color(204, 255, 255));
+        contentPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setText("Tela de jogo");
+
+        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
+        gamePanel.setLayout(gamePanelLayout);
+        gamePanelLayout.setHorizontalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(931, Short.MAX_VALUE))
+        );
+        gamePanelLayout.setVerticalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gamePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(500, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(gamePanel, "card2");
+
+        jLabel3.setText("Tela de cadastro");
+
+        javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
+        registerPanel.setLayout(registerPanelLayout);
+        registerPanelLayout.setHorizontalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(910, Short.MAX_VALUE))
+        );
+        registerPanelLayout.setVerticalGroup(
+            registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(500, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(registerPanel, "card3");
+
+        jLabel4.setText("Tela de ranking");
+
+        javax.swing.GroupLayout rankingPanelLayout = new javax.swing.GroupLayout(rankingPanel);
+        rankingPanel.setLayout(rankingPanelLayout);
+        rankingPanelLayout.setHorizontalGroup(
+            rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(915, Short.MAX_VALUE))
+        );
+        rankingPanelLayout.setVerticalGroup(
+            rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(500, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(rankingPanel, "card4");
+
+        jLabel5.setText("Tela de replays");
+
+        javax.swing.GroupLayout replaysPanelLayout = new javax.swing.GroupLayout(replaysPanel);
+        replaysPanel.setLayout(replaysPanelLayout);
+        replaysPanelLayout.setHorizontalGroup(
+            replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(replaysPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(918, Short.MAX_VALUE))
+        );
+        replaysPanelLayout.setVerticalGroup(
+            replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(replaysPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(500, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(replaysPanel, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,20 +233,61 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 362, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        contentPanel.removeAll();
+        contentPanel.add(gamePanel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
+        updateSidebarButton(playButton);
+    }//GEN-LAST:event_playButtonActionPerformed
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // TODO add your handling code here:
+        contentPanel.removeAll();
+        contentPanel.add(registerPanel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
+        updateSidebarButton(registerButton);
+    }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void rankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingButtonActionPerformed
+        // TODO add your handling code here:
+        contentPanel.removeAll();
+        contentPanel.add(rankingPanel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
+        updateSidebarButton(rankingButton);
+    }//GEN-LAST:event_rankingButtonActionPerformed
+
+    private void replaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaysButtonActionPerformed
+        // TODO add your handling code here:
+        contentPanel.removeAll();
+        contentPanel.add(replaysPanel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
+        updateSidebarButton(replaysButton);
+    }//GEN-LAST:event_replaysButtonActionPerformed
+    private void updateSidebarButton(javax.swing.JButton clickedButton){
+        if(currentClickedSidebarButton == null) return;
+        currentClickedSidebarButton.setBackground(new Color(60,63,65));
+        currentClickedSidebarButton.setForeground(Color.white);
+        clickedButton.setBackground(Color.white);
+        clickedButton.setForeground(Color.black);
+        currentClickedSidebarButton = clickedButton;
+    }
     /**
      * @param args the command line arguments
      */
@@ -161,10 +325,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Sidebar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JPanel gamePanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton playButton;
+    private javax.swing.JButton rankingButton;
+    private javax.swing.JPanel rankingPanel;
+    private javax.swing.JButton registerButton;
+    private javax.swing.JPanel registerPanel;
+    private javax.swing.JButton replaysButton;
+    private javax.swing.JPanel replaysPanel;
     // End of variables declaration//GEN-END:variables
 }
