@@ -21,6 +21,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         currentClickedSidebarButton = playButton;
+        playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
 
     /**
@@ -263,8 +264,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel){
         if(currentClickedSidebarButton == null) return;
         JButton clickedButton =(JButton) evt.getSource();
+        currentClickedSidebarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         currentClickedSidebarButton.setBackground(new Color(60,63,65));
         currentClickedSidebarButton.setForeground(Color.white);
+        clickedButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         clickedButton.setBackground(Color.white);
         clickedButton.setForeground(Color.black);
         currentClickedSidebarButton = clickedButton;
