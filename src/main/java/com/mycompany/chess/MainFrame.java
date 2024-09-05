@@ -41,7 +41,8 @@ public class MainFrame extends javax.swing.JFrame {
         replaysButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         contentPanel = new javax.swing.JPanel();
         gamePanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        gameScreen = new javax.swing.JPanel();
+        board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
         registerPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         rankingPanel = new javax.swing.JPanel();
@@ -128,26 +129,32 @@ public class MainFrame extends javax.swing.JFrame {
         contentPanel.setLayout(new java.awt.CardLayout());
 
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));
+        gamePanel.setLayout(new java.awt.CardLayout());
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Tela de jogo");
+        gameScreen.setBackground(new java.awt.Color(51, 51, 51));
 
-        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
-        gamePanel.setLayout(gamePanelLayout);
-        gamePanelLayout.setHorizontalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gamePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(931, Short.MAX_VALUE))
+        javax.swing.GroupLayout gameScreenLayout = new javax.swing.GroupLayout(gameScreen);
+        gameScreen.setLayout(gameScreenLayout);
+        gameScreenLayout.setHorizontalGroup(
+            gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1002, Short.MAX_VALUE)
+            .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gameScreenLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        gamePanelLayout.setVerticalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gamePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(500, Short.MAX_VALUE))
+        gameScreenLayout.setVerticalGroup(
+            gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 522, Short.MAX_VALUE)
+            .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gameScreenLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        gamePanel.add(gameScreen, "card3");
 
         contentPanel.add(gamePanel, "card2");
 
@@ -187,7 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(915, Short.MAX_VALUE))
+                .addContainerGap(916, Short.MAX_VALUE))
         );
         rankingPanelLayout.setVerticalGroup(
             rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,10 +321,11 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
