@@ -44,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         gameScreen = new javax.swing.JPanel();
         board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
         registerPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        registerPanel1 = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.registerPanel();
         rankingPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         replaysPanel = new javax.swing.JPanel();
@@ -160,24 +160,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         registerPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tela de cadastro");
-
         javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
         registerPanel.setLayout(registerPanelLayout);
         registerPanelLayout.setHorizontalGroup(
             registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(910, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(registerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(641, Short.MAX_VALUE))
         );
         registerPanelLayout.setVerticalGroup(
             registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addComponent(registerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(303, Short.MAX_VALUE))
         );
 
         contentPanel.add(registerPanel, "card3");
@@ -326,7 +323,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
@@ -334,6 +330,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel rankingPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
     private javax.swing.JPanel registerPanel;
+    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.registerPanel registerPanel1;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;
     private javax.swing.JPanel replaysPanel;
     private javax.swing.JPanel sidebar;
