@@ -44,7 +44,20 @@ public class MainFrame extends javax.swing.JFrame {
         gameScreen = new javax.swing.JPanel();
         board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
         registerPanel = new javax.swing.JPanel();
-        registerPanel1 = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.registerPanel();
+        registerJPanel1 = new javax.swing.JPanel();
+        registerScreen1 = new javax.swing.JPanel();
+        mainRegisterLabel1 = new javax.swing.JPanel();
+        registerScreenTitle1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        sidebarButton1 = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         rankingPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         replaysPanel = new javax.swing.JPanel();
@@ -137,7 +150,7 @@ public class MainFrame extends javax.swing.JFrame {
         gameScreen.setLayout(gameScreenLayout);
         gameScreenLayout.setHorizontalGroup(
             gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1002, Short.MAX_VALUE)
+            .addGap(0, 1009, Short.MAX_VALUE)
             .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(gameScreenLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -146,7 +159,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         gameScreenLayout.setVerticalGroup(
             gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
+            .addGap(0, 688, Short.MAX_VALUE)
             .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(gameScreenLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -160,21 +173,121 @@ public class MainFrame extends javax.swing.JFrame {
 
         registerPanel.setBackground(new java.awt.Color(51, 51, 51));
 
+        registerJPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        registerJPanel1.setLayout(new java.awt.GridBagLayout());
+
+        registerScreen1.setBackground(new java.awt.Color(51, 51, 51));
+        registerScreen1.setPreferredSize(new java.awt.Dimension(640, 640));
+
+        mainRegisterLabel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        registerScreenTitle1.setBackground(new java.awt.Color(255, 255, 255));
+        registerScreenTitle1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
+        registerScreenTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        registerScreenTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        registerScreenTitle1.setText("CADASTRO");
+        mainRegisterLabel1.add(registerScreenTitle1);
+
+        jLabel2.setText("Nome:");
+
+        jTextField2.setText("jTextField2");
+
+        jLabel3.setText("Email:");
+
+        jTextField3.setText("jTextField3");
+
+        jLabel6.setText("Senha:");
+
+        jTextField4.setText("jTextField4");
+
+        jLabel7.setText("Confirmar senha:");
+
+        jTextField5.setText("jTextField5");
+
+        sidebarButton1.setText("sidebarButton1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sidebarButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(39, 39, 39)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                .addComponent(jTextField2)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(39, 39, 39)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                .addComponent(jTextField5)))))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(sidebarButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel2.getAccessibleContext().setAccessibleName("");
+
+        mainRegisterLabel1.add(jPanel1);
+
+        javax.swing.GroupLayout registerScreen1Layout = new javax.swing.GroupLayout(registerScreen1);
+        registerScreen1.setLayout(registerScreen1Layout);
+        registerScreen1Layout.setHorizontalGroup(
+            registerScreen1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerScreen1Layout.createSequentialGroup()
+                .addComponent(mainRegisterLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        registerScreen1Layout.setVerticalGroup(
+            registerScreen1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerScreen1Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(mainRegisterLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+
+        registerJPanel1.add(registerScreen1, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout registerPanelLayout = new javax.swing.GroupLayout(registerPanel);
         registerPanel.setLayout(registerPanelLayout);
         registerPanelLayout.setHorizontalGroup(
             registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(registerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(641, Short.MAX_VALUE))
+            .addComponent(registerJPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
         );
         registerPanelLayout.setVerticalGroup(
             registerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerPanelLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(registerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+            .addComponent(registerJPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         contentPanel.add(registerPanel, "card3");
@@ -191,14 +304,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(916, Short.MAX_VALUE))
+                .addContainerGap(923, Short.MAX_VALUE))
         );
         rankingPanelLayout.setVerticalGroup(
             rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(666, Short.MAX_VALUE))
         );
 
         contentPanel.add(rankingPanel, "card4");
@@ -216,14 +329,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(replaysPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(918, Short.MAX_VALUE))
+                .addContainerGap(926, Short.MAX_VALUE))
         );
         replaysPanelLayout.setVerticalGroup(
             replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(replaysPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(666, Short.MAX_VALUE))
         );
 
         contentPanel.add(replaysPanel, "card5");
@@ -323,16 +436,29 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JPanel mainRegisterLabel1;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton rankingButton;
     private javax.swing.JPanel rankingPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
+    private javax.swing.JPanel registerJPanel1;
     private javax.swing.JPanel registerPanel;
-    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.registerPanel registerPanel1;
+    private javax.swing.JPanel registerScreen1;
+    private javax.swing.JLabel registerScreenTitle1;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;
     private javax.swing.JPanel replaysPanel;
     private javax.swing.JPanel sidebar;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton sidebarButton1;
     // End of variables declaration//GEN-END:variables
 }
