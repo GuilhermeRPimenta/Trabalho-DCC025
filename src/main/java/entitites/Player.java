@@ -6,6 +6,7 @@ package entitites;
  */
 public class Player {
     private String name, email, password, confirmPassword;
+    private Boolean isAdmin = false;
     
     public Player() {        
     }
@@ -47,5 +48,9 @@ public class Player {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }  
+    }
+    
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
 }

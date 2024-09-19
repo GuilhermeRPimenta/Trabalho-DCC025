@@ -5,7 +5,9 @@ import entitites.camposInvalidosException;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JPanel;
@@ -15,7 +17,6 @@ import javax.swing.Timer;
 public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JButton currentClickedSidebarButton = null;
-    //private List<Player> playersList = new ArrayList<>();
 
     public MainFrame() {
         initComponents();
@@ -35,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
         registerButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         rankingButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         replaysButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        adminButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         contentPanel = new javax.swing.JPanel();
         gamePanel = new javax.swing.JPanel();
         gameScreen = new javax.swing.JPanel();
@@ -56,6 +58,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         replaysPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        adminPanel = new javax.swing.JPanel();
+        loginAdmin = new javax.swing.JPanel();
+        adminTitle = new javax.swing.JLabel();
+        adminField = new javax.swing.JPanel();
+        adminNameLabel = new javax.swing.JLabel();
+        adminNameField = new javax.swing.JTextField();
+        adminPasswordLabel = new javax.swing.JLabel();
+        adminPasswordField = new javax.swing.JTextField();
+        adminConfirmLoginButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -98,6 +109,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        adminButton.setText("ADMIN");
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -113,7 +131,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rankingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(replaysButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(replaysButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         sidebarLayout.setVerticalGroup(
@@ -129,6 +148,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(rankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(replaysButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -306,6 +327,79 @@ public class MainFrame extends javax.swing.JFrame {
 
         contentPanel.add(replaysPanel, "card5");
 
+        adminPanel.setBackground(new java.awt.Color(51, 51, 51));
+        adminPanel.setLayout(new java.awt.GridBagLayout());
+
+        loginAdmin.setBackground(new java.awt.Color(51, 51, 51));
+
+        adminTitle.setBackground(new java.awt.Color(255, 255, 255));
+        adminTitle.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
+        adminTitle.setForeground(new java.awt.Color(255, 255, 255));
+        adminTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        adminTitle.setText("ADMIN");
+        loginAdmin.add(adminTitle);
+
+        adminField.setPreferredSize(new java.awt.Dimension(424, 135));
+
+        adminNameLabel.setText("Nome:");
+
+        adminPasswordLabel.setText("Senha:");
+
+        adminConfirmLoginButton.setText("Entrar");
+        adminConfirmLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminConfirmLoginButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout adminFieldLayout = new javax.swing.GroupLayout(adminField);
+        adminField.setLayout(adminFieldLayout);
+        adminFieldLayout.setHorizontalGroup(
+            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminFieldLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                    .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(adminFieldLayout.createSequentialGroup()
+                            .addComponent(adminNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(adminNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+                        .addGroup(adminFieldLayout.createSequentialGroup()
+                            .addComponent(adminPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        adminFieldLayout.setVerticalGroup(
+            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminFieldLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminNameLabel)
+                    .addComponent(adminNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminPasswordLabel)
+                    .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        loginAdmin.add(adminField);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = -61;
+        gridBagConstraints.ipady = 212;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(124, 184, 124, 185);
+        adminPanel.add(loginAdmin, gridBagConstraints);
+
+        contentPanel.add(adminPanel, "card6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -328,19 +422,19 @@ public class MainFrame extends javax.swing.JFrame {
         Player player = new Player(name, email, password, confirmPassword);
 
         if (saveCSV(player)) {
-            updateRegister("Jogador adicionado !");
+            updateButton("Jogador adicionado !", confirmRegisterButton);
         }
     }
 
-    private void updateRegister(String txt) {
-        confirmRegisterButton.setEnabled(false);
-        confirmRegisterButton.setText(txt);
+    private void updateButton(String txt, JButton botao) {
+        botao.setEnabled(false);
+        botao.setText(txt);
 
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                confirmRegisterButton.setText("Cadastrar");
-                confirmRegisterButton.setEnabled(true);
+                botao.setText("Cadastrar");
+                botao.setEnabled(true);
             }
         });
         timer.setRepeats(false);
@@ -360,7 +454,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
-            String line = player.getName() + "," + player.getEmail() + "," + player.getPassword();
+            String line = player.getName() + "," + player.getEmail() + "," + player.getPassword() + "," + player.getIsAdmin();
             bw.write(line);
             bw.newLine();
             return true;
@@ -368,6 +462,54 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
             return false;
         }
+    }
+
+    private boolean veririficaArquivo(String n, String p) throws camposInvalidosException {
+        String path = "";
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\userData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/userData.csv";
+        }
+
+        boolean userFound = false;
+        boolean isAdmin = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] fields = line.split(",");
+
+                String fileName = fields[0];
+                String filePassword = fields[2];
+                isAdmin = Boolean.parseBoolean(fields[3]);
+
+                if (fileName.equals(n) && filePassword.equals(p)) {
+                    userFound = true;
+                    break;
+                }
+                
+                line = br.readLine();
+            }
+
+            if (!userFound) {
+                throw new camposInvalidosException("Nome ou senha inválidos !");
+            }
+
+            if (!isAdmin) {
+                throw new camposInvalidosException("Usuário não é um administrador !");
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return false;
     }
 
     public boolean validarEmail(String email) {
@@ -422,9 +564,31 @@ public class MainFrame extends javax.swing.JFrame {
             savePlayer(name, email, password, confirmPassword);
 
         } catch (camposInvalidosException ex) {
-            updateRegister(ex.getMessage());
+            updateButton(ex.getMessage(), confirmRegisterButton);
         }
     }//GEN-LAST:event_confirmRegisterButtonActionPerformed
+
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
+        updateSidebarButtonAndContentPanel(evt, adminPanel);
+    }//GEN-LAST:event_adminButtonActionPerformed
+
+    private void adminConfirmLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminConfirmLoginButtonActionPerformed
+        String name = adminNameField.getText();
+        String password = adminPasswordField.getText();
+
+        try {
+            if (name.isEmpty() || password.isEmpty()) {
+                throw new camposInvalidosException("Preencha todos os campos !");
+            }
+
+            if (veririficaArquivo(name, password)) {
+                throw new camposInvalidosException("Login bem-sucedido !");
+            }
+
+        } catch (camposInvalidosException ex) {
+            updateButton(ex.getMessage(), adminConfirmLoginButton);
+        }
+    }//GEN-LAST:event_adminConfirmLoginButtonActionPerformed
 
     private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel) {
         if (currentClickedSidebarButton == null) {
@@ -480,6 +644,15 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fields;
     private javax.swing.JLabel Title;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminButton;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminConfirmLoginButton;
+    private javax.swing.JPanel adminField;
+    private javax.swing.JTextField adminNameField;
+    private javax.swing.JLabel adminNameLabel;
+    private javax.swing.JPanel adminPanel;
+    private javax.swing.JTextField adminPasswordField;
+    private javax.swing.JLabel adminPasswordLabel;
+    private javax.swing.JLabel adminTitle;
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;
     private javax.swing.JTextField confirmPasswordField;
     private javax.swing.JLabel confirmPasswordLabel;
@@ -491,6 +664,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel loginAdmin;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField passwordField;
