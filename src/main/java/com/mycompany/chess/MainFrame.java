@@ -1,6 +1,7 @@
 package com.mycompany.chess;
 
 import entitites.Player;
+import entitites.camposInvalidosException;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -326,9 +326,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void savePlayer(String name, String email, String password, String confirmPassword) {
         Player player = new Player(name, email, password, confirmPassword);
-        //playersList.add(player);
 
-        if (saveCSV(player)) {           
+        if (saveCSV(player)) {
             updateRegister("Jogador adicionado !");
         }
     }
@@ -336,7 +335,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void updateRegister(String txt) {
         confirmRegisterButton.setEnabled(false);
         confirmRegisterButton.setText(txt);
-              
+
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -350,7 +349,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private boolean saveCSV(Player player) {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src\\main\\resources\\userData\\userData.csv", true))) {
+        String path = "";
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\userData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/userData.csv";
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
             String line = player.getName() + "," + player.getEmail() + "," + player.getPassword();
             bw.write(line);
             bw.newLine();
@@ -359,6 +368,16 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
             return false;
         }
+    }
+
+    public boolean validarEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    public boolean validarSenha(String senha) {
+        String senhaRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$";
+        return senha.matches(senhaRegex);
     }
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
@@ -383,17 +402,28 @@ public class MainFrame extends javax.swing.JFrame {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        if (!password.equals(confirmPassword)) {
-            updateRegister("Senhas diferentes !");
-            return;
-        }
+        try {
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                throw new camposInvalidosException("Preencha todos os campos!");
+            }
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            updateRegister("Preencha todos os campos !");
-            return;
-        }
+            if (!password.equals(confirmPassword)) {
+                throw new camposInvalidosException("Senhas diferentes!");
+            }
 
-        savePlayer(name, email, password, confirmPassword);
+            if (!validarEmail(email)) {
+                throw new camposInvalidosException("Email inválido!");
+            }
+
+            if (!validarSenha(password)) {
+                throw new camposInvalidosException("Senha não atende aos critérios!");
+            }
+
+            savePlayer(name, email, password, confirmPassword);
+
+        } catch (camposInvalidosException ex) {
+            updateRegister(ex.getMessage());
+        }
     }//GEN-LAST:event_confirmRegisterButtonActionPerformed
 
     private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel) {
