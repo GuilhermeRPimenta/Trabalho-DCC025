@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         replaysPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         adminPanel = new javax.swing.JPanel();
-        loginAdmin = new javax.swing.JPanel();
+        adminLogin = new javax.swing.JPanel();
         adminTitle = new javax.swing.JLabel();
         adminField = new javax.swing.JPanel();
         adminNameLabel = new javax.swing.JLabel();
@@ -67,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
         adminPasswordLabel = new javax.swing.JLabel();
         adminPasswordField = new javax.swing.JTextField();
         adminConfirmLoginButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        adminConfigPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -330,14 +331,14 @@ public class MainFrame extends javax.swing.JFrame {
         adminPanel.setBackground(new java.awt.Color(51, 51, 51));
         adminPanel.setLayout(new java.awt.GridBagLayout());
 
-        loginAdmin.setBackground(new java.awt.Color(51, 51, 51));
+        adminLogin.setBackground(new java.awt.Color(51, 51, 51));
 
         adminTitle.setBackground(new java.awt.Color(255, 255, 255));
         adminTitle.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
         adminTitle.setForeground(new java.awt.Color(255, 255, 255));
         adminTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         adminTitle.setText("ADMIN");
-        loginAdmin.add(adminTitle);
+        adminLogin.add(adminTitle);
 
         adminField.setPreferredSize(new java.awt.Dimension(424, 145));
 
@@ -386,7 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loginAdmin.add(adminField);
+        adminLogin.add(adminField);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -395,7 +396,23 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.ipady = 212;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(124, 184, 124, 185);
-        adminPanel.add(loginAdmin, gridBagConstraints);
+        adminPanel.add(adminLogin, gridBagConstraints);
+
+        adminConfigPanel.setBackground(new java.awt.Color(0, 255, 255));
+        adminConfigPanel.setPreferredSize(new java.awt.Dimension(640, 640));
+
+        javax.swing.GroupLayout adminConfigPanelLayout = new javax.swing.GroupLayout(adminConfigPanel);
+        adminConfigPanel.setLayout(adminConfigPanelLayout);
+        adminConfigPanelLayout.setHorizontalGroup(
+            adminConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        adminConfigPanelLayout.setVerticalGroup(
+            adminConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        adminPanel.add(adminConfigPanel, new java.awt.GridBagConstraints());
 
         contentPanel.add(adminPanel, "card6");
 
@@ -581,7 +598,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
             if (veririficaArquivo(name, password)) {
-                throw new camposInvalidosException("Login bem-sucedido !");
+                //throw new camposInvalidosException("Login bem-sucedido !");
+                adminLogin.setVisible(false);
+                adminConfigPanel.setVisible(true);
+                
             }
 
         } catch (camposInvalidosException ex) {
@@ -644,8 +664,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Fields;
     private javax.swing.JLabel Title;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminButton;
+    private javax.swing.JPanel adminConfigPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminConfirmLoginButton;
     private javax.swing.JPanel adminField;
+    private javax.swing.JPanel adminLogin;
     private javax.swing.JTextField adminNameField;
     private javax.swing.JLabel adminNameLabel;
     private javax.swing.JPanel adminPanel;
@@ -663,7 +685,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel loginAdmin;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField passwordField;
