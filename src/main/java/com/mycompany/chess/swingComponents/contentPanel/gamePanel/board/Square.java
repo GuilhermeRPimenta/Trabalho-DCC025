@@ -4,30 +4,41 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JLabel;
 
 /**
  *
  * @author guilh
  */
 public class Square extends javax.swing.JPanel {
-    private int x;
-    private int y;
+    private Position position;
+    private Piece piece;
     /**
      * Creates new form Square
      */
     public Square(int x, int y, boolean brown, int height) {
         initComponents();
-        this.x = x;
-        this. y = y;
-        
+        this.position = new Position(x, y);
         if(brown){
             setBackground(new Color(177,110,65));
         }else{
             setBackground(new Color(251,209,151));
         }
         setPreferredSize(new Dimension(height, height));
+    }
+    
+    public void setPiece(Piece piece){
+        this.piece = piece;
+        removeAll();
+        if(piece != null){
+            JLabel pieceLabel = new JLabel(piece.getIcon());
+            add(pieceLabel);
+        }
+        revalidate();
+        repaint();
     }
 
     /**
@@ -40,17 +51,7 @@ public class Square extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
 
