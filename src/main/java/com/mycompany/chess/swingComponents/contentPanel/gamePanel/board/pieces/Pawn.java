@@ -5,6 +5,7 @@
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
+import java.util.ArrayList;
 
 
 /**
@@ -12,6 +13,7 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position
  * @author guilh
  */
 public class Pawn extends Piece{
+    private boolean movedForTheFirstTime = false;
     public Pawn(int x, int y, boolean white){
         super(x,y,white);
     }
@@ -23,7 +25,7 @@ public class Pawn extends Piece{
     }
     
     @Override
-    public Position[] calculateLegalMoves(){
+    public ArrayList<Position> calculateLegalMoves(){
         return null;
     }
 }

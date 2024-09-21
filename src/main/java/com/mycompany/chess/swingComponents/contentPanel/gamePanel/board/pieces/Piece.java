@@ -6,6 +6,7 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -42,6 +43,6 @@ public abstract class Piece{
     }
     
     protected abstract void assignImage();
-    public abstract Position[] calculateLegalMoves();
+    public abstract ArrayList<Position> calculateLegalMoves();
     
 }

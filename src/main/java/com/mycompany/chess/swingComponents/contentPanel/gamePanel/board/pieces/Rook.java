@@ -6,6 +6,9 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author guilh
@@ -22,7 +25,14 @@ public class Rook extends Piece{
     }
     
     @Override
-    public Position[] calculateLegalMoves(){
+    public ArrayList<Position> calculateLegalMoves(){
+        List<Position> legalMovesList = new ArrayList<Position>();
+        for(int i = 0; i <8; i++){
+            if(i == position.Y){
+                continue;
+            }
+            legalMovesList.add(new Position(position.X,i));
+        }
         return null;
     }
 }
