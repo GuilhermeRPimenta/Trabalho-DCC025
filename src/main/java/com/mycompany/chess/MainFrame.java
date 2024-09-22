@@ -1,14 +1,13 @@
 package com.mycompany.chess;
 
-import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel;
+import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField;
 import com.mycompany.chess.swingComponents.sidebar.SidebarButton;
+import customPalette.customTable;
 import entitites.camposInvalidosException;
+import fields.AdminField;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.Timer;
@@ -16,34 +15,23 @@ import javax.swing.Timer;
 public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JButton currentClickedSidebarButton = null;
-    private RegisterPanel registro;
-    
+    private RegisterField registro;
+    private AdminField admin;
+
     public MainFrame() {
         initComponents();
-        registro = new RegisterPanel(this);
+        registro = new RegisterField(this);
+        admin = new AdminField();
         this.setVisible(true);
         currentClickedSidebarButton = playButton;
         playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        adminLogin = new javax.swing.JPanel();
-        adminTitle = new javax.swing.JLabel();
-        adminField = new javax.swing.JPanel();
-        adminNameLabel = new javax.swing.JLabel();
-        adminNameField = new javax.swing.JTextField();
-        adminPasswordLabel = new javax.swing.JLabel();
-        adminPasswordField = new javax.swing.JTextField();
-        adminConfirmLoginButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
-        adminConfigPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         sidebar = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         playButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
@@ -58,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
         registerPanel = new javax.swing.JPanel();
         register = new javax.swing.JPanel();
         registerTitle = new javax.swing.JLabel();
-        RegisterPanel = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel();
+        registerField = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField();
         nameLabel = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
         emailName = new javax.swing.JLabel();
@@ -73,110 +61,17 @@ public class MainFrame extends javax.swing.JFrame {
         replaysPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         adminPanel = new javax.swing.JPanel();
-
-        adminLogin.setBackground(new java.awt.Color(51, 51, 51));
-
-        adminTitle.setBackground(new java.awt.Color(255, 255, 255));
-        adminTitle.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
-        adminTitle.setForeground(new java.awt.Color(255, 255, 255));
-        adminTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        adminTitle.setText("ADMIN");
-        adminLogin.add(adminTitle);
-
-        adminField.setPreferredSize(new java.awt.Dimension(424, 145));
-
-        adminNameLabel.setText("Nome:");
-
-        adminPasswordLabel.setText("Senha:");
-
-        adminConfirmLoginButton.setText("Entrar");
-        adminConfirmLoginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminConfirmLoginButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout adminFieldLayout = new javax.swing.GroupLayout(adminField);
-        adminField.setLayout(adminFieldLayout);
-        adminFieldLayout.setHorizontalGroup(
-            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminFieldLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-                    .addGroup(adminFieldLayout.createSequentialGroup()
-                        .addComponent(adminNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(adminNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
-                    .addGroup(adminFieldLayout.createSequentialGroup()
-                        .addComponent(adminPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-        adminFieldLayout.setVerticalGroup(
-            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminFieldLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminNameLabel)
-                    .addComponent(adminNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminPasswordLabel)
-                    .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        adminLogin.add(adminField);
-
-        adminConfigPanel.setBackground(new java.awt.Color(0, 255, 255));
-        adminConfigPanel.setPreferredSize(new java.awt.Dimension(640, 640));
-        adminConfigPanel.setLayout(new java.awt.GridBagLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        adminConfigPanel.add(jScrollPane1, new java.awt.GridBagConstraints());
-
-        jButton1.setText("jButton1");
-        jButton1.setPreferredSize(new java.awt.Dimension(220, 30));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(11, 0, 11, 0);
-        adminConfigPanel.add(jButton1, gridBagConstraints);
-
-        jButton2.setText("jButton2");
-        jButton2.setPreferredSize(new java.awt.Dimension(220, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        adminConfigPanel.add(jButton2, gridBagConstraints);
+        adminLogin = new javax.swing.JPanel();
+        adminTitle = new javax.swing.JLabel();
+        adminField = new fields.AdminField();
+        adminNameLabel = new javax.swing.JLabel();
+        adminNameField = new javax.swing.JTextField();
+        adminPasswordLabel = new javax.swing.JLabel();
+        adminPasswordField = new javax.swing.JTextField();
+        adminConfirmLoginButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        adminConfigPanel = new fields.AdminConfigPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customTable = new customPalette.customTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -275,7 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
         gameScreen.setLayout(gameScreenLayout);
         gameScreenLayout.setHorizontalGroup(
             gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 995, Short.MAX_VALUE)
+            .addGap(0, 1135, Short.MAX_VALUE)
             .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(gameScreenLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -308,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
         registerTitle.setText("CADASTRO");
         register.add(registerTitle);
 
-        RegisterPanel.setPreferredSize(new java.awt.Dimension(424, 218));
+        registerField.setPreferredSize(new java.awt.Dimension(424, 218));
 
         nameLabel.setText("Nome:");
 
@@ -325,49 +220,49 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout RegisterPanelLayout = new javax.swing.GroupLayout(RegisterPanel);
-        RegisterPanel.setLayout(RegisterPanelLayout);
-        RegisterPanelLayout.setHorizontalGroup(
-            RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegisterPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout registerFieldLayout = new javax.swing.GroupLayout(registerField);
+        registerField.setLayout(registerFieldLayout);
+        registerFieldLayout.setHorizontalGroup(
+            registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerFieldLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(confirmRegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-                    .addGroup(RegisterPanelLayout.createSequentialGroup()
-                        .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerFieldLayout.createSequentialGroup()
+                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emailName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
-                        .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                             .addComponent(nameField)))
-                    .addGroup(RegisterPanelLayout.createSequentialGroup()
-                        .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registerFieldLayout.createSequentialGroup()
+                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(confirmPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
-                        .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                             .addComponent(confirmPasswordField))))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
-        RegisterPanelLayout.setVerticalGroup(
-            RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegisterPanelLayout.createSequentialGroup()
+        registerFieldLayout.setVerticalGroup(
+            registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerFieldLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailName)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addGap(18, 18, 18)
-                .addGroup(RegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPasswordLabel)
                     .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
@@ -375,7 +270,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        register.add(RegisterPanel);
+        register.add(registerField);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -383,7 +278,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.ipadx = -61;
         gridBagConstraints.ipady = 212;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(124, 184, 124, 185);
+        gridBagConstraints.insets = new java.awt.Insets(124, 184, 124, 171);
         registerPanel.add(register, gridBagConstraints);
 
         contentPanel.add(registerPanel, "card3");
@@ -400,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(909, Short.MAX_VALUE))
+                .addContainerGap(1049, Short.MAX_VALUE))
         );
         rankingPanelLayout.setVerticalGroup(
             rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,7 +320,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(replaysPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(912, Short.MAX_VALUE))
+                .addContainerGap(1052, Short.MAX_VALUE))
         );
         replaysPanelLayout.setVerticalGroup(
             replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,6 +334,92 @@ public class MainFrame extends javax.swing.JFrame {
 
         adminPanel.setBackground(new java.awt.Color(51, 51, 51));
         adminPanel.setLayout(new java.awt.GridBagLayout());
+
+        adminLogin.setBackground(new java.awt.Color(51, 51, 51));
+        adminLogin.setPreferredSize(new java.awt.Dimension(600, 250));
+
+        adminTitle.setBackground(new java.awt.Color(255, 255, 255));
+        adminTitle.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
+        adminTitle.setForeground(new java.awt.Color(255, 255, 255));
+        adminTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        adminTitle.setText("ADMIN");
+        adminLogin.add(adminTitle);
+
+        adminField.setPreferredSize(new java.awt.Dimension(424, 145));
+
+        adminNameLabel.setText("Nome:");
+
+        adminPasswordLabel.setText("Senha:");
+
+        adminConfirmLoginButton.setText("Entrar");
+        adminConfirmLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminConfirmLoginButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout adminFieldLayout = new javax.swing.GroupLayout(adminField);
+        adminField.setLayout(adminFieldLayout);
+        adminFieldLayout.setHorizontalGroup(
+            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminFieldLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                    .addGroup(adminFieldLayout.createSequentialGroup()
+                        .addComponent(adminNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(adminNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+                    .addGroup(adminFieldLayout.createSequentialGroup()
+                        .addComponent(adminPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        adminFieldLayout.setVerticalGroup(
+            adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminFieldLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminNameLabel)
+                    .addComponent(adminNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(adminFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adminPasswordLabel)
+                    .addComponent(adminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(adminConfirmLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        adminLogin.add(adminField);
+
+        adminPanel.add(adminLogin, new java.awt.GridBagConstraints());
+
+        adminConfigPanel.setBackground(new java.awt.Color(0, 0, 0));
+        adminConfigPanel.setPreferredSize(new java.awt.Dimension(640, 640));
+
+        jScrollPane2.setViewportView(customTable);
+
+        javax.swing.GroupLayout adminConfigPanelLayout = new javax.swing.GroupLayout(adminConfigPanel);
+        adminConfigPanel.setLayout(adminConfigPanelLayout);
+        adminConfigPanelLayout.setHorizontalGroup(
+            adminConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminConfigPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
+        );
+        adminConfigPanelLayout.setVerticalGroup(
+            adminConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminConfigPanelLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        adminPanel.add(adminConfigPanel, new java.awt.GridBagConstraints());
+
         contentPanel.add(adminPanel, "card6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -463,6 +444,10 @@ public class MainFrame extends javax.swing.JFrame {
         return confirmRegisterButton;
     }
 
+    public customTable getCustomTable() {
+        return customTable;
+    }
+
     public void updateButton(String txt, JButton botao) {
         botao.setEnabled(false);
         botao.setText(txt);
@@ -478,52 +463,24 @@ public class MainFrame extends javax.swing.JFrame {
         timer.start();
     }
 
-    public boolean veririficaArquivo(String n, String p) throws camposInvalidosException {
-        String path = "";
-
-        String os = System.getProperty("os.name").toLowerCase();
-
-        if (os.contains("win")) {
-            path = "src\\main\\resources\\userData\\userData.csv";
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            path = "src/main/resources/userData/userData.csv";
+    private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel) {
+        if (currentClickedSidebarButton == null) {
+            return;
         }
+        JButton clickedButton = (JButton) evt.getSource();
+        currentClickedSidebarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        currentClickedSidebarButton.setBackground(new Color(60, 63, 65));
+        currentClickedSidebarButton.setForeground(Color.white);
+        clickedButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        clickedButton.setBackground(Color.white);
+        clickedButton.setForeground(Color.black);
+        currentClickedSidebarButton = clickedButton;
 
-        boolean userFound = false;
-        boolean isAdmin = false;
+        contentPanel.removeAll();
+        contentPanel.add(contentCardPanel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line = br.readLine();
-
-            while (line != null) {
-                String[] fields = line.split(",");
-
-                String fileName = fields[0];
-                String filePassword = fields[2];
-                isAdmin = Boolean.parseBoolean(fields[3]);
-
-                if (fileName.equals(n) && filePassword.equals(p)) {
-                    userFound = true;
-                    break;
-                }
-
-                line = br.readLine();
-            }
-
-            if (!userFound) {
-                throw new camposInvalidosException("Nome ou senha inválidos !");
-            }
-
-            if (!isAdmin) {
-                throw new camposInvalidosException("Usuário não é um administrador !");
-            }
-
-            return true;
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        return false;
     }
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
@@ -555,7 +512,7 @@ public class MainFrame extends javax.swing.JFrame {
                 throw new camposInvalidosException("Preencha todos os campos !");
             }
 
-            if (veririficaArquivo(name, password)) {
+            if (admin.loginAdmin(name, password)) {
                 //throw new camposInvalidosException("Login bem-sucedido !");
                 adminLogin.setVisible(false);
                 adminConfigPanel.setVisible(true);
@@ -566,14 +523,6 @@ public class MainFrame extends javax.swing.JFrame {
             updateButton(ex.getMessage(), adminConfirmLoginButton);
         }
     }//GEN-LAST:event_adminConfirmLoginButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void confirmRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRegisterButtonActionPerformed
         String name = nameField.getText();
@@ -588,8 +537,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             if (!password.equals(confirmPassword)) {
                 throw new camposInvalidosException("Senhas diferentes!");
-            }           
-            
+            }
 
             if (!registro.validarEmail(email)) {
                 throw new camposInvalidosException("Email inválido!");
@@ -605,26 +553,6 @@ public class MainFrame extends javax.swing.JFrame {
             updateButton(ex.getMessage(), confirmRegisterButton);
         }
     }//GEN-LAST:event_confirmRegisterButtonActionPerformed
-
-    private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel) {
-        if (currentClickedSidebarButton == null) {
-            return;
-        }
-        JButton clickedButton = (JButton) evt.getSource();
-        currentClickedSidebarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        currentClickedSidebarButton.setBackground(new Color(60, 63, 65));
-        currentClickedSidebarButton.setForeground(Color.white);
-        clickedButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        clickedButton.setBackground(Color.white);
-        clickedButton.setForeground(Color.black);
-        currentClickedSidebarButton = clickedButton;
-
-        contentPanel.removeAll();
-        contentPanel.add(contentCardPanel);
-        contentPanel.repaint();
-        contentPanel.revalidate();
-
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -658,12 +586,11 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel RegisterPanel;
     private javax.swing.JLabel Title;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminButton;
-    private javax.swing.JPanel adminConfigPanel;
+    private fields.AdminConfigPanel adminConfigPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminConfirmLoginButton;
-    private javax.swing.JPanel adminField;
+    private fields.AdminField adminField;
     private javax.swing.JPanel adminLogin;
     private javax.swing.JTextField adminNameField;
     private javax.swing.JLabel adminNameLabel;
@@ -676,16 +603,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel confirmPasswordLabel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton confirmRegisterButton;
     private javax.swing.JPanel contentPanel;
+    private customPalette.customTable customTable;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailName;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel gameScreen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField passwordField;
@@ -695,6 +620,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel rankingPanel;
     private javax.swing.JPanel register;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
+    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField registerField;
     private javax.swing.JPanel registerPanel;
     private javax.swing.JLabel registerTitle;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;

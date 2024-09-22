@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 import javax.swing.JPanel;
 
-public class RegisterPanel extends JPanel {
+public class RegisterField extends JPanel {
 
     private MainFrame mainFrame;
     
-    public RegisterPanel() {
+    public RegisterField() {
     }
 
-    public RegisterPanel(MainFrame mainFrame) {
+    public RegisterField(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 
