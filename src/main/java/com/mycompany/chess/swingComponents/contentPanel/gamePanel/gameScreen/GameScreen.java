@@ -4,17 +4,32 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 
+import entitites.NullPlayerException;
+import entitites.Player;
+
 /**
  *
  * @author guilh
  */
 public class GameScreen extends javax.swing.JPanel {
-
+    
+    private Player player1;
+    private Player player2;
     /**
      * Creates new form GameScreen
      */
-    public GameScreen() {
+    public GameScreen(Player player1, Player player2) throws NullPlayerException{
+        if(player1 == null){
+            throw new NullPlayerException("Player 1 invalido!");
+        }
+        if(player2 == null){
+            throw new NullPlayerException("Player 2 invalido!");
+        }
+        this.player1 = player1;
+        this.player2 = player2;
         initComponents();
+        player1Info.setText(player1.getName());
+        player2Info.setText(player2.getName());
     }
 
     /**
@@ -27,19 +42,19 @@ public class GameScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        player1Info = new javax.swing.JLabel();
+        player2Info = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
         setPreferredSize(new java.awt.Dimension(1009, 688));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("[Nome jogador 1]");
+        player1Info.setForeground(new java.awt.Color(255, 255, 255));
+        player1Info.setText("[Nome jogador 1]");
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("[Nome jogador 2]");
+        player2Info.setBackground(new java.awt.Color(255, 255, 255));
+        player2Info.setForeground(new java.awt.Color(255, 255, 255));
+        player2Info.setText("[Nome jogador 2]");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -47,18 +62,18 @@ public class GameScreen extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(player1Info)
                 .addGap(18, 18, 18)
                 .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(player2Info)
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(player1Info)
                 .addGap(97, 97, 97))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,7 +82,7 @@ public class GameScreen extends javax.swing.JPanel {
                         .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(jLabel2)))
+                        .addComponent(player2Info)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -75,7 +90,7 @@ public class GameScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel player1Info;
+    private javax.swing.JLabel player2Info;
     // End of variables declaration//GEN-END:variables
 }

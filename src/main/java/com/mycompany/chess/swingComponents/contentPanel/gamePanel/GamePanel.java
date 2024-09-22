@@ -4,19 +4,26 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel;
 
+import entitites.Player;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
+import entitites.NullPlayerException;
+import java.awt.CardLayout;
+
 /**
  *
  * @author guilh
  */
 public class GamePanel extends javax.swing.JPanel {
-
+    
+    private Player player1;
+    private Player player2;
     /**
      * Creates new form GamePanel
      */
     public GamePanel() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +34,27 @@ public class GamePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         loginScreen1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen();
-        gameScreen1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen();
 
         setMinimumSize(new java.awt.Dimension(1009, 688));
         setPreferredSize(new java.awt.Dimension(1009, 688));
         setLayout(new java.awt.CardLayout());
         add(loginScreen1, "card2");
-        add(gameScreen1, "card3");
     }// </editor-fold>//GEN-END:initComponents
-
+    public void startGame(){
+        player1 = new Player("Guilherme", "guilherme@gmail.com", "1aA#2222", "1aA#2222");
+        player2 = new Player("Victor", "victor@gmail.com", "1aA#2222", "1aA#2222");
+        try{
+            GameScreen gameScreen = new GameScreen(player1, player2);
+            add(gameScreen, "card3");
+            CardLayout cardLayout = (CardLayout) this.getLayout();
+            cardLayout.show(this, "card3");
+        }catch(NullPlayerException e){
+            loginScreen1.showError(e);
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen gameScreen1;
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen loginScreen1;
     // End of variables declaration//GEN-END:variables
 }
