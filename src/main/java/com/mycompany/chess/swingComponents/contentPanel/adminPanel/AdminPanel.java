@@ -343,7 +343,9 @@ public class AdminPanel extends javax.swing.JPanel {
         
         String[] newData = {nome, email, senha, mmr};
         
-        editCSV(email, newData);       
+        String oldEmail = playerTable.getValueAt(playerTable.getSelectedRow(), 1).toString();
+        
+        editCSV(oldEmail, newData);       
     }
 
     private void initTableListenersConfirmados() {
