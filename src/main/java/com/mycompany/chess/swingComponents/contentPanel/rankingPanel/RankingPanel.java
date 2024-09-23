@@ -15,17 +15,27 @@ import entitites.camposInvalidosException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.TableModel;
+import java.util.Collections;
 
 public class RankingPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RankingPanel
      */
-    private String dia;
+    private List<RankingEntry> jogadores;
 
     public RankingPanel() {
         initComponents();
+        jogadores = new ArrayList<RankingEntry>();
+        try {
+            preencheLista();
+            preencheTabela();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -37,29 +47,15 @@ public class RankingPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jLabel1.setText("jLabel1");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "MMR"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -69,39 +65,24 @@ public class RankingPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(115, 115, 115))))
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(522, 522, 522))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dia = "quarta";
-        jLabel1.setText(dia);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ordenaMMR() {
+        Collections.sort(jogadores);
+    }
 
-    public void preencheTabela() throws camposInvalidosException {
+    public void preencheLista() throws camposInvalidosException {
         String path = "";
 
         String os = System.getProperty("os.name").toLowerCase();
@@ -114,13 +95,12 @@ public class RankingPanel extends javax.swing.JPanel {
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
-
             while (line != null) {
                 String[] fields = line.split(",");
-                String fileName = fields[0];
+                String name = fields[0];
                 String mmr = fields[4];
-                DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
-                tabela.addRow(new Object[]{fileName, mmr});
+                RankingEntry aux = new RankingEntry(name, mmr);
+                jogadores.add(aux);
                 line = br.readLine();
             }
 
@@ -129,10 +109,15 @@ public class RankingPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro ao carregar o arquivo: " + e.getMessage());
         }
     }
-    
+
+    public void preencheTabela() {
+        DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
+        ordenaMMR();
+        for(RankingEntry aux:jogadores)
+           tabela.addRow(new Object[]{aux.getNome(),aux.getMmr()});
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
