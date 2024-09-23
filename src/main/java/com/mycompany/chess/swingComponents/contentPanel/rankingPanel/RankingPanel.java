@@ -19,6 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
 import java.util.Collections;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class RankingPanel extends javax.swing.JPanel {
 
@@ -46,11 +53,21 @@ public class RankingPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(255, 0, 0));
+
+        jScrollPane2.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setForeground(new java.awt.Color(204, 0, 0));
+
+        jTable2.setBackground(new java.awt.Color(0, 0, 0));
+        jTable2.setForeground(new java.awt.Color(0, 0, 0));
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,23 +75,45 @@ public class RankingPanel extends javax.swing.JPanel {
                 "Nome", "MMR"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTable2.setAlignmentX(2.0F);
+        jTable2.setAlignmentY(2.0F);
+        jTable2.setName("Tabela De Ranling"); // NOI18N
+        jTable2.setRowHeight(30);
+        jTable2.setRowMargin(10);
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable2.getColumnModel().getColumn(0).setCellEditor(null);
+            jTable2.getColumnModel().getColumn(1).setPreferredWidth(5);
+        }
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Ranking");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(522, 522, 522))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(400, 400, 400)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -97,10 +136,13 @@ public class RankingPanel extends javax.swing.JPanel {
             String line = br.readLine();
             while (line != null) {
                 String[] fields = line.split(",");
-                String name = fields[0];
-                String mmr = fields[4];
-                RankingEntry aux = new RankingEntry(name, mmr);
-                jogadores.add(aux);
+                if (fields.length >= 5) {
+                   String name = fields[0];
+                    String mmr = fields[4];
+                    RankingEntry aux = new RankingEntry(name, mmr);
+                    System.out.println(aux);
+                    jogadores.add(aux);
+                }
                 line = br.readLine();
             }
 
@@ -111,14 +153,17 @@ public class RankingPanel extends javax.swing.JPanel {
     }
 
     public void preencheTabela() {
-        DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tabela = (DefaultTableModel) jTable2.getModel();
         ordenaMMR();
-        for(RankingEntry aux:jogadores)
-           tabela.addRow(new Object[]{aux.getNome(),aux.getMmr()});
+        for (RankingEntry aux : jogadores) {
+            tabela.addRow(new Object[]{aux.getNome(), aux.getMmr()});
+        }
+         jTable2.setDefaultRenderer(Object.class, new CorPodio());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@ public class RankingEntry implements Comparable<RankingEntry> {
     public int compareTo(RankingEntry o) {
         int aux1 = Integer.parseInt(mmr);
         int aux2 = Integer.parseInt(o.getMmr());
-        return Integer.compare(aux1, aux2);
+        return Integer.compare(aux2, aux1);
     }
 
     @Override
