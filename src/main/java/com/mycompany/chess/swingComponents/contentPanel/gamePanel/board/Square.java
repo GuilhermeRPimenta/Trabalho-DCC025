@@ -7,6 +7,7 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -47,6 +48,7 @@ public class Square extends javax.swing.JPanel {
                 if (highlighted) {
                     setPiece(board.getSquareChosen().getPiece());
                     piece.setPosition(currentSquare.position);
+                    setCursor(Cursor.getDefaultCursor());
                     board.nextTurn();
                 } else if (piece != null) {
                     if (board.getIsPlayer1Turn() && !piece.getIsWhite()) {
@@ -61,6 +63,18 @@ public class Square extends javax.swing.JPanel {
                     }
                 }
 
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (highlighted || (piece != null && (board.getIsPlayer1Turn() && piece.getIsWhite() || !board.getIsPlayer1Turn() && !piece.getIsWhite()))) {
+                    setCursor(Cursor.getDefaultCursor().getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(Cursor.getDefaultCursor());
             }
         });
     }
