@@ -4,7 +4,7 @@ import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterFi
 import com.mycompany.chess.swingComponents.sidebar.SidebarButton;
 import customPalette.customTable;
 import entitites.camposInvalidosException;
-import fields.AdminField;
+import com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminField;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,13 +63,13 @@ public class MainFrame extends javax.swing.JFrame {
         adminPanel = new javax.swing.JPanel();
         adminLogin = new javax.swing.JPanel();
         adminTitle = new javax.swing.JLabel();
-        adminField = new fields.AdminField();
+        adminField = new com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminField();
         adminNameLabel = new javax.swing.JLabel();
         adminNameField = new javax.swing.JTextField();
         adminPasswordLabel = new javax.swing.JLabel();
         adminPasswordField = new javax.swing.JTextField();
         adminConfirmLoginButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
-        adminConfigPanel = new fields.AdminConfigPanel();
+        adminConfigPanel = new com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminConfigPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         customTable = new customPalette.customTable();
 
@@ -588,9 +588,9 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminButton;
-    private fields.AdminConfigPanel adminConfigPanel;
+    private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminConfigPanel adminConfigPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminConfirmLoginButton;
-    private fields.AdminField adminField;
+    private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminField adminField;
     private javax.swing.JPanel adminLogin;
     private javax.swing.JTextField adminNameField;
     private javax.swing.JLabel adminNameLabel;

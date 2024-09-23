@@ -1,4 +1,4 @@
-package fields;
+package com.mycompany.chess.swingComponents.contentPanel.adminPanel;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package fields;
+package com.mycompany.chess.swingComponents.contentPanel.adminPanel;
 
 import entitites.camposInvalidosException;
 import java.io.BufferedReader;
