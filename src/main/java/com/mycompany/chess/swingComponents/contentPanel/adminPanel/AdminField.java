@@ -6,10 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JPanel;
 
-public class AdminField extends JPanel {
-    
+public class AdminField extends JPanel {   
     public AdminField() {
-        setVisible(true);
     }
 
     public boolean loginAdmin(String n, String p) throws camposInvalidosException {
@@ -58,6 +56,5 @@ public class AdminField extends JPanel {
         }
 
         return false;
-    }
-      
+    }    
 }
