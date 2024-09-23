@@ -37,12 +37,6 @@ public class RankingPanel extends javax.swing.JPanel {
     public RankingPanel() {
         initComponents();
         jogadores = new ArrayList<RankingEntry>();
-        try {
-            preencheLista();
-            preencheTabela();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     /**
@@ -53,11 +47,12 @@ public class RankingPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        RankingTitle = new javax.swing.JLabel();
+        PlayerButton = new javax.swing.JButton();
+        AdmButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(255, 0, 0));
@@ -83,14 +78,31 @@ public class RankingPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable2.getColumnModel().getColumn(0).setCellEditor(null);
             jTable2.getColumnModel().getColumn(1).setPreferredWidth(5);
         }
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ranking");
+        RankingTitle.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        RankingTitle.setForeground(new java.awt.Color(255, 255, 255));
+        RankingTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RankingTitle.setText("Ranking");
+
+        PlayerButton.setBackground(new java.awt.Color(153, 153, 153));
+        PlayerButton.setForeground(new java.awt.Color(0, 0, 0));
+        PlayerButton.setText("Player");
+        PlayerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayerButtonActionPerformed(evt);
+            }
+        });
+
+        AdmButton.setBackground(new java.awt.Color(153, 153, 153));
+        AdmButton.setForeground(new java.awt.Color(0, 0, 0));
+        AdmButton.setText("Administrador");
+        AdmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdmButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,32 +112,67 @@ public class RankingPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(400, 400, 400)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(RankingTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(282, Short.MAX_VALUE))
+                        .addGap(73, 73, 73)
+                        .addComponent(PlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(AdmButton)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(RankingTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(PlayerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(236, 236, 236))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AdmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(228, 228, 228))))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerButtonActionPerformed
+        try {
+            preencheListaPlayers();
+            preencheTabela();
+        } catch (camposInvalidosException e) {
+            System.out.println("Erro ao preencher a lista de jogadores: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao carregar a lista de jogadores: " + e.getMessage());
+        }
+    }//GEN-LAST:event_PlayerButtonActionPerformed
+
+    private void AdmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmButtonActionPerformed
+        try {
+            preencheListaAdmin();
+            preencheTabela();
+        } catch (camposInvalidosException e) {
+            System.out.println("Erro ao preencher a lista de administradores: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao carregar a lista de administradores: " + e.getMessage());
+        }
+    }//GEN-LAST:event_AdmButtonActionPerformed
 
     private void ordenaMMR() {
         Collections.sort(jogadores);
     }
 
-    public void preencheLista() throws camposInvalidosException {
+    public void preencheListaPlayers() throws camposInvalidosException {
+        jogadores.clear();
         String path = "";
-
         String os = System.getProperty("os.name").toLowerCase();
-
         if (os.contains("win")) {
             path = "src\\main\\resources\\userData\\userData.csv";
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
@@ -137,7 +184,37 @@ public class RankingPanel extends javax.swing.JPanel {
             while (line != null) {
                 String[] fields = line.split(",");
                 if (fields.length >= 5) {
-                   String name = fields[0];
+                    String name = fields[0];
+                    String mmr = fields[4];
+                    RankingEntry aux = new RankingEntry(name, mmr);
+                    System.out.println(aux);
+                    jogadores.add(aux);
+                }
+                line = br.readLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao carregar o arquivo: " + e.getMessage());
+        }
+    }
+
+    public void preencheListaAdmin() throws camposInvalidosException {
+        jogadores.clear();
+        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\AdminData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/AdminData.csv";
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line = br.readLine();
+            while (line != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 5) {
+                    String name = fields[0];
                     String mmr = fields[4];
                     RankingEntry aux = new RankingEntry(name, mmr);
                     System.out.println(aux);
@@ -158,11 +235,13 @@ public class RankingPanel extends javax.swing.JPanel {
         for (RankingEntry aux : jogadores) {
             tabela.addRow(new Object[]{aux.getNome(), aux.getMmr()});
         }
-         jTable2.setDefaultRenderer(Object.class, new CorPodio());
+        jTable2.setDefaultRenderer(Object.class, new CorPodio());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton AdmButton;
+    private javax.swing.JButton PlayerButton;
+    private javax.swing.JLabel RankingTitle;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
