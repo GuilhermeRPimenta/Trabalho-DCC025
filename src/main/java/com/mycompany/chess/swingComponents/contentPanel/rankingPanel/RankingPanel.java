@@ -77,7 +77,7 @@ public class RankingPanel extends javax.swing.JPanel {
         ));
         jTable2.setAlignmentX(2.0F);
         jTable2.setAlignmentY(2.0F);
-        jTable2.setName("Tabela De Ranling"); // NOI18N
+        jTable2.setName("Tabela De Ranking"); // NOI18N
         jTable2.setRowHeight(30);
         jTable2.setRowMargin(10);
         jScrollPane2.setViewportView(jTable2);
