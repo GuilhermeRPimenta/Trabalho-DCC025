@@ -150,7 +150,7 @@ public class RegisterPanel extends javax.swing.JPanel {
                 throw new camposInvalidosException("Senha não atende aos critérios!");
             }
 
-            if (registerField.savePlayer(name, email, password, confirmPassword)) {
+            if (registerField.savePlayer(name, email, password)) {
                 updateRegisterButton("Jogador adicionado !", confirmRegisterButton);
             }
 

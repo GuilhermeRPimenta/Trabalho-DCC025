@@ -12,8 +12,8 @@ public class RegisterField extends JPanel {
     public RegisterField() {
     }
 
-    public boolean savePlayer(String name, String email, String password, String confirmPassword) {        
-        Player player = new Player(name, email, password, confirmPassword);      
+    public boolean savePlayer(String name, String email, String password) {        
+        Player player = new Player(name, email, password);      
         return saveCSV(player);
     }
 
@@ -23,13 +23,13 @@ public class RegisterField extends JPanel {
         String os = System.getProperty("os.name").toLowerCase();
 
         if (os.contains("win")) {
-            path = "src\\main\\resources\\userData\\userData.csv";
+            path = "src\\main\\resources\\userData\\playerData.csv";
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            path = "src/main/resources/userData/userData.csv";
+            path = "src/main/resources/userData/playerData.csv";
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
-            String line = player.getName() + "," + player.getEmail() + "," + player.getPassword() + "," + player.getIsAdmin();
+            String line = player.getNome() + "," + player.getEmail() + "," + player.getSenha() + "," + player.getMmr();
             bw.write(line);
             bw.newLine();
             return true;

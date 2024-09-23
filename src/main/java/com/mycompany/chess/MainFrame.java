@@ -7,13 +7,17 @@ import javax.swing.JButton;
 public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JButton currentClickedSidebarButton = null;
-
+//    private customPalette.customPlayerTable playerTable;
+//    private customPalette.customAdminTable adminTable;
+    
     public MainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);     
         currentClickedSidebarButton = playButton;
         playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        playerTable = adminPanel.getPlayerTable();
+//        adminTable = adminPanel.getAdminTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -246,22 +250,29 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, gamePanel);
+        adminPanel.deslogar();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, registerPanel);
+        adminPanel.deslogar();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void rankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, rankingPanel);
+        adminPanel.deslogar();
     }//GEN-LAST:event_rankingButtonActionPerformed
 
     private void replaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaysButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, replaysPanel);
+        adminPanel.deslogar();
     }//GEN-LAST:event_replaysButtonActionPerformed
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, adminPanel);
+//        playerTable.refreshTable();
+//        adminTable.refreshTable();
+        adminPanel.deslogar();
     }//GEN-LAST:event_adminButtonActionPerformed
 
     public static void main(String args[]) {

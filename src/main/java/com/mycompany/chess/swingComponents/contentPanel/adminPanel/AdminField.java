@@ -16,13 +16,12 @@ public class AdminField extends JPanel {
         String os = System.getProperty("os.name").toLowerCase();
 
         if (os.contains("win")) {
-            path = "src\\main\\resources\\userData\\userData.csv";
+            path = "src\\main\\resources\\userData\\adminData.csv";
         } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            path = "src/main/resources/userData/userData.csv";
+            path = "src/main/resources/userData/adminData.csv";
         }
 
         boolean userFound = false;
-        boolean isAdmin = false;
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
@@ -32,7 +31,6 @@ public class AdminField extends JPanel {
 
                 String fileName = fields[0];
                 String filePassword = fields[2];
-                isAdmin = Boolean.parseBoolean(fields[3]);
 
                 if (fileName.equals(n) && filePassword.equals(p)) {
                     userFound = true;
@@ -43,11 +41,7 @@ public class AdminField extends JPanel {
             }
 
             if (!userFound) {
-                throw new camposInvalidosException("Nome ou senha inválidos !");
-            }
-
-            if (!isAdmin) {
-                throw new camposInvalidosException("Usuário não é um administrador !");
+                throw new camposInvalidosException("Usuário não é admin !");
             }
 
             return true;
