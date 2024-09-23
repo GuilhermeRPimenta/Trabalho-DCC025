@@ -1,26 +1,19 @@
 package com.mycompany.chess;
 
-import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField;
-import com.mycompany.chess.swingComponents.sidebar.SidebarButton;
 import customPalette.customTable;
 import entitites.camposInvalidosException;
 import com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminField;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.Timer;
 
 public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JButton currentClickedSidebarButton = null;
-    private RegisterField registro;
     private AdminField admin;
 
     public MainFrame() {
         initComponents();
-        registro = new RegisterField(this);
         admin = new AdminField();
         this.setVisible(true);
         currentClickedSidebarButton = playButton;
@@ -30,7 +23,6 @@ public class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         sidebar = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
@@ -42,20 +34,8 @@ public class MainFrame extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
         gamePanel = new javax.swing.JPanel();
         gameScreen = new javax.swing.JPanel();
-        board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
-        registerPanel = new javax.swing.JPanel();
-        register = new javax.swing.JPanel();
-        registerTitle = new javax.swing.JLabel();
-        registerField = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField();
-        nameLabel = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
-        emailName = new javax.swing.JLabel();
-        emailField = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
-        confirmPasswordLabel = new javax.swing.JLabel();
-        confirmPasswordField = new javax.swing.JTextField();
-        confirmRegisterButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        board1 = new com.mycompany.chess.swingComponents.contentPanel.playPanel.Board();
+        registerPanel = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel();
         rankingPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         replaysPanel = new javax.swing.JPanel();
@@ -179,7 +159,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         gameScreenLayout.setVerticalGroup(
             gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(gameScreenLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -190,98 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
         gamePanel.add(gameScreen, "card3");
 
         contentPanel.add(gamePanel, "card2");
-
-        registerPanel.setBackground(new java.awt.Color(51, 51, 51));
-        registerPanel.setLayout(new java.awt.GridBagLayout());
-
-        register.setBackground(new java.awt.Color(51, 51, 51));
-
-        registerTitle.setBackground(new java.awt.Color(255, 255, 255));
-        registerTitle.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 70)); // NOI18N
-        registerTitle.setForeground(new java.awt.Color(255, 255, 255));
-        registerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        registerTitle.setText("CADASTRO");
-        register.add(registerTitle);
-
-        registerField.setPreferredSize(new java.awt.Dimension(424, 218));
-
-        nameLabel.setText("Nome:");
-
-        emailName.setText("Email:");
-
-        passwordLabel.setText("Senha:");
-
-        confirmPasswordLabel.setText("Confirmar senha:");
-
-        confirmRegisterButton.setText("Cadastrar");
-        confirmRegisterButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmRegisterButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout registerFieldLayout = new javax.swing.GroupLayout(registerField);
-        registerField.setLayout(registerFieldLayout);
-        registerFieldLayout.setHorizontalGroup(
-            registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerFieldLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(confirmRegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-                    .addGroup(registerFieldLayout.createSequentialGroup()
-                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(nameField)))
-                    .addGroup(registerFieldLayout.createSequentialGroup()
-                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(confirmPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(confirmPasswordField))))
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-        registerFieldLayout.setVerticalGroup(
-            registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerFieldLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailName)
-                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel))
-                .addGap(18, 18, 18)
-                .addGroup(registerFieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPasswordLabel)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(confirmRegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        register.add(registerField);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = -61;
-        gridBagConstraints.ipady = 212;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(124, 184, 124, 171);
-        registerPanel.add(register, gridBagConstraints);
-
-        contentPanel.add(registerPanel, "card3");
+        contentPanel.add(registerPanel, "card6");
 
         rankingPanel.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -302,7 +191,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(666, Short.MAX_VALUE))
+                .addContainerGap(778, Short.MAX_VALUE))
         );
 
         contentPanel.add(rankingPanel, "card4");
@@ -327,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(replaysPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(666, Short.MAX_VALUE))
+                .addContainerGap(778, Short.MAX_VALUE))
         );
 
         contentPanel.add(replaysPanel, "card5");
@@ -440,27 +329,8 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public SidebarButton getConfirmRegisterButton() {
-        return confirmRegisterButton;
-    }
-
     public customTable getCustomTable() {
         return customTable;
-    }
-
-    public void updateButton(String txt, JButton botao) {
-        botao.setEnabled(false);
-        botao.setText(txt);
-
-        Timer timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                botao.setText("Cadastrar");
-                botao.setEnabled(true);
-            }
-        });
-        timer.setRepeats(false);
-        timer.start();
     }
 
     private void updateSidebarButtonAndContentPanel(java.awt.event.ActionEvent evt, JPanel contentCardPanel) {
@@ -520,39 +390,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
         } catch (camposInvalidosException ex) {
-            updateButton(ex.getMessage(), adminConfirmLoginButton);
+            //updateButton(ex.getMessage(), adminConfirmLoginButton);
         }
     }//GEN-LAST:event_adminConfirmLoginButtonActionPerformed
-
-    private void confirmRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRegisterButtonActionPerformed
-        String name = nameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
-
-        try {
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                throw new camposInvalidosException("Preencha todos os campos!");
-            }
-
-            if (!password.equals(confirmPassword)) {
-                throw new camposInvalidosException("Senhas diferentes!");
-            }
-
-            if (!registro.validarEmail(email)) {
-                throw new camposInvalidosException("Email inválido!");
-            }
-
-            if (!registro.validarSenha(password)) {
-                throw new camposInvalidosException("Senha não atende aos critérios!");
-            }
-
-            registro.savePlayer(name, email, password, confirmPassword);
-
-        } catch (camposInvalidosException ex) {
-            updateButton(ex.getMessage(), confirmRegisterButton);
-        }
-    }//GEN-LAST:event_confirmRegisterButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -598,31 +438,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField adminPasswordField;
     private javax.swing.JLabel adminPasswordLabel;
     private javax.swing.JLabel adminTitle;
-    private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;
-    private javax.swing.JTextField confirmPasswordField;
-    private javax.swing.JLabel confirmPasswordLabel;
-    private com.mycompany.chess.swingComponents.sidebar.SidebarButton confirmRegisterButton;
+    private com.mycompany.chess.swingComponents.contentPanel.playPanel.Board board1;
     private javax.swing.JPanel contentPanel;
     private customPalette.customTable customTable;
-    private javax.swing.JTextField emailField;
-    private javax.swing.JLabel emailName;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel gameScreen;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField passwordField;
-    private javax.swing.JLabel passwordLabel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton rankingButton;
     private javax.swing.JPanel rankingPanel;
-    private javax.swing.JPanel register;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
-    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField registerField;
-    private javax.swing.JPanel registerPanel;
-    private javax.swing.JLabel registerTitle;
+    private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel registerPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;
     private javax.swing.JPanel replaysPanel;
     private javax.swing.JPanel sidebar;

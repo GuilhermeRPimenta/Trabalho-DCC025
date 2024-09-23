@@ -1,6 +1,5 @@
 package com.mycompany.chess.swingComponents.contentPanel.registerPanel;
 
-import com.mycompany.chess.MainFrame;
 import entitites.Player;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,25 +9,15 @@ import javax.swing.JPanel;
 
 public class RegisterField extends JPanel {
 
-    private MainFrame mainFrame;
-    
     public RegisterField() {
     }
 
-    public RegisterField(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
+    public boolean savePlayer(String name, String email, String password, String confirmPassword) {        
+        Player player = new Player(name, email, password, confirmPassword);      
+        return saveCSV(player);
     }
 
-    public void savePlayer(String name, String email, String password, String confirmPassword) {        
-        Player player = new Player(name, email, password, confirmPassword);
-        
-        if (saveCSV(player)) {
-            mainFrame.updateButton("Jogador adicionado !", mainFrame.getConfirmRegisterButton());
-        }
-    }
-
-    public boolean saveCSV(Player player) {
-
+    private boolean saveCSV(Player player) {
         String path = "";
 
         String os = System.getProperty("os.name").toLowerCase();
