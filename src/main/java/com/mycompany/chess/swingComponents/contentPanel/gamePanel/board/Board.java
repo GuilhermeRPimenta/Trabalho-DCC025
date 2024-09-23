@@ -8,10 +8,12 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.B
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.King;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Knight;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +25,8 @@ public class Board extends JPanel{
     private final int SIZE = 8;
     private final int SQUARE_HEIGHT = 80;
     private Square[][] tiles = new Square[8][8];
+    private ArrayList<Square> currentAvailableMoves;
+    private Square squareChosen = null;
     
     public Board(){
         setLayout(new GridLayout(SIZE, SIZE));
@@ -31,7 +35,7 @@ public class Board extends JPanel{
         boolean brown = true;
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
-                Square square = new Square(i,j,brown, SQUARE_HEIGHT);
+                Square square = new Square(i,j,brown, SQUARE_HEIGHT, this);
                 tiles[i][j] = square;
                 
                 brown = !brown;
@@ -63,6 +67,29 @@ public class Board extends JPanel{
             for(int i = 0; i<8; i++){
                 tiles[6][i].setPiece(new Pawn(6, i, true));
             }
+    }
+    
+    public Square getSquare(int x, int y){
+        return tiles[x][y];
+    }
+    
+    public Square getSquareChosen(){
+        return squareChosen;
+    }
+    
+    public void highlightLegalMoves(ArrayList<Square> legalMoves, Square squareChosen){
+        currentAvailableMoves = legalMoves;
+        this.squareChosen = squareChosen;
+        for(Square square : legalMoves){
+            square.highlight();
+        }
+    }
+    
+    public void nextTurn(){
+        squareChosen.setPiece(null);
+        for(Square square : currentAvailableMoves){
+            square.disableHighlight();
+        }
     }
     
 }

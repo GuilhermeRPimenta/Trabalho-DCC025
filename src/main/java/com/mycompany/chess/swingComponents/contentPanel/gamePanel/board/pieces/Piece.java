@@ -4,7 +4,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Square;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -37,12 +39,16 @@ public abstract class Piece{
         return image;
     }
     
+    public boolean getIsWhite(){
+        return white;
+    }
+    
     protected void scaleImage(){
         Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         image = new ImageIcon(scaledImage);
     }
     
     protected abstract void assignImage();
-    public abstract ArrayList<Position> calculateLegalMoves();
+    public abstract ArrayList<Square> calculateLegalMoves(Board board);
     
 }

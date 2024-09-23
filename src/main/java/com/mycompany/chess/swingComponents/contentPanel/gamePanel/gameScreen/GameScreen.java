@@ -6,6 +6,7 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 
 import entitites.NullPlayerException;
 import entitites.Player;
+import java.awt.Color;
 
 /**
  *
@@ -15,6 +16,7 @@ public class GameScreen extends javax.swing.JPanel {
     
     private Player player1;
     private Player player2;
+    private boolean player1Turn;
     /**
      * Creates new form GameScreen
      */
@@ -27,9 +29,11 @@ public class GameScreen extends javax.swing.JPanel {
         }
         this.player1 = player1;
         this.player2 = player2;
+        player1Turn=true;
         initComponents();
         player1Info.setText(player1.getName());
         player2Info.setText(player2.getName());
+        
     }
 
     /**
@@ -49,11 +53,13 @@ public class GameScreen extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1009, 688));
         setPreferredSize(new java.awt.Dimension(1009, 688));
 
+        player1Info.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         player1Info.setForeground(new java.awt.Color(255, 255, 255));
         player1Info.setText("[Nome jogador 1]");
 
         player2Info.setBackground(new java.awt.Color(255, 255, 255));
-        player2Info.setForeground(new java.awt.Color(255, 255, 255));
+        player2Info.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        player2Info.setForeground(new java.awt.Color(153, 153, 153));
         player2Info.setText("[Nome jogador 2]");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,7 +67,7 @@ public class GameScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(player1Info)
                 .addGap(18, 18, 18)
                 .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -86,7 +92,21 @@ public class GameScreen extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void nextTurn(){
+        player1Turn = !player1Turn;
+        if(player1Turn){
+            player1Info.setForeground(new Color(255,255,255));
+            player2Info.setForeground(new Color(153,153,153));
+        }
+        else{
+            player1Info.setForeground(new Color(153,153,153));
+            player2Info.setForeground(new Color(255,255,255));
+        }
+    }
+    
+    public boolean isPlayer1Turn(){
+        return player1Turn;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;

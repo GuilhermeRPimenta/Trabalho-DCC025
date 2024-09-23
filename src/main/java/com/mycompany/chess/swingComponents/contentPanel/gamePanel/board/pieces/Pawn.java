@@ -4,7 +4,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Square;
 import java.util.ArrayList;
 
 
@@ -13,7 +15,6 @@ import java.util.ArrayList;
  * @author guilh
  */
 public class Pawn extends Piece{
-    private boolean movedForTheFirstTime = false;
     public Pawn(int x, int y, boolean white){
         super(x,y,white);
     }
@@ -25,7 +26,28 @@ public class Pawn extends Piece{
     }
     
     @Override
-    public ArrayList<Position> calculateLegalMoves(){
-        return null;
+    public ArrayList<Square> calculateLegalMoves(Board board){
+        ArrayList<Square> legalMoves = new ArrayList<>();
+        
+        int nextX = position.X + 1 * yMovementMultiplier;
+        if(isValidMove(board, nextX, position.Y)){
+            legalMoves.add(board.getSquare(nextX, position.Y));
+        }
+        return legalMoves;
+    }
+    
+    protected boolean isValidMove(Board board, int x, int y){
+        if(x<0 || x >=8 || y<0 || y>=8){
+            return false;
+        }
+        Square targetSquare = board.getSquare(x, y);
+        Piece targetSquarePiece = targetSquare.getPiece();
+        if(targetSquarePiece == null){
+            return true;
+        }
+        if(targetSquarePiece.getIsWhite() != this.white){
+            return true;
+        }
+        return false;
     }
 }

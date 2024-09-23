@@ -4,7 +4,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Square;
 import java.util.ArrayList;
 
 /**
@@ -18,12 +20,12 @@ public class King extends Piece{
     
     @Override
     protected void assignImage(){
-        image = new javax.swing.ImageIcon(getClass().getResource(white? "/images/pieces/white-bishop.png":"/images/pieces/black-bishop.png"));
+        image = new javax.swing.ImageIcon(getClass().getResource(white? "/images/pieces/white-king.png":"/images/pieces/black-king.png"));
         scaleImage();
     }
     
     @Override
-    public ArrayList<Position> calculateLegalMoves(){
+    public ArrayList<Square> calculateLegalMoves(Board board){
         return null;
     }
 }

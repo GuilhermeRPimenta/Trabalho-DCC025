@@ -5,8 +5,13 @@
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 
 /**
@@ -16,18 +21,40 @@ import javax.swing.JLabel;
 public class Square extends javax.swing.JPanel {
     private Position position;
     private Piece piece;
+    private Board board;
+    private boolean brown;
+    private boolean highlighted;
+    private final Square currentSquare = this;
     /**
      * Creates new form Square
      */
-    public Square(int x, int y, boolean brown, int height) {
+    public Square(int x, int y, boolean brown, int height, Board board) {
         initComponents();
+        this.board = board;
         this.position = new Position(x, y);
+        this.brown = brown;
         if(brown){
             setBackground(new Color(177,110,65));
         }else{
             setBackground(new Color(251,209,151));
         }
         setPreferredSize(new Dimension(height, height));
+        this.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if(highlighted){
+                setPiece(board.getSquareChosen().getPiece());
+                board.nextTurn();
+            }
+            if (piece != null) {
+                ArrayList<Square> legalMoves = piece.calculateLegalMoves(board);
+                if(legalMoves != null && legalMoves.size() > 0){
+                    board.highlightLegalMoves(legalMoves, currentSquare);
+                }
+            }
+            
+        }
+    });
     }
     
     public void setPiece(Piece piece){
@@ -39,6 +66,29 @@ public class Square extends javax.swing.JPanel {
         }
         revalidate();
         repaint();
+    }
+    
+    public Piece getPiece(){
+        return piece;
+    }
+    
+    public void highlight(){
+        highlighted = true;
+        if(brown){
+            setBackground(new Color(118,150,86));
+        }
+        else{
+            setBackground(new Color(208,238,180));
+        }
+    }
+    
+    public void disableHighlight(){
+        highlighted = false;
+        if(brown){
+            setBackground(new Color(177,110,65));
+        }else{
+            setBackground(new Color(251,209,151));
+        }
     }
 
     /**

@@ -4,7 +4,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Square;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,7 @@ public class Queen extends Piece{
     }
     
     @Override
-    public ArrayList<Position> calculateLegalMoves(){
+    public ArrayList<Square> calculateLegalMoves(Board board){
         return null;
     }
 }
