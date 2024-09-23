@@ -44,6 +44,7 @@ public class GameScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
         player1Info = new javax.swing.JLabel();
@@ -52,45 +53,35 @@ public class GameScreen extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
         setPreferredSize(new java.awt.Dimension(1009, 688));
+        setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 18, 25, 0);
+        add(board1, gridBagConstraints);
 
         player1Info.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         player1Info.setForeground(new java.awt.Color(255, 255, 255));
         player1Info.setText("[Nome jogador 1]");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(450, 6, 0, 0);
+        add(player1Info, gridBagConstraints);
 
         player2Info.setBackground(new java.awt.Color(255, 255, 255));
         player2Info.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         player2Info.setForeground(new java.awt.Color(153, 153, 153));
         player2Info.setText("[Nome jogador 2]");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(player1Info)
-                .addGap(18, 18, 18)
-                .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(player2Info)
-                .addGap(69, 69, 69))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(player1Info)
-                .addGap(97, 97, 97))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(board1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(player2Info)))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(91, 18, 0, 43);
+        add(player2Info, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
     public void nextTurn(){
         player1Turn = !player1Turn;
