@@ -28,4 +28,9 @@ public class Queen extends Piece{
     public ArrayList<Square> calculateLegalMoves(Board board){
         return null;
     }
+    
+    @Override
+    protected boolean isValidMove(Board board, int x, int y){
+        return true;
+    }
 }

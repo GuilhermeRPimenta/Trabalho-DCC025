@@ -37,4 +37,9 @@ public class Rook extends Piece{
         }
         return null;
     }
+    
+    @Override
+    protected boolean isValidMove(Board board, int x, int y){
+        return true;
+    }
 }
