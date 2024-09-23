@@ -19,12 +19,14 @@ import javax.swing.JLabel;
  * @author guilh
  */
 public class Square extends javax.swing.JPanel {
+
     private Position position;
     private Piece piece;
     private Board board;
     private boolean brown;
     private boolean highlighted;
     private final Square currentSquare = this;
+
     /**
      * Creates new form Square
      */
@@ -33,61 +35,66 @@ public class Square extends javax.swing.JPanel {
         this.board = board;
         this.position = new Position(x, y);
         this.brown = brown;
-        if(brown){
-            setBackground(new Color(177,110,65));
-        }else{
-            setBackground(new Color(251,209,151));
+        if (brown) {
+            setBackground(new Color(177, 110, 65));
+        } else {
+            setBackground(new Color(251, 209, 151));
         }
         setPreferredSize(new Dimension(height, height));
         this.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mousePressed(MouseEvent e) {
-            if(highlighted){
-                setPiece(board.getSquareChosen().getPiece());
-                board.nextTurn();
-            }
-            if (piece != null) {
-                ArrayList<Square> legalMoves = piece.calculateLegalMoves(board);
-                if(legalMoves != null && legalMoves.size() > 0){
-                    board.highlightLegalMoves(legalMoves, currentSquare);
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (highlighted) {
+                    setPiece(board.getSquareChosen().getPiece());
+                    piece.setPosition(currentSquare.position);
+                    board.nextTurn();
+                } else if (piece != null) {
+                    if (board.getIsPlayer1Turn() && !piece.getIsWhite()) {
+                        return;
+                    }
+                    if (!board.getIsPlayer1Turn() && piece.getIsWhite()) {
+                        return;
+                    }
+                    ArrayList<Square> legalMoves = piece.calculateLegalMoves(board);
+                    if (legalMoves != null && legalMoves.size() > 0) {
+                        board.highlightLegalMoves(legalMoves, currentSquare);
+                    }
                 }
+
             }
-            
-        }
-    });
+        });
     }
-    
-    public void setPiece(Piece piece){
-        this.piece = piece;
+
+    public void setPiece(Piece piece) {
         removeAll();
-        if(piece != null){
+        this.piece = piece;
+        if (piece != null) {
             JLabel pieceLabel = new JLabel(piece.getIcon());
             add(pieceLabel);
         }
         revalidate();
         repaint();
     }
-    
-    public Piece getPiece(){
+
+    public Piece getPiece() {
         return piece;
     }
-    
-    public void highlight(){
+
+    public void highlight() {
         highlighted = true;
-        if(brown){
-            setBackground(new Color(118,150,86));
-        }
-        else{
-            setBackground(new Color(208,238,180));
+        if (brown) {
+            setBackground(new Color(118, 150, 86));
+        } else {
+            setBackground(new Color(208, 238, 180));
         }
     }
-    
-    public void disableHighlight(){
+
+    public void disableHighlight() {
         highlighted = false;
-        if(brown){
-            setBackground(new Color(177,110,65));
-        }else{
-            setBackground(new Color(251,209,151));
+        if (brown) {
+            setBackground(new Color(177, 110, 65));
+        } else {
+            setBackground(new Color(251, 209, 151));
         }
     }
 

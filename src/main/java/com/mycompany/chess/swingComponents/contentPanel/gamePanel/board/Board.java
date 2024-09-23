@@ -11,6 +11,7 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.P
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -27,11 +28,9 @@ public class Board extends JPanel{
     private Square[][] tiles = new Square[8][8];
     private ArrayList<Square> currentAvailableMoves;
     private Square squareChosen = null;
-    
+    private GameScreen gameScreen;
     public Board(){
         setLayout(new GridLayout(SIZE, SIZE));
-        //setPreferredSize(new Dimension(SIZE * SQUARE_HEIGHT, SIZE * SQUARE_HEIGHT));
-        
         boolean brown = true;
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
@@ -77,6 +76,11 @@ public class Board extends JPanel{
         return squareChosen;
     }
     
+    public boolean getIsPlayer1Turn(){
+        gameScreen = (GameScreen) this.getParent();
+        return gameScreen.isPlayer1Turn();
+    }
+    
     public void highlightLegalMoves(ArrayList<Square> legalMoves, Square squareChosen){
         currentAvailableMoves = legalMoves;
         this.squareChosen = squareChosen;
@@ -86,10 +90,12 @@ public class Board extends JPanel{
     }
     
     public void nextTurn(){
+        gameScreen = (GameScreen) this.getParent();
         squareChosen.setPiece(null);
         for(Square square : currentAvailableMoves){
             square.disableHighlight();
         }
+        gameScreen.nextTurn();
     }
     
 }

@@ -48,6 +48,10 @@ public abstract class Piece{
         image = new ImageIcon(scaledImage);
     }
     
+    public void setPosition(Position position){
+        this.position = position;
+    }
+    
     protected abstract void assignImage();
     public abstract ArrayList<Square> calculateLegalMoves(Board board);
     
