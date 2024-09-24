@@ -53,7 +53,6 @@ public class RankingPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -66,6 +65,7 @@ public class RankingPanel extends javax.swing.JPanel {
         jScrollPane2.setForeground(new java.awt.Color(204, 0, 0));
 
         jTable2.setBackground(new java.awt.Color(0, 0, 0));
+        jTable2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
         jTable2.setForeground(new java.awt.Color(0, 0, 0));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,16 +74,26 @@ public class RankingPanel extends javax.swing.JPanel {
             new String [] {
                 "Nome", "MMR"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setAlignmentX(2.0F);
         jTable2.setAlignmentY(2.0F);
         jTable2.setName("Tabela De Ranking"); // NOI18N
         jTable2.setRowHeight(30);
         jTable2.setRowMargin(10);
+        jTable2.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable2.getColumnModel().getColumn(0).setCellEditor(null);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
             jTable2.getColumnModel().getColumn(1).setPreferredWidth(5);
         }
 

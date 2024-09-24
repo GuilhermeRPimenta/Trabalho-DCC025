@@ -30,13 +30,12 @@ public CorPodio(){}
                     cellComponent.setBackground(new Color(205, 127, 50)); 
                     break;
                 default:
-                    cellComponent.setBackground(Color.WHITE); 
+                cellComponent.setBackground(new Color(150, 150, 255)); 
                     break;
             }
 
             if (isSelected) {
-                cellComponent.setBackground(Color.CYAN); 
-                cellComponent.setForeground(Color.BLACK); 
+                cellComponent.setBackground(Color.cyan); 
             }
 
             return cellComponent;
