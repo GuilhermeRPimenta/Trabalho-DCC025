@@ -36,19 +36,4 @@ public class Pawn extends Piece{
         return legalMoves;
     }
     
-    @Override
-    protected boolean isValidMove(Board board, int x, int y){
-        if(x<0 || x >=8 || y<0 || y>=8){
-            return false;
-        }
-        Square targetSquare = board.getSquare(x, y);
-        Piece targetSquarePiece = targetSquare.getPiece();
-        if(targetSquarePiece == null){
-            return true;
-        }
-        if(targetSquarePiece.getIsWhite() != this.white){
-            return true;
-        }
-        return false;
-    }
 }

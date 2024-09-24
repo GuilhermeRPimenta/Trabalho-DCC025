@@ -92,6 +92,7 @@ public class Board extends JPanel{
     public void nextTurn(){
         gameScreen = (GameScreen) this.getParent();
         squareChosen.setPiece(null);
+        squareChosen = null;
         for(Square square : currentAvailableMoves){
             square.disableHighlight();
         }
