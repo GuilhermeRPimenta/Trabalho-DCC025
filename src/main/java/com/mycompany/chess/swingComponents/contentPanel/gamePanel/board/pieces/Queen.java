@@ -26,11 +26,117 @@ public class Queen extends Piece{
     
     @Override
     public ArrayList<Square> calculateLegalMoves(Board board){
-        return null;
+        ArrayList<Square> legalMoves = new ArrayList<>();
+        
+        int analysedX = position.X + 1;
+        int analysedY = position.Y;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            analysedX +=1;
+        }
+        analysedX = position.X - 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            analysedX -=1;
+        }
+        analysedX = position.X;
+        analysedY = position.Y + 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            analysedY +=1;
+        }
+        analysedY = position.Y - 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            analysedY -=1;
+        }
+        
+        analysedX = position.X + 1;
+        analysedY = position.Y + 1;
+        
+        while(analysedX < 8 && analysedY < 8){
+            
+            if(isValidMove(board, analysedX, analysedY)){
+                legalMoves.add(board.getSquare(analysedX, analysedY));
+            }
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            
+            analysedX++;
+            analysedY++;
+            
+        }
+        analysedX = position.X - 1;
+        analysedY = position.Y - 1;
+        while(analysedX >= 0 && analysedY >= 0){
+            
+            
+            if(isValidMove(board, analysedX, analysedY)){
+                legalMoves.add(board.getSquare(analysedX, analysedY));
+            }
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            
+            analysedX--;
+            analysedY--;
+            
+        }
+        analysedX = position.X - 1; 
+        analysedY = position.Y + 1;
+        while(analysedX >= 0 && analysedY < 8){
+            
+            
+            if(isValidMove(board, analysedX, analysedY)){
+                legalMoves.add(board.getSquare(analysedX, analysedY));
+            }
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            
+            analysedX--;
+            analysedY++;
+            
+        }
+        analysedX = position.X + 1;
+        analysedY = position.Y - 1;
+        while(analysedX < 8 && analysedY >= 0){
+            
+            
+            if(isValidMove(board, analysedX, analysedY)){
+                legalMoves.add(board.getSquare(analysedX, analysedY));
+            }
+            
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
+                break;
+            }
+            
+            analysedX++;
+            analysedY--;
+            
+        }
+        
+        return legalMoves;
     }
     
-    @Override
-    protected boolean isValidMove(Board board, int x, int y){
-        return true;
-    }
 }
