@@ -26,11 +26,23 @@ public class Knight extends Piece{
     
     @Override
     public ArrayList<Square> calculateLegalMoves(Board board){
-        return null;
+        ArrayList<Square> legalMoves = new ArrayList<Square>();
+        ArrayList<Position> positionsToTest = new ArrayList<Position>();
+        positionsToTest.add(new Position(position.X +2, position.Y+1));
+        positionsToTest.add(new Position(position.X +2, position.Y-1));
+        positionsToTest.add(new Position(position.X -2, position.Y+1));
+        positionsToTest.add(new Position(position.X -2, position.Y-1));
+        
+        positionsToTest.add(new Position(position.X+1, position.Y+2));
+        positionsToTest.add(new Position(position.X+1, position.Y-2));
+        positionsToTest.add(new Position(position.X-1, position.Y+2));
+        positionsToTest.add(new Position(position.X-1, position.Y-2));
+        for(Position pos : positionsToTest){
+            if(isValidMove(board, pos.X, pos.Y)){
+                legalMoves.add(board.getSquare(pos.X, pos.Y));
+            }
+        }
+        return legalMoves;
     }
     
-    @Override
-    protected boolean isValidMove(Board board, int x, int y){
-        return true;
-    }
 }

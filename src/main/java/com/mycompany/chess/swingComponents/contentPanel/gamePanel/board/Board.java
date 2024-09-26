@@ -55,14 +55,14 @@ public class Board extends JPanel{
                 tiles[1][i].setPiece(new Pawn(1, i, false));
             }
         
-        tiles[7][0].setPiece(new Rook(0,0,true));
-            tiles[7][1].setPiece(new Knight(0, 1, true));
-            tiles[7][2].setPiece(new Bishop(0,2,true));
-            tiles[7][3].setPiece(new Queen(0,3,true));
-            tiles[7][4].setPiece(new King(0, 4, true));
-            tiles[7][5].setPiece(new Bishop(0, 5, true));
-            tiles[7][6].setPiece(new Knight(0, 6, true));
-            tiles[7][7].setPiece(new Rook(0,7,true));
+        tiles[7][0].setPiece(new Rook(7,0,true));
+            tiles[7][1].setPiece(new Knight(7, 1, true));
+            tiles[7][2].setPiece(new Bishop(7,2,true));
+            tiles[7][3].setPiece(new Queen(7,3,true));
+            tiles[7][4].setPiece(new King(7, 4, true));
+            tiles[7][5].setPiece(new Bishop(7, 5, true));
+            tiles[7][6].setPiece(new Knight(7, 6, true));
+            tiles[7][7].setPiece(new Rook(7,7,true));
             for(int i = 0; i<8; i++){
                 tiles[6][i].setPiece(new Pawn(6, i, true));
             }
