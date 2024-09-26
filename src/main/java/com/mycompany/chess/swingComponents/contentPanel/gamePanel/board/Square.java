@@ -6,6 +6,7 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -48,6 +49,9 @@ public class Square extends javax.swing.JPanel {
                 if (highlighted) {
                     setPiece(board.getSquareChosen().getPiece());
                     piece.setPosition(currentSquare.position);
+                    if(piece instanceof Pawn){
+                        ((Pawn) piece).setFirstMoveToFalse();
+                    }
                     setCursor(Cursor.getDefaultCursor());
                     board.nextTurn();
                 } else if (piece != null && board.getSquareChosen() == null) {

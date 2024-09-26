@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author guilh
  */
 public class Pawn extends Piece {
-
+    private boolean firstMove = true;
     public Pawn(int x, int y, boolean white) {
         super(x, y, white);
     }
@@ -33,6 +33,14 @@ public class Pawn extends Piece {
         if (isValidMove(board, nextX, position.Y)) {
             if (board.getSquare(nextX, position.Y).getPiece() == null) {
                 legalMoves.add(board.getSquare(nextX, position.Y));
+                if(firstMove){
+                    int nextX2 = position.X + 2 * yMovementMultiplier;
+                    if(isValidMove(board, nextX2, position.Y)){
+                        if(board.getSquare(nextX2, position.Y).getPiece() == null){
+                            legalMoves.add(board.getSquare(nextX2, position.Y));
+                        }
+                    }
+                }
             }
         }
         Position upRight = new Position(position.X + 1 * yMovementMultiplier, position.Y + 1);
@@ -48,6 +56,10 @@ public class Pawn extends Piece {
             }
         }
         return legalMoves;
+    }
+    
+    public void setFirstMoveToFalse(){
+        firstMove = false;
     }
 
 }
