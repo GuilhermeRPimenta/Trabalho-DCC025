@@ -28,18 +28,47 @@ public class Rook extends Piece{
     
     @Override
     public ArrayList<Square> calculateLegalMoves(Board board){
-        List<Position> legalMovesList = new ArrayList<Position>();
-        for(int i = 0; i <8; i++){
-            if(i == position.Y){
-                continue;
+        ArrayList<Square> legalMoves = new ArrayList<>();
+        int analisedX = position.X + 1;
+        int analisedY = position.Y;
+        while(isValidMove(board, analisedX, analisedY)){
+            legalMoves.add(board.getSquare(analisedX, analisedY));
+            
+            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+                break;
             }
-            legalMovesList.add(new Position(position.X,i));
+            analisedX +=1;
         }
-        return null;
+        analisedX = position.X - 1;
+        while(isValidMove(board, analisedX, analisedY)){
+            legalMoves.add(board.getSquare(analisedX, analisedY));
+            
+            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+                break;
+            }
+            analisedX -=1;
+        }
+        analisedX = position.X;
+        analisedY = position.Y + 1;
+        while(isValidMove(board, analisedX, analisedY)){
+            legalMoves.add(board.getSquare(analisedX, analisedY));
+            
+            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+                break;
+            }
+            analisedY +=1;
+        }
+        analisedY = position.Y - 1;
+        while(isValidMove(board, analisedX, analisedY)){
+            legalMoves.add(board.getSquare(analisedX, analisedY));
+            
+            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+                break;
+            }
+            analisedY -=1;
+        }
+        
+        return legalMoves;
     }
     
-    @Override
-    protected boolean isValidMove(Board board, int x, int y){
-        return true;
-    }
 }
