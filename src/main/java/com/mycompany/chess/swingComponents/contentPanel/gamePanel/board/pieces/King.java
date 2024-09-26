@@ -26,11 +26,25 @@ public class King extends Piece{
     
     @Override
     public ArrayList<Square> calculateLegalMoves(Board board){
-        return null;
+        ArrayList<Square> legalMoves = new ArrayList<>();
+        
+        for(int i = -1; i <= 1; i++){
+            for(int j = -1; j <= 1; j++){
+                if(i == 0 && j == 0){
+                    continue;
+                }
+                
+                int analysedX = position.X + i;
+                int analysedY = position.Y + j;
+                
+                if(isValidMove(board, analysedX, analysedY)){
+                    legalMoves.add(board.getSquare(analysedX, analysedY));
+                }
+            }
+        }
+        
+        
+        return legalMoves;
     }
     
-    @Override
-    protected boolean isValidMove(Board board, int x, int y){
-        return true;
-    }
 }

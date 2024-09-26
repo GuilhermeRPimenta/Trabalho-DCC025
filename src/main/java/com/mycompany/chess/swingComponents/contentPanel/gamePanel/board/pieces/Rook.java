@@ -29,43 +29,43 @@ public class Rook extends Piece{
     @Override
     public ArrayList<Square> calculateLegalMoves(Board board){
         ArrayList<Square> legalMoves = new ArrayList<>();
-        int analisedX = position.X + 1;
-        int analisedY = position.Y;
-        while(isValidMove(board, analisedX, analisedY)){
-            legalMoves.add(board.getSquare(analisedX, analisedY));
+        int analysedX = position.X + 1;
+        int analysedY = position.Y;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
             
-            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
                 break;
             }
-            analisedX +=1;
+            analysedX +=1;
         }
-        analisedX = position.X - 1;
-        while(isValidMove(board, analisedX, analisedY)){
-            legalMoves.add(board.getSquare(analisedX, analisedY));
+        analysedX = position.X - 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
             
-            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
                 break;
             }
-            analisedX -=1;
+            analysedX -=1;
         }
-        analisedX = position.X;
-        analisedY = position.Y + 1;
-        while(isValidMove(board, analisedX, analisedY)){
-            legalMoves.add(board.getSquare(analisedX, analisedY));
+        analysedX = position.X;
+        analysedY = position.Y + 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
             
-            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
                 break;
             }
-            analisedY +=1;
+            analysedY +=1;
         }
-        analisedY = position.Y - 1;
-        while(isValidMove(board, analisedX, analisedY)){
-            legalMoves.add(board.getSquare(analisedX, analisedY));
+        analysedY = position.Y - 1;
+        while(isValidMove(board, analysedX, analysedY)){
+            legalMoves.add(board.getSquare(analysedX, analysedY));
             
-            if(board.getSquare(analisedX, analisedY).getPiece() != null){
+            if(board.getSquare(analysedX, analysedY).getPiece() != null){
                 break;
             }
-            analisedY -=1;
+            analysedY -=1;
         }
         
         return legalMoves;
