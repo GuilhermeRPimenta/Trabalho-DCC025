@@ -9,31 +9,45 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Square;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author guilh
  */
-public class Pawn extends Piece{
-    public Pawn(int x, int y, boolean white){
-        super(x,y,white);
+public class Pawn extends Piece {
+
+    public Pawn(int x, int y, boolean white) {
+        super(x, y, white);
     }
-    
+
     @Override
-    protected void assignImage(){
-        image = new javax.swing.ImageIcon(getClass().getResource(white? "/images/pieces/white-pawn.png":"/images/pieces/black-pawn.png"));
+    protected void assignImage() {
+        image = new javax.swing.ImageIcon(getClass().getResource(white ? "/images/pieces/white-pawn.png" : "/images/pieces/black-pawn.png"));
         scaleImage();
     }
-    
+
     @Override
-    public ArrayList<Square> calculateLegalMoves(Board board){
+    public ArrayList<Square> calculateLegalMoves(Board board) {
         ArrayList<Square> legalMoves = new ArrayList<>();
-        
+
         int nextX = position.X + 1 * yMovementMultiplier;
-        if(isValidMove(board, nextX, position.Y)){
-            legalMoves.add(board.getSquare(nextX, position.Y));
+        if (isValidMove(board, nextX, position.Y)) {
+            if (board.getSquare(nextX, position.Y).getPiece() == null) {
+                legalMoves.add(board.getSquare(nextX, position.Y));
+            }
+        }
+        Position upRight = new Position(position.X + 1 * yMovementMultiplier, position.Y + 1);
+        Position upLeft = new Position(position.X + 1 * yMovementMultiplier, position.Y - 1);
+        if (isValidMove(board, upRight.X, upRight.Y)) {
+            if (board.getSquare(upRight.X, upRight.Y).getPiece() != null && board.getSquare(upRight.X, upRight.Y).getPiece().getIsWhite() != this.white) {
+                legalMoves.add(board.getSquare(upRight.X, upRight.Y));
+            }
+        }
+        if (isValidMove(board, upLeft.X, upLeft.Y)) {
+            if (board.getSquare(upLeft.X, upLeft.Y).getPiece() != null && board.getSquare(upLeft.X, upLeft.Y).getPiece().getIsWhite() != this.white) {
+                legalMoves.add(board.getSquare(upLeft.X, upLeft.Y));
+            }
         }
         return legalMoves;
     }
-    
+
 }
