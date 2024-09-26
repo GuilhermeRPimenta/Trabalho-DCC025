@@ -43,6 +43,10 @@ public abstract class Piece{
         return white;
     }
     
+    public Position getPosition(){
+        return position;
+    }
+    
     protected void scaleImage(){
         Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         image = new ImageIcon(scaledImage);
