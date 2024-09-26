@@ -69,7 +69,7 @@ public class Square extends javax.swing.JPanel {
                             Object[] options = {bishop, knight, queen, rook};
                             int selectedOption = -1;
                             while(selectedOption == -1){
-                                selectedOption = JOptionPane.showOptionDialog(null, "Escolha a peça para substituir o peão", "Promoção de peão", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, -1);
+                                selectedOption = JOptionPane.showOptionDialog(null, "Escolha a peça para substituir o peão", "Promoção de peão", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getResource(whitePawn? "/images/pieces/white-pawn.png":"/images/pieces/black-pawn.png")), options, -1);
                             switch(selectedOption){
                                 case 0:
                                     setPiece(new Bishop(position.X, position.Y, whitePawn));
