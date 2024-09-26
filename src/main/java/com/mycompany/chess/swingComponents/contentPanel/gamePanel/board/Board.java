@@ -82,6 +82,11 @@ public class Board extends JPanel{
     }
     
     public void highlightLegalMoves(ArrayList<Square> legalMoves, Square squareChosen){
+        
+        for(int i = 0; i < 8; i++)
+            for(int j = 0; j< 8; j++)
+                tiles[i][j].disableHighlight();
+        
         currentAvailableMoves = legalMoves;
         this.squareChosen = squareChosen;
         for(Square square : legalMoves){

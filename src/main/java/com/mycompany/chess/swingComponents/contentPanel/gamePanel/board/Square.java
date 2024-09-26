@@ -54,7 +54,7 @@ public class Square extends javax.swing.JPanel {
                     }
                     setCursor(Cursor.getDefaultCursor());
                     board.nextTurn();
-                } else if (piece != null && board.getSquareChosen() == null) {
+                } else if (piece != null /*&& board.getSquareChosen() == null*/) {
                     if (board.getIsPlayer1Turn() && !piece.getIsWhite()) {
                         return;
                     }
