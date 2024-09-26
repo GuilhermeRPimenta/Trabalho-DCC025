@@ -13,7 +13,7 @@ import java.util.regex.*;
  *
  * @author wingert
  */
-public class registerPanel extends javax.swing.JPanel {
+public class RegisterPanel extends javax.swing.JPanel {
     
     private JTextField usuarioField;
     private JTextField emailField;
@@ -23,7 +23,7 @@ public class registerPanel extends javax.swing.JPanel {
     /**
      * Creates new form registerPanel
      */
-    public registerPanel() {
+    public RegisterPanel() {
         initComponents();
         customInitComponents();
     }
