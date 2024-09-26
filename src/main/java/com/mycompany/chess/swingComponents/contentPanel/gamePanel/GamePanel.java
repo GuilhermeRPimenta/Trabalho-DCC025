@@ -41,8 +41,8 @@ public class GamePanel extends javax.swing.JPanel {
         add(loginScreen1, "card2");
     }// </editor-fold>//GEN-END:initComponents
     public void startGame(){
-        player1 = new Player("Guilherme", "guilherme@gmail.com", "1aA#2222", "1aA#2222");
-        player2 = new Player("Victor", "victor@gmail.com", "1aA#2222", "1aA#2222");
+        player1 = new Player("Guilherme", "guilherme@gmail.com", "1aA#2222");
+        player2 = new Player("Victor", "victor@gmail.com", "1aA#2222");
         try{
             GameScreen gameScreen = new GameScreen(player1, player2);
             add(gameScreen, "card3");

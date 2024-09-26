@@ -31,8 +31,8 @@ public class GameScreen extends javax.swing.JPanel {
         this.player2 = player2;
         player1Turn=true;
         initComponents();
-        player1Info.setText(player1.getName());
-        player2Info.setText(player2.getName());
+        player1Info.setText(player1.getNome());
+        player2Info.setText(player2.getNome());
         
     }
 

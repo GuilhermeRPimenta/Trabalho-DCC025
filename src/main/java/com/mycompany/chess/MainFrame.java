@@ -32,9 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
         replaysButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         adminButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         contentPanel = new javax.swing.JPanel();
-        gamePanel = new javax.swing.JPanel();
-        gameScreen = new javax.swing.JPanel();
-        board = new com.mycompany.chess.swingComponents.contentPanel.playPanel.Board();
+        gamePanel = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel();
         registerPanel = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel();
         adminPanel = new com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminPanel();
         rankingPanel = new javax.swing.JPanel();
@@ -129,36 +127,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         contentPanel.setBackground(new java.awt.Color(204, 255, 255));
         contentPanel.setLayout(new java.awt.CardLayout());
-
-        gamePanel.setBackground(new java.awt.Color(51, 51, 51));
-        gamePanel.setLayout(new java.awt.CardLayout());
-
-        gameScreen.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout gameScreenLayout = new javax.swing.GroupLayout(gameScreen);
-        gameScreen.setLayout(gameScreenLayout);
-        gameScreenLayout.setHorizontalGroup(
-            gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gameScreenLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        gameScreenLayout.setVerticalGroup(
-            gameScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gameScreenLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        gamePanel.add(gameScreen, "card3");
-
-        contentPanel.add(gamePanel, "card2");
+        contentPanel.add(gamePanel, "card6");
         contentPanel.add(registerPanel, "card6");
-
-        adminPanel.setMinimumSize(new java.awt.Dimension(1135, 800));
-        adminPanel.setPreferredSize(new java.awt.Dimension(1135, 800));
         contentPanel.add(adminPanel, "card6");
 
         rankingPanel.setBackground(new java.awt.Color(51, 51, 51));
@@ -310,10 +280,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel Title;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton adminButton;
     private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminPanel adminPanel;
-    private com.mycompany.chess.swingComponents.contentPanel.playPanel.Board board;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JPanel gamePanel;
-    private javax.swing.JPanel gameScreen;
+    private com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel gamePanel;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
