@@ -22,15 +22,19 @@ public CorPodio(){}
          switch (row) {
                 case 0:
                     cellComponent.setBackground(new Color(255, 215, 0)); 
+                     cellComponent.setForeground(Color.BLACK);
                     break;
                 case 1:
                     cellComponent.setBackground(new Color(192, 192, 192)); 
+                     cellComponent.setForeground(Color.BLACK);
                     break;
                 case 2:
                     cellComponent.setBackground(new Color(205, 127, 50)); 
+                    cellComponent.setForeground(Color.BLACK);
                     break;
                 default:
-                cellComponent.setBackground(new Color(150, 150, 255)); 
+                cellComponent.setBackground(new Color(51, 51, 51)) ;
+                cellComponent.setForeground(Color.white);
                     break;
             }
 
