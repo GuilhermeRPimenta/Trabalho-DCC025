@@ -1,5 +1,6 @@
 package com.mycompany.chess.swingComponents.contentPanel.adminPanel;
 
+import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField;
 import entitites.camposInvalidosException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,10 @@ public class AdminPanel extends javax.swing.JPanel {
         initComponents();
         admin.setVisible(true);
         config.setVisible(false);
-        initTableListenersConfirmados();
+        initTableListenersPlayers();
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
     }
 
     @SuppressWarnings("unchecked")
@@ -58,8 +62,12 @@ public class AdminPanel extends javax.swing.JPanel {
         MMRField = new javax.swing.JTextField();
         confirmButton = new javax.swing.JButton();
         ButtonsBottom = new javax.swing.JPanel();
-        editarButton = new javax.swing.JButton();
-        apagarButton = new javax.swing.JButton();
+        ButtonsBottomPlayer = new javax.swing.JPanel();
+        editarButtonPlayer = new javax.swing.JButton();
+        apagarButtonPlayer = new javax.swing.JButton();
+        ButtonsBottomAdmin = new javax.swing.JPanel();
+        editarButtonAdmin = new javax.swing.JButton();
+        apagarButtonAdmin = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1135, 800));
@@ -248,42 +256,88 @@ public class AdminPanel extends javax.swing.JPanel {
 
         ButtonsBottom.setBackground(new java.awt.Color(51, 51, 51));
         ButtonsBottom.setMinimumSize(new java.awt.Dimension(285, 100));
+        ButtonsBottom.setPreferredSize(new java.awt.Dimension(515, 35));
+        ButtonsBottom.setLayout(new java.awt.CardLayout());
 
-        editarButton.setText("Editar");
-        editarButton.setPreferredSize(new java.awt.Dimension(250, 25));
-        editarButton.addActionListener(new java.awt.event.ActionListener() {
+        ButtonsBottomPlayer.setBackground(new java.awt.Color(51, 51, 51));
+
+        editarButtonPlayer.setText("Editar");
+        editarButtonPlayer.setPreferredSize(new java.awt.Dimension(250, 25));
+        editarButtonPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarButtonActionPerformed(evt);
+                editarButtonPlayerActionPerformed(evt);
             }
         });
 
-        apagarButton.setText("Apagar");
-        apagarButton.setPreferredSize(new java.awt.Dimension(250, 25));
-        apagarButton.addActionListener(new java.awt.event.ActionListener() {
+        apagarButtonPlayer.setText("Apagar");
+        apagarButtonPlayer.setPreferredSize(new java.awt.Dimension(250, 25));
+        apagarButtonPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apagarButtonActionPerformed(evt);
+                apagarButtonPlayerActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout ButtonsBottomLayout = new javax.swing.GroupLayout(ButtonsBottom);
-        ButtonsBottom.setLayout(ButtonsBottomLayout);
-        ButtonsBottomLayout.setHorizontalGroup(
-            ButtonsBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonsBottomLayout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout ButtonsBottomPlayerLayout = new javax.swing.GroupLayout(ButtonsBottomPlayer);
+        ButtonsBottomPlayer.setLayout(ButtonsBottomPlayerLayout);
+        ButtonsBottomPlayerLayout.setHorizontalGroup(
+            ButtonsBottomPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsBottomPlayerLayout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(editarButtonPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(apagarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(apagarButtonPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        ButtonsBottomLayout.setVerticalGroup(
-            ButtonsBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonsBottomLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(ButtonsBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(apagarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        ButtonsBottomPlayerLayout.setVerticalGroup(
+            ButtonsBottomPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsBottomPlayerLayout.createSequentialGroup()
+                .addGroup(ButtonsBottomPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarButtonPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(apagarButtonPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
+
+        ButtonsBottom.add(ButtonsBottomPlayer, "card2");
+
+        ButtonsBottomAdmin.setBackground(new java.awt.Color(51, 51, 51));
+
+        editarButtonAdmin.setText("Editar");
+        editarButtonAdmin.setPreferredSize(new java.awt.Dimension(250, 25));
+        editarButtonAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonAdminActionPerformed(evt);
+            }
+        });
+
+        apagarButtonAdmin.setText("Apagar");
+        apagarButtonAdmin.setPreferredSize(new java.awt.Dimension(250, 25));
+        apagarButtonAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apagarButtonAdminActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ButtonsBottomAdminLayout = new javax.swing.GroupLayout(ButtonsBottomAdmin);
+        ButtonsBottomAdmin.setLayout(ButtonsBottomAdminLayout);
+        ButtonsBottomAdminLayout.setHorizontalGroup(
+            ButtonsBottomAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsBottomAdminLayout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(editarButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(apagarButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        ButtonsBottomAdminLayout.setVerticalGroup(
+            ButtonsBottomAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsBottomAdminLayout.createSequentialGroup()
+                .addGroup(ButtonsBottomAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(apagarButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        ButtonsBottom.add(ButtonsBottomAdmin, "card2");
 
         config.add(ButtonsBottom);
 
@@ -297,6 +351,16 @@ public class AdminPanel extends javax.swing.JPanel {
 
         add(configPanel, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
+
+    public void editButtom(javax.swing.JPanel editPanel) {
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        Components.removeAll();
+        Components.add(editPanel);
+        Components.repaint();
+        Components.revalidate();
+    }
 
     public void editCSV(String emailToEdit, String[] newData) {
         String path = "";
@@ -327,7 +391,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
             for (String[] row : csvData) {
-                bw.write(String.join(",", row));                
+                bw.write(String.join(",", row));
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -335,24 +399,62 @@ public class AdminPanel extends javax.swing.JPanel {
         }
     }
 
-    public void editTableComponents() {
+    public void updateConfirmButton(String txt, JButton botao) {
+        botao.setText(txt);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                botao.setText("Confirmar");
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    public boolean editTableComponents() {
+
+        RegisterField validacao = new RegisterField();
+
         String nome = nameField.getText();
         String email = emailField.getText();
         String senha = senhaField.getText();
         String mmr = MMRField.getText();
-        
-        String[] newData = {nome, email, senha, mmr};
-        
-        String oldEmail = playerTable.getValueAt(playerTable.getSelectedRow(), 1).toString();
-        
-        editCSV(oldEmail, newData);       
+
+        try { 
+            if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || mmr.isEmpty()) {
+                throw new camposInvalidosException("Preencha todos os campos !");
+            }
+
+            if (!validacao.validarEmail(email)) {
+                throw new camposInvalidosException("Email inválido !");
+            }
+
+            if (!validacao.validarSenha(senha)) {
+                throw new camposInvalidosException("Senha não atende aos critérios !");
+            }
+            
+            String[] newData = {nome, email, senha, mmr};
+
+            String oldEmail = playerTable.getValueAt(playerTable.getSelectedRow(), 1).toString();
+
+            editCSV(oldEmail, newData);
+        } catch (camposInvalidosException ex) {          
+            updateConfirmButton(ex.getMessage(), confirmButton);
+            return false;
+        }
+        return true;
     }
 
-    private void initTableListenersConfirmados() {
+    private void initTableListenersPlayers() {
         playerTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
                 int selectedRow = playerTable.getSelectedRow();
                 if (selectedRow >= 0) {
+                    ButtonsBottom.removeAll();
+                    ButtonsBottom.add(ButtonsBottomPlayer);
+                    ButtonsBottom.repaint();
+                    ButtonsBottom.revalidate();
                     nameField.setText(playerTable.getValueAt(selectedRow, 0).toString());
                     emailField.setText(playerTable.getValueAt(selectedRow, 1).toString());
                     senhaField.setText(playerTable.getValueAt(selectedRow, 2).toString());
@@ -397,6 +499,9 @@ public class AdminPanel extends javax.swing.JPanel {
             if (adminField.loginAdmin(name, password)) {
                 admin.setVisible(false);
                 config.setVisible(true);
+                ButtonsBottom.removeAll();
+                ButtonsBottom.repaint();
+                ButtonsBottom.revalidate();
                 Components.removeAll();
                 Components.add(playerScrollPane);
                 Components.repaint();
@@ -410,7 +515,9 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_adminConfirmLoginButtonActionPerformed
 
     private void playerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerButtonActionPerformed
-        ButtonsBottom.setVisible(true);
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
         Components.removeAll();
         Components.add(playerScrollPane);
         Components.repaint();
@@ -419,7 +526,9 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_playerButtonActionPerformed
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
-        ButtonsBottom.setVisible(true);
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
         Components.removeAll();
         Components.add(adminScrollPane);
         Components.repaint();
@@ -427,30 +536,47 @@ public class AdminPanel extends javax.swing.JPanel {
         adminTable.refreshTable();
     }//GEN-LAST:event_adminButtonActionPerformed
 
-    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
-        ButtonsBottom.setVisible(false);
-        Components.removeAll();
-        Components.add(playerEditPanel);
-        Components.repaint();
-        Components.revalidate();
-    }//GEN-LAST:event_editarButtonActionPerformed
+    private void editarButtonPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonPlayerActionPerformed
+        editButtom(playerEditPanel);
+    }//GEN-LAST:event_editarButtonPlayerActionPerformed
 
-    private void apagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apagarButtonActionPerformed
-
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        editTableComponents();
-        ButtonsBottom.setVisible(true);
+    private void apagarButtonPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonPlayerActionPerformed
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        playerTable.deleteSelectedRow();
         Components.removeAll();
         Components.add(playerScrollPane);
         Components.repaint();
         Components.revalidate();
-        playerTable.refreshTable();      
+        playerTable.refreshTable();
+    }//GEN-LAST:event_apagarButtonPlayerActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        if (editTableComponents()) {
+            ButtonsBottom.removeAll();
+            ButtonsBottom.repaint();
+            ButtonsBottom.revalidate();
+            Components.removeAll();
+            Components.add(playerScrollPane);
+            Components.repaint();
+            Components.revalidate();
+            playerTable.refreshTable();
+        }      
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void editarButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonAdminActionPerformed
+        //
+    }//GEN-LAST:event_editarButtonAdminActionPerformed
+
+    private void apagarButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonAdminActionPerformed
+        //
+    }//GEN-LAST:event_apagarButtonAdminActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsBottom;
+    private javax.swing.JPanel ButtonsBottomAdmin;
+    private javax.swing.JPanel ButtonsBottomPlayer;
     private javax.swing.JPanel ButtonsTop;
     private javax.swing.JPanel Components;
     private javax.swing.JTextField MMRField;
@@ -466,11 +592,13 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane adminScrollPane;
     private customPalette.AdminTable adminTable;
     private javax.swing.JLabel adminTitle;
-    private javax.swing.JButton apagarButton;
+    private javax.swing.JButton apagarButtonAdmin;
+    private javax.swing.JButton apagarButtonPlayer;
     private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminConfigPanel config;
     private javax.swing.JPanel configPanel;
     private javax.swing.JButton confirmButton;
-    private javax.swing.JButton editarButton;
+    private javax.swing.JButton editarButtonAdmin;
+    private javax.swing.JButton editarButtonPlayer;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JPanel loginPanel;

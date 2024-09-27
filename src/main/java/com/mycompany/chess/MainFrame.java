@@ -240,8 +240,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, adminPanel);
-//        playerTable.refreshTable();
-//        adminTable.refreshTable();
         adminPanel.deslogar();
     }//GEN-LAST:event_adminButtonActionPerformed
 
