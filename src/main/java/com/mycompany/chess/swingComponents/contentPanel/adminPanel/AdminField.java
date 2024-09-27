@@ -35,7 +35,7 @@ public class AdminField extends JPanel {
                 String fileEmail = fields[1];
 
                 if (fileName.equals(n) && filePassword.equals(p)) {
-                    adminEmail = fileEmail;                    
+                    adminEmail = fileEmail;      
                     break;
                 }
 
