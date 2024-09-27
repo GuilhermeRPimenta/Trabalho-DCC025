@@ -34,6 +34,7 @@ public class GameScreen extends javax.swing.JPanel {
         this.player2 = player2;
         player1Turn = true;
         initComponents();
+        board1.setGameScreen(this);
         player1Info.setText(player1.getNome());
         player2Info.setText(player2.getNome());
 
@@ -104,6 +105,7 @@ public class GameScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_stalemateButtonActionPerformed
     public void nextTurn(boolean end) {
         if (end) {
+            board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             if (player1Turn) {
                 JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:");
             } else {
@@ -123,6 +125,8 @@ public class GameScreen extends javax.swing.JPanel {
     }
     
     private void stalemate(){
+            board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
+            board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome());
             JOptionPane.showMessageDialog(this,"Declarado empate!");
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
@@ -130,6 +134,14 @@ public class GameScreen extends javax.swing.JPanel {
     
     public boolean isPlayer1Turn() {
         return player1Turn;
+    }
+    
+    public Player getPlayer1(){
+        return player1;
+    }
+    
+    public Player getPlayer2(){
+        return player2;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -55,6 +55,7 @@ public class Square extends javax.swing.JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (highlighted) {
+                    board.addStateToReplay();
                     Piece previousPiece = piece;
                     setPiece(board.getSquareChosen().getPiece());
                     piece.setPosition(currentSquare.position);
@@ -134,6 +135,10 @@ public class Square extends javax.swing.JPanel {
 
     public Piece getPiece() {
         return piece;
+    }
+    
+    public Position getPosition(){
+        return position;
     }
 
     public void highlight() {

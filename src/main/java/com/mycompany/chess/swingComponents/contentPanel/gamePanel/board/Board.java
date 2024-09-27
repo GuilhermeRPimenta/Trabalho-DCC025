@@ -12,6 +12,9 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.P
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
+import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.Replay;
+import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplayPiece;
+import entitites.Player;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -29,7 +32,9 @@ public class Board extends JPanel{
     private ArrayList<Square> currentAvailableMoves;
     private Square squareChosen = null;
     private GameScreen gameScreen;
+    private Replay replay;
     public Board(){
+        
         setLayout(new GridLayout(SIZE, SIZE));
         boolean brown = true;
         for(int i = 0; i < SIZE; i++){
@@ -66,6 +71,13 @@ public class Board extends JPanel{
             for(int i = 0; i<8; i++){
                 tiles[6][i].setPiece(new Pawn(6, i, true));
             }
+            
+        
+    }
+    
+    public void setGameScreen(GameScreen gameScreen){
+        this.gameScreen = gameScreen;
+        replay = new Replay(gameScreen.getPlayer1().getNome(), gameScreen.getPlayer2().getNome());
     }
     
     public Square getSquare(int x, int y){
@@ -77,7 +89,7 @@ public class Board extends JPanel{
     }
     
     public boolean getIsPlayer1Turn(){
-        gameScreen = (GameScreen) this.getParent();
+        
         return gameScreen.isPlayer1Turn();
     }
     
@@ -95,13 +107,57 @@ public class Board extends JPanel{
     }
     
     public void nextTurn(boolean end){
-        gameScreen = (GameScreen) this.getParent();
         squareChosen.setPiece(null);
         squareChosen = null;
         for(Square square : currentAvailableMoves){
             square.disableHighlight();
         }
+        
         gameScreen.nextTurn(end);
+    }
+    
+    public ReplayPiece[][] getboardPiecesesMatrix(){
+        ReplayPiece[][] boardPiecesesMatrix = new ReplayPiece[8][8];
+        for(int i =0; i< 8; i++){
+            for(int j = 0; j < 8; j++){
+                Square currentSquare = tiles[i][j];
+                Piece currentPiece = tiles[i][j].getPiece();
+                if(currentPiece == null){
+                    boardPiecesesMatrix[i][j] = new ReplayPiece(currentSquare.getPosition(), "none");
+                    continue;
+                }
+                String pieceType = "none";
+                if(currentPiece instanceof Bishop){
+                    pieceType = "bishop";
+                }
+                else if(currentPiece instanceof King){
+                    pieceType = "king";
+                }
+                else if(currentPiece instanceof Knight){
+                    pieceType = "knight";
+                }
+                else if(currentPiece instanceof Pawn){
+                    pieceType = "pawn";
+                }
+                else if(currentPiece instanceof Queen){
+                    pieceType = "queen";
+                }
+                else if(currentPiece instanceof Rook){
+                    pieceType = "rook";
+                }
+                boardPiecesesMatrix[i][j] = new ReplayPiece(currentPiece.getPosition(), pieceType);
+            }
+        }
+        return boardPiecesesMatrix;
+    }
+    
+    public void addStateToReplay(){
+        ReplayPiece[][] boardPiecesesMatrix = getboardPiecesesMatrix();
+        replay.addBoardState(squareChosen.getPosition(), boardPiecesesMatrix);
+    }
+    
+    public Replay getReplay(){
+        return replay;
     }
     
 }
