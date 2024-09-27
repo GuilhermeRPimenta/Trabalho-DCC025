@@ -7,6 +7,7 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Bishop;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.King;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Knight;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
@@ -54,6 +55,7 @@ public class Square extends javax.swing.JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (highlighted) {
+                    Piece previousPiece = piece;
                     setPiece(board.getSquareChosen().getPiece());
                     piece.setPosition(currentSquare.position);
                     if(piece instanceof Pawn){
@@ -89,7 +91,7 @@ public class Square extends javax.swing.JPanel {
                         }
                     }
                     setCursor(Cursor.getDefaultCursor());
-                    board.nextTurn();
+                    board.nextTurn(previousPiece instanceof King);
                 } else if (piece != null) {
                     if (board.getIsPlayer1Turn() && !piece.getIsWhite()) {
                         return;

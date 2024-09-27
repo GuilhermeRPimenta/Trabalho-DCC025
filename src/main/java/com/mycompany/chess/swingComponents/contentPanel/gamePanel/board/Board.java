@@ -94,14 +94,14 @@ public class Board extends JPanel{
         }
     }
     
-    public void nextTurn(){
+    public void nextTurn(boolean end){
         gameScreen = (GameScreen) this.getParent();
         squareChosen.setPiece(null);
         squareChosen = null;
         for(Square square : currentAvailableMoves){
             square.disableHighlight();
         }
-        gameScreen.nextTurn();
+        gameScreen.nextTurn(end);
     }
     
 }

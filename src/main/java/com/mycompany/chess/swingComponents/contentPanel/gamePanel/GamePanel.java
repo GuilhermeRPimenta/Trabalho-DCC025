@@ -51,7 +51,14 @@ public class GamePanel extends javax.swing.JPanel {
         }catch(NullPlayerException e){
             loginScreen1.showError(e);
         }
-        
+    }
+    
+    public void resetPanel(){
+        removeAll();
+        loginScreen1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen();
+        add(loginScreen1, "card2");
+        revalidate();
+        repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

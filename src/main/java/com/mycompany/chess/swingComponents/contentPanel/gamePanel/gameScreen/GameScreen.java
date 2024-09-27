@@ -4,36 +4,39 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel;
 import entitites.NullPlayerException;
 import entitites.Player;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author guilh
  */
 public class GameScreen extends javax.swing.JPanel {
-    
+
     private Player player1;
     private Player player2;
     private boolean player1Turn;
+
     /**
      * Creates new form GameScreen
      */
-    public GameScreen(Player player1, Player player2) throws NullPlayerException{
-        if(player1 == null){
+    public GameScreen(Player player1, Player player2) throws NullPlayerException {
+        if (player1 == null) {
             throw new NullPlayerException("Player 1 invalido!");
         }
-        if(player2 == null){
+        if (player2 == null) {
             throw new NullPlayerException("Player 2 invalido!");
         }
         this.player1 = player1;
         this.player2 = player2;
-        player1Turn=true;
+        player1Turn = true;
         initComponents();
         player1Info.setText(player1.getNome());
         player2Info.setText(player2.getNome());
-        
+
     }
 
     /**
@@ -83,19 +86,27 @@ public class GameScreen extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(91, 18, 0, 43);
         add(player2Info, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-    public void nextTurn(){
-        player1Turn = !player1Turn;
-        if(player1Turn){
-            player1Info.setForeground(new Color(255,255,255));
-            player2Info.setForeground(new Color(153,153,153));
+    public void nextTurn(boolean end) {
+        if (end) {
+            if (player1Turn) {
+                JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:");
+            } else {
+                JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:");
+            }
+            GamePanel gamePanel = (GamePanel) getParent();
+            gamePanel.resetPanel();
         }
-        else{
-            player1Info.setForeground(new Color(153,153,153));
-            player2Info.setForeground(new Color(255,255,255));
+        player1Turn = !player1Turn;
+        if (player1Turn) {
+            player1Info.setForeground(new Color(255, 255, 255));
+            player2Info.setForeground(new Color(153, 153, 153));
+        } else {
+            player1Info.setForeground(new Color(153, 153, 153));
+            player2Info.setForeground(new Color(255, 255, 255));
         }
     }
-    
-    public boolean isPlayer1Turn(){
+
+    public boolean isPlayer1Turn() {
         return player1Turn;
     }
 
