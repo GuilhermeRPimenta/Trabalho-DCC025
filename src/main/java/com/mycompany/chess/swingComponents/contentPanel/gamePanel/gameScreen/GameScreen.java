@@ -106,6 +106,7 @@ public class GameScreen extends javax.swing.JPanel {
     public void nextTurn(boolean end) {
         if (end) {
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
+            board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             if (player1Turn) {
                 JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:");
             } else {
@@ -126,7 +127,7 @@ public class GameScreen extends javax.swing.JPanel {
     
     private void stalemate(){
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
-            board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome());
+            board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             JOptionPane.showMessageDialog(this,"Declarado empate!");
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
