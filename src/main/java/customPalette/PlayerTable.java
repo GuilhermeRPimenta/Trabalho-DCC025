@@ -6,12 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PlayerTable extends Table {
 
     public PlayerTable() {
+        initiateTable();
+        populateTableFromCSV();
         this.getTableHeader().setReorderingAllowed(false);
         for (int i = 0; i < this.getColumnModel().getColumnCount(); i++) {
             this.getColumnModel().getColumn(i).setResizable(false);
@@ -25,7 +26,6 @@ public class PlayerTable extends Table {
         this.setModel(tableModel);
     }
 
-    @Override
     public void populateTableFromCSV() {
         String path = "";
         String line;
@@ -48,13 +48,9 @@ public class PlayerTable extends Table {
         }
     }
 
+    @Override
     public void deleteSelectedRow() {
         int selectedRow = this.getSelectedRow();
-
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Por favor selecione uma linha para apagar.");
-            return;
-        }
 
         DefaultTableModel model = (DefaultTableModel) this.getModel();
         String emailToDelete = (String) model.getValueAt(selectedRow, 1);
@@ -106,5 +102,10 @@ public class PlayerTable extends Table {
         if (originalFile.delete()) {
             tempCSV.renameTo(originalFile);
         }
+    }
+    
+    public void refreshTable() {
+        tableModel.setRowCount(0);
+        populateTableFromCSV();
     }
 }

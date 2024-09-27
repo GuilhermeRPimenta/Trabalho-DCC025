@@ -11,18 +11,6 @@ public class Player extends User{
         this.mmr = 1000;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
     public int getMmr() {
         return mmr;
     }

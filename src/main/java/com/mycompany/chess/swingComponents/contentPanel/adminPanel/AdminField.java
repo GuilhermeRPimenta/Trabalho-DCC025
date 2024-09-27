@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JPanel;
 
-public class AdminField extends JPanel {   
+public class AdminField extends JPanel {
+
+    private String adminEmail;
+
     public AdminField() {
     }
 
@@ -21,8 +24,6 @@ public class AdminField extends JPanel {
             path = "src/main/resources/userData/adminData.csv";
         }
 
-        boolean userFound = false;
-
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
 
@@ -31,17 +32,14 @@ public class AdminField extends JPanel {
 
                 String fileName = fields[0];
                 String filePassword = fields[2];
+                String fileEmail = fields[1];
 
                 if (fileName.equals(n) && filePassword.equals(p)) {
-                    userFound = true;
+                    adminEmail = fileEmail;                    
                     break;
                 }
 
                 line = br.readLine();
-            }
-
-            if (!userFound) {
-                throw new camposInvalidosException("Usuário não é admin !");
             }
 
             return true;
@@ -50,5 +48,9 @@ public class AdminField extends JPanel {
         }
 
         return false;
-    }    
+    }
+
+    public String getAdminEmail() {
+        return adminEmail;
+    }
 }
