@@ -49,6 +49,7 @@ public class GameScreen extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        stalemateButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         board1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board();
         player1Info = new javax.swing.JLabel();
         player2Info = new javax.swing.JLabel();
@@ -57,6 +58,16 @@ public class GameScreen extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1009, 688));
         setPreferredSize(new java.awt.Dimension(1009, 688));
         setLayout(new java.awt.GridBagLayout());
+
+        stalemateButton.setBackground(new java.awt.Color(255, 255, 255));
+        stalemateButton.setForeground(new java.awt.Color(51, 51, 51));
+        stalemateButton.setText("Declarar empate");
+        stalemateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stalemateButtonActionPerformed(evt);
+            }
+        });
+        add(stalemateButton, new java.awt.GridBagConstraints());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -86,6 +97,11 @@ public class GameScreen extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(91, 18, 0, 43);
         add(player2Info, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void stalemateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stalemateButtonActionPerformed
+        // TODO add your handling code here:
+        stalemate();
+    }//GEN-LAST:event_stalemateButtonActionPerformed
     public void nextTurn(boolean end) {
         if (end) {
             if (player1Turn) {
@@ -105,7 +121,13 @@ public class GameScreen extends javax.swing.JPanel {
             player2Info.setForeground(new Color(255, 255, 255));
         }
     }
-
+    
+    private void stalemate(){
+            JOptionPane.showMessageDialog(this,"Declarado empate!");
+            GamePanel gamePanel = (GamePanel) getParent();
+            gamePanel.resetPanel();
+    }
+    
     public boolean isPlayer1Turn() {
         return player1Turn;
     }
@@ -114,5 +136,6 @@ public class GameScreen extends javax.swing.JPanel {
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board board1;
     private javax.swing.JLabel player1Info;
     private javax.swing.JLabel player2Info;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton stalemateButton;
     // End of variables declaration//GEN-END:variables
 }
