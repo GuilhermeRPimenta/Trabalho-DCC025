@@ -36,6 +36,7 @@ public class RankingPanel extends javax.swing.JPanel {
 
     public RankingPanel() {
         initComponents();
+        jScrollPane2.getViewport().setBackground(new Color(51,51,51));
         jogadores = new ArrayList<RankingEntry>();
         try {
             preencheLista();
@@ -134,21 +135,16 @@ public class RankingPanel extends javax.swing.JPanel {
     public void preencheLista() throws camposInvalidosException {
         String path = "";
 
-        String os = System.getProperty("os.name").toLowerCase();
-
-        if (os.contains("win")) {
-            path = "src\\main\\resources\\userData\\userData.csv";
-        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-            path = "src/main/resources/userData/userData.csv";
-        }
-
+        path = "src/main/resources/userData/playerData.csv";
+        
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
+            System.out.println(line);
             while (line != null) {
                 String[] fields = line.split(",");
-                if (fields.length >= 5) {
+                if (fields.length >= 4) {
                    String name = fields[0];
-                    String mmr = fields[4];
+                    String mmr = fields[3];
                     RankingEntry aux = new RankingEntry(name, mmr);
                     System.out.println(aux);
                     jogadores.add(aux);
