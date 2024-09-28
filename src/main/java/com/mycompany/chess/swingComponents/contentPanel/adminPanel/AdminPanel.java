@@ -4,6 +4,7 @@ import Controller.AdminPanelController;
 import com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterField;
 import entitites.Admin;
 import entitites.camposInvalidosException;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
     private String email = "";
     private AdminPanelController controller;
+
 
     public AdminPanel() {
         initComponents();
@@ -53,6 +55,7 @@ public class AdminPanel extends javax.swing.JPanel {
         ButtonsTop = new javax.swing.JPanel();
         playerButton = new javax.swing.JButton();
         adminButton = new javax.swing.JButton();
+        tournamentButton = new javax.swing.JButton();
         Components = new javax.swing.JPanel();
         adminScrollPane = new javax.swing.JScrollPane();
         adminTable = new customPalette.AdminTable();
@@ -84,6 +87,8 @@ public class AdminPanel extends javax.swing.JPanel {
         senhaLabelAdminRegister = new javax.swing.JLabel();
         senhaFieldAdminRegister = new javax.swing.JTextField();
         confirmCadastrarButtonAdmin = new javax.swing.JButton();
+        tournamentScrollPane = new javax.swing.JScrollPane();
+        tournamentTable1 = new customPalette.TournamentTable();
         ButtonsBottom = new javax.swing.JPanel();
         ButtonsBottomPlayer = new javax.swing.JPanel();
         editarButtonPlayer = new javax.swing.JButton();
@@ -174,7 +179,7 @@ public class AdminPanel extends javax.swing.JPanel {
         ButtonsTop.setMinimumSize(new java.awt.Dimension(285, 100));
 
         playerButton.setText("Player");
-        playerButton.setPreferredSize(new java.awt.Dimension(250, 25));
+        playerButton.setPreferredSize(new java.awt.Dimension(160, 25));
         playerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playerButtonActionPerformed(evt);
@@ -183,13 +188,24 @@ public class AdminPanel extends javax.swing.JPanel {
         ButtonsTop.add(playerButton);
 
         adminButton.setText("Admin");
-        adminButton.setPreferredSize(new java.awt.Dimension(250, 25));
+        adminButton.setPreferredSize(new java.awt.Dimension(160, 25));
         adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminButtonActionPerformed(evt);
             }
         });
         ButtonsTop.add(adminButton);
+
+        tournamentButton.setText("Tournament");
+        tournamentButton.setMaximumSize(new java.awt.Dimension(72, 23));
+        tournamentButton.setMinimumSize(new java.awt.Dimension(72, 23));
+        tournamentButton.setPreferredSize(new java.awt.Dimension(160, 25));
+        tournamentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tournamentButtonActionPerformed(evt);
+            }
+        });
+        ButtonsTop.add(tournamentButton);
 
         config.add(ButtonsTop);
 
@@ -397,6 +413,21 @@ public class AdminPanel extends javax.swing.JPanel {
         );
 
         Components.add(adminRegisterPanel, "card6");
+
+        tournamentTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tournamentScrollPane.setViewportView(tournamentTable1);
+
+        Components.add(tournamentScrollPane, "card7");
 
         config.add(Components);
 
@@ -929,6 +960,16 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.revalidate();
     }//GEN-LAST:event_cadastrarButtonAdminActionPerformed
 
+    private void tournamentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tournamentButtonActionPerformed
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        Components.removeAll();
+        Components.add(tournamentScrollPane);
+        Components.repaint();
+        Components.revalidate();
+    }//GEN-LAST:event_tournamentButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsBottom;
     private javax.swing.JPanel ButtonsBottomAdmin;
@@ -983,5 +1024,8 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel senhaLabelAdmin;
     private javax.swing.JLabel senhaLabelAdminRegister;
     private javax.swing.JLabel senhaLabelPlayer;
+    private javax.swing.JButton tournamentButton;
+    private javax.swing.JScrollPane tournamentScrollPane;
+    private customPalette.TournamentTable tournamentTable1;
     // End of variables declaration//GEN-END:variables
 }
