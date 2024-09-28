@@ -13,9 +13,25 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position
 public class ReplayPiece {
     private Position position;
     private String type;
+    private boolean white;
     
-    public ReplayPiece(Position position, String type){
+    public ReplayPiece(Position position, String type, boolean white){
         this.position = position;
         this.type = type;
+        this.white = white;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isWhite() {
+        return white;
+    }
+    
+    
 }

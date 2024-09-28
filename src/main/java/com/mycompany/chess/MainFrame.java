@@ -37,8 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
         adminPanel = new com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminPanel();
         rankingPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        replaysPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        replaysPanel = new com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -154,31 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         contentPanel.add(rankingPanel, "card4");
-
-        replaysPanel.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Tela de replays");
-
-        javax.swing.GroupLayout replaysPanelLayout = new javax.swing.GroupLayout(replaysPanel);
-        replaysPanel.setLayout(replaysPanelLayout);
-        replaysPanelLayout.setHorizontalGroup(
-            replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(replaysPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(1052, Short.MAX_VALUE))
-        );
-        replaysPanelLayout.setVerticalGroup(
-            replaysPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(replaysPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(778, Short.MAX_VALUE))
-        );
-
-        contentPanel.add(replaysPanel, "card5");
+        contentPanel.add(replaysPanel, "card6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void replaysButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaysButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, replaysPanel);
         adminPanel.deslogar();
+        replaysPanel.refreshReplaysTable();
     }//GEN-LAST:event_replaysButtonActionPerformed
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
@@ -281,14 +257,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel contentPanel;
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel gamePanel;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton rankingButton;
     private javax.swing.JPanel rankingPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
     private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel registerPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;
-    private javax.swing.JPanel replaysPanel;
+    private com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel replaysPanel;
     private javax.swing.JPanel sidebar;
     // End of variables declaration//GEN-END:variables
 }
