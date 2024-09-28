@@ -101,7 +101,8 @@ public class Square extends javax.swing.JPanel {
                         return;
                     }
                     ArrayList<Square> legalMoves = piece.calculateLegalMoves(board);
-                    if (legalMoves != null && legalMoves.size() > 0) {
+                    if (legalMoves != null) {
+                        currentSquare.activateBlueHighlight();
                         board.highlightLegalMoves(legalMoves, currentSquare);
                     }
                 }
@@ -146,8 +147,12 @@ public class Square extends javax.swing.JPanel {
         if (brown) {
             setBackground(new Color(118, 150, 86));
         } else {
-            setBackground(new Color(208, 238, 180));
+            setBackground(new Color(168, 198, 140));
         }
+    }
+    
+    public void activateBlueHighlight(){
+        setBackground(new Color(100,100, 255));
     }
 
     public void disableHighlight() {
