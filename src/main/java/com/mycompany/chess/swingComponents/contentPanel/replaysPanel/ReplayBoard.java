@@ -4,6 +4,7 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -15,12 +16,14 @@ import javax.swing.JPanel;
 public class ReplayBoard extends JPanel{
     private ReplaySquare[][] tiles = new ReplaySquare[8][8];
     private ArrayList<BoardState> statesList;
+    private Position initialPositionOfPieceThatMoves;
     public ReplayBoard(ArrayList<BoardState> statesList){
         setLayout(new GridLayout(8, 8));
         boolean brown = true;
         this.statesList = statesList;
-        BoardState firtsBoardState = statesList.getFirst();
-        ReplayPiece[][] firstBoardPiecesesMatrix = firtsBoardState.getBoardPiecesesMatrix();
+        BoardState firstBoardState = statesList.getFirst();
+        this.initialPositionOfPieceThatMoves = firstBoardState.getInitialPositionOfPieceThatMoves();
+        ReplayPiece[][] firstBoardPiecesesMatrix = firstBoardState.getBoardPiecesesMatrix();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 ReplaySquare replaySquare = new ReplaySquare(brown, firstBoardPiecesesMatrix[i][j], 80);
@@ -31,6 +34,8 @@ public class ReplayBoard extends JPanel{
             }
             brown = !brown;
         }
+        
+        tiles[initialPositionOfPieceThatMoves.X][initialPositionOfPieceThatMoves.Y].highlight();
     }
     
     public void updateBoard(int index){
@@ -48,6 +53,8 @@ public class ReplayBoard extends JPanel{
             }
             brown = !brown;
         }
+        Position initialPositionOfPieceThatMoves = currentState.getInitialPositionOfPieceThatMoves();
+        tiles[initialPositionOfPieceThatMoves.X][initialPositionOfPieceThatMoves.Y].highlight();
         repaint();
         revalidate();
     }

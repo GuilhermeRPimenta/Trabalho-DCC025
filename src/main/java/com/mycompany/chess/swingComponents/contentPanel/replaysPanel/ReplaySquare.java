@@ -56,9 +56,13 @@ public class ReplaySquare extends JPanel {
         }
     }
     
-    protected ImageIcon scaleImage(ImageIcon image){
+    private ImageIcon scaleImage(ImageIcon image){
         Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         image = new ImageIcon(scaledImage);
         return image;
+    }
+    
+    public void highlight(){
+        setBackground(new Color(100,100, 255));
     }
 }
