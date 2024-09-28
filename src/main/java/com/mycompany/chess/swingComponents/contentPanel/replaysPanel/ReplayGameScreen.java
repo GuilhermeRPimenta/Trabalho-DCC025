@@ -12,6 +12,7 @@ public class ReplayGameScreen extends javax.swing.JPanel {
     private int numberOfStates;
     private int stateIndex = 0;
     private ReplayBoard replayBoard;
+    private ReplaysPanel replaysPanel;
     /**
      * Creates new form ReplayGameScreen
      */
@@ -33,6 +34,7 @@ public class ReplayGameScreen extends javax.swing.JPanel {
 
         prevStateButton = new javax.swing.JButton();
         nextStateButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
@@ -52,6 +54,14 @@ public class ReplayGameScreen extends javax.swing.JPanel {
             }
         });
         add(nextStateButton);
+
+        exitButton.setText("Sair");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+        add(exitButton);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextStateButtonActionPerformed
@@ -70,8 +80,17 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_prevStateButtonActionPerformed
 
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        replaysPanel.goToReplaysTable();
+    }//GEN-LAST:event_exitButtonActionPerformed
+    
+    public void setReplaysPanel(ReplaysPanel replaysPanel){
+        this.replaysPanel = replaysPanel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton nextStateButton;
     private javax.swing.JButton prevStateButton;
     // End of variables declaration//GEN-END:variables

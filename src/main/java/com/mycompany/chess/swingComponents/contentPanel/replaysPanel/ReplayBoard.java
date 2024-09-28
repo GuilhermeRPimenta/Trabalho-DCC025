@@ -61,4 +61,5 @@ public class ReplayBoard extends JPanel{
         repaint();
         revalidate();
     }
+    
 }

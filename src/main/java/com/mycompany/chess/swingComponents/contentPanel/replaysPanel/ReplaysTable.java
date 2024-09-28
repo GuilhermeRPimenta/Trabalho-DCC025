@@ -54,7 +54,6 @@ public class ReplaysTable extends JPanel{
                 int selectedRow = replayTable.getSelectedRow();
                 if(selectedRow != -1){
                     String fileName = (String) tableModel.getValueAt(selectedRow ,0);
-                    System.out.println(fileName);
                     Replay replay = loadReplayFromFile(fileName);
                     if(replay != null){
                         replaysPanel.goToReplayGameScreen(replay);
