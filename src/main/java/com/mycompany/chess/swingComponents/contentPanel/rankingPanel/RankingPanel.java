@@ -58,7 +58,7 @@ public class RankingPanel extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(255, 0, 0));
 
         jScrollPane2.setBackground(new java.awt.Color(0, 0, 0));
