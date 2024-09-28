@@ -9,6 +9,9 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +19,17 @@ import java.util.ArrayList;
  * @author guilh
  */
 public class Replay {
+    private String startDateTime;
+    private String endDateTime;
     private String player1Name;
     private String player2Name;
     private ArrayList<BoardState> statesList = new ArrayList<>();
     int turnNumber;
     
+    
     public Replay(String player1Name, String player2Name){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        this.startDateTime = formatter.format(LocalDateTime.now());
         turnNumber = 1;
         this.player1Name = player1Name;
         this.player2Name = player2Name;
@@ -33,9 +41,11 @@ public class Replay {
     }
     
     public void saveReplay(String fileName){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        endDateTime = formatter.format(LocalDateTime.now());
         Gson gson = new Gson();
         
-        try(FileWriter fileWriter = new FileWriter("src/main/resources/replays/" + fileName)){
+        try(FileWriter fileWriter = new FileWriter("src/main/resources/replays/" + fileName +".json")){
             gson.toJson(this, fileWriter);
         }catch(IOException e){
             e.printStackTrace();
