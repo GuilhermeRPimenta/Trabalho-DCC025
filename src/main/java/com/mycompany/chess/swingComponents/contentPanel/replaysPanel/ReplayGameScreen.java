@@ -35,6 +35,7 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         prevStateButton = new javax.swing.JButton();
         nextStateButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        turnCount = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
@@ -62,6 +63,10 @@ public class ReplayGameScreen extends javax.swing.JPanel {
             }
         });
         add(exitButton);
+
+        turnCount.setForeground(new java.awt.Color(255, 255, 255));
+        turnCount.setText("Turno: 1");
+        add(turnCount);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextStateButtonActionPerformed
@@ -69,6 +74,7 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         if(stateIndex < numberOfStates -1){
             stateIndex++;
             replayBoard.updateBoard(stateIndex);
+            turnCount.setText("Turno: " + String.valueOf(stateIndex + 1));
         }
     }//GEN-LAST:event_nextStateButtonActionPerformed
 
@@ -77,6 +83,7 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         if(stateIndex > 0){
             stateIndex--;
             replayBoard.updateBoard(stateIndex);
+            turnCount.setText("Turno: " + String.valueOf(stateIndex + 1));
         }
     }//GEN-LAST:event_prevStateButtonActionPerformed
 
@@ -93,5 +100,6 @@ public class ReplayGameScreen extends javax.swing.JPanel {
     private javax.swing.JButton exitButton;
     private javax.swing.JButton nextStateButton;
     private javax.swing.JButton prevStateButton;
+    private javax.swing.JLabel turnCount;
     // End of variables declaration//GEN-END:variables
 }
