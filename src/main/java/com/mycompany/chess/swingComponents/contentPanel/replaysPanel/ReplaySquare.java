@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class ReplaySquare extends JPanel {
     private JLabel pieceLabel;
-    public ReplaySquare(boolean brown, ReplayPiece replayPiece, int height){
+    public ReplaySquare(boolean brown, SquareSaveData replayPiece, int height){
         if (brown) {
             setBackground(new Color(177, 110, 65));
         } else {

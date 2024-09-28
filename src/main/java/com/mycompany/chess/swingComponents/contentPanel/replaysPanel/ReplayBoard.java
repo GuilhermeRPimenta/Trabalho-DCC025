@@ -23,7 +23,7 @@ public class ReplayBoard extends JPanel{
         this.statesList = statesList;
         BoardState firstBoardState = statesList.getFirst();
         this.initialPositionOfPieceThatMoves = firstBoardState.getInitialPositionOfPieceThatMoves();
-        ReplayPiece[][] firstBoardPiecesesMatrix = firstBoardState.getBoardPiecesesMatrix();
+        SquareSaveData[][] firstBoardPiecesesMatrix = firstBoardState.getBoardPiecesesMatrix();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 ReplaySquare replaySquare = new ReplaySquare(brown, firstBoardPiecesesMatrix[i][j], 80);
@@ -41,7 +41,7 @@ public class ReplayBoard extends JPanel{
     public void updateBoard(int index){
         removeAll();
         BoardState currentState = statesList.get(index);
-        ReplayPiece[][] currentBoardPiecesMatrix = currentState.getBoardPiecesesMatrix();
+        SquareSaveData[][] currentBoardPiecesMatrix = currentState.getBoardPiecesesMatrix();
         boolean brown = true;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {

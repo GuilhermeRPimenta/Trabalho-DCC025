@@ -10,12 +10,12 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position
  *
  * @author guilh
  */
-public class ReplayPiece {
+public class SquareSaveData {
     private Position position;
     private String type;
     private boolean white;
     
-    public ReplayPiece(Position position, String type, boolean white){
+    public SquareSaveData(Position position, String type, boolean white){
         this.position = position;
         this.type = type;
         this.white = white;

@@ -35,7 +35,7 @@ public class Replay {
         this.player2Name = player2Name;
     }
     
-    public void addBoardState(Position initialPositionOfPieceThatMoves, ReplayPiece[][] boardPiecesesMatrix){
+    public void addBoardState(Position initialPositionOfPieceThatMoves, SquareSaveData[][] boardPiecesesMatrix){
         statesList.add(new BoardState(turnNumber,initialPositionOfPieceThatMoves,boardPiecesesMatrix));
         turnNumber++;
     }
