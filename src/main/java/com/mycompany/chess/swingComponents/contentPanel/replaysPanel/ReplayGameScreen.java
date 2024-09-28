@@ -9,12 +9,17 @@ package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
  * @author guilh
  */
 public class ReplayGameScreen extends javax.swing.JPanel {
-
+    private int numberOfStates;
+    private int stateIndex = 0;
+    private ReplayBoard replayBoard;
     /**
      * Creates new form ReplayGameScreen
      */
-    public ReplayGameScreen() {
+    public ReplayGameScreen(Replay replay) {
         initComponents();
+        numberOfStates = replay.getStatesList().size();
+        replayBoard = new ReplayBoard(replay.getStatesList());
+        add(replayBoard);
     }
 
     /**
@@ -26,22 +31,48 @@ public class ReplayGameScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        prevStateButton = new javax.swing.JButton();
+        nextStateButton = new javax.swing.JButton();
+
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1009, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
-        );
+        prevStateButton.setText("Voltar");
+        prevStateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevStateButtonActionPerformed(evt);
+            }
+        });
+        add(prevStateButton);
+
+        nextStateButton.setText("Avançar");
+        nextStateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextStateButtonActionPerformed(evt);
+            }
+        });
+        add(nextStateButton);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nextStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextStateButtonActionPerformed
+        // TODO add your handling code here:
+        if(stateIndex < numberOfStates -1){
+            stateIndex++;
+            replayBoard.updateBoard(stateIndex);
+        }
+    }//GEN-LAST:event_nextStateButtonActionPerformed
+
+    private void prevStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevStateButtonActionPerformed
+        // TODO add your handling code here:
+        if(stateIndex > 0){
+            stateIndex--;
+            replayBoard.updateBoard(stateIndex);
+        }
+    }//GEN-LAST:event_prevStateButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton nextStateButton;
+    private javax.swing.JButton prevStateButton;
     // End of variables declaration//GEN-END:variables
 }

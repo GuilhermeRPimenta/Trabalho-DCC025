@@ -14,10 +14,22 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.P
 public class BoardState {
     private ReplayPiece[][] boardPiecesesMatrix = new ReplayPiece[8][8];
     private Position initialPositionOfPieceThatMoves;
-    int turnNumber;
+    private int turnNumber;
     public BoardState(int turnNumber, Position initialPositionOfPieceThatMoves , ReplayPiece[][] boardPiecesesMatrix){
         this.turnNumber = turnNumber;
         this.initialPositionOfPieceThatMoves = initialPositionOfPieceThatMoves;
         this.boardPiecesesMatrix = boardPiecesesMatrix;
+    }
+
+    public Position getInitialPositionOfPieceThatMoves() {
+        return initialPositionOfPieceThatMoves;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+    
+    public ReplayPiece[][] getBoardPiecesesMatrix(){
+        return boardPiecesesMatrix;
     }
 }

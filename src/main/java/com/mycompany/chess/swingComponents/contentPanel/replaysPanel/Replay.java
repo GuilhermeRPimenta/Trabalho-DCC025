@@ -51,4 +51,29 @@ public class Replay {
             e.printStackTrace();
         }
     }
+
+    public String getStartDateTime() {
+        return startDateTime;
+    }
+
+    public String getEndDateTime() {
+        return endDateTime;
+    }
+
+    public String getPlayer1Name() {
+        return player1Name;
+    }
+
+    public String getPlayer2Name() {
+        return player2Name;
+    }
+
+    public ArrayList<BoardState> getStatesList() {
+        return statesList;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+    
 }

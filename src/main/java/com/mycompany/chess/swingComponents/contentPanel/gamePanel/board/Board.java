@@ -135,7 +135,7 @@ public class Board extends JPanel {
                 Square currentSquare = tiles[i][j];
                 Piece currentPiece = tiles[i][j].getPiece();
                 if (currentPiece == null) {
-                    boardPiecesesMatrix[i][j] = new ReplayPiece(currentSquare.getPosition(), "none");
+                    boardPiecesesMatrix[i][j] = new ReplayPiece(currentSquare.getPosition(), "none", false);
                     continue;
                 }
                 String pieceType = "none";
@@ -152,7 +152,7 @@ public class Board extends JPanel {
                 } else if (currentPiece instanceof Rook) {
                     pieceType = "rook";
                 }
-                boardPiecesesMatrix[i][j] = new ReplayPiece(currentPiece.getPosition(), pieceType);
+                boardPiecesesMatrix[i][j] = new ReplayPiece(currentPiece.getPosition(), pieceType, currentPiece.getIsWhite());
             }
         }
         return boardPiecesesMatrix;

@@ -31,6 +31,7 @@ public class ReplaysTable extends JPanel{
     private JTable replayTable;
     private DefaultTableModel tableModel;
     private ReplaysPanel replaysPanel;
+    private Gson gson = new Gson();
     public ReplaysTable(){
         setLayout(new BorderLayout());
         String[] columnNames = {"Jogadores","Início","Fim"};
@@ -47,13 +48,17 @@ public class ReplaysTable extends JPanel{
         scrollPane.setForeground(Color.white);
         add(scrollPane, BorderLayout.CENTER);
         
-        addMouseListener(new MouseInputAdapter(){
+        replayTable.addMouseListener(new MouseInputAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
                 int selectedRow = replayTable.getSelectedRow();
                 if(selectedRow != -1){
-                    String fileName = (String) tableModel.getValueAt(selectedRow, 0);
-
+                    String fileName = (String) tableModel.getValueAt(selectedRow ,0);
+                    System.out.println(fileName);
+                    Replay replay = loadReplayFromFile(fileName);
+                    if(replay != null){
+                        replaysPanel.goToReplayGameScreen(replay);
+                    }
                 }
             }
             
@@ -88,7 +93,7 @@ public class ReplaysTable extends JPanel{
             if (files != null) {
                 for (File file : files) {
                     try(FileReader reader = new FileReader(file)){
-                        String fileName = file.getName().split("-")[0];
+                        String fileName = file.getName();
                         JsonObject fileContent = gson.fromJson(reader, JsonObject.class);
                         if(fileContent != null){
                             String starDateTime = fileContent.has("startDateTime") ? fileContent.get("startDateTime").getAsString() : "N/A";
@@ -108,6 +113,16 @@ public class ReplaysTable extends JPanel{
         } else {
             JOptionPane.showMessageDialog(this,"Diretorio " + directoryPath + "não encontrado!");
         }
+    }
+    
+    private Replay loadReplayFromFile(String fileName){
+        Replay replay = null;
+        try (FileReader reader = new FileReader("src/main/resources/replays/" + fileName)) {
+            replay = gson.fromJson(reader, Replay.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return replay;
     }
     
     public void refreshReplayTable(){

@@ -5,6 +5,7 @@
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -19,12 +20,14 @@ import javax.swing.table.JTableHeader;
  * @author guilh
  */
 public class ReplaysPanel extends javax.swing.JPanel {
-
+    private CardLayout cardLayout;
+    private ReplayGameScreen replayGameScreen;
     /**
      * Creates new form ReplaysPanel
      */
     public ReplaysPanel() {
         initComponents();
+        cardLayout = (CardLayout) this.getLayout();
         replaysTable1.setReplaysPanel(this);
     }
 
@@ -46,6 +49,13 @@ public class ReplaysPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     public void refreshReplaysTable(){
         replaysTable1.refreshReplayTable();
+    }
+    
+    public void goToReplayGameScreen(Replay replay){
+        replayGameScreen = new ReplayGameScreen(replay);
+        add(replayGameScreen, "replayGameScreen");
+        cardLayout.show(this, "replayGameScreen");
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysTable replaysTable1;
