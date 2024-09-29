@@ -49,8 +49,8 @@ public class TournamentTable extends Table {
                         JsonObject fileContent = gson.fromJson(reader, JsonObject.class);
                         if(fileContent != null){
                             String starDateTime = fileContent.has("formattedStartDateTime") ? fileContent.get("formattedStartDateTime").getAsString() : "N/A";
-                            String endDateTime = fileContent.has("numberOfPlayers") ? fileContent.get("numberOfPlayers").getAsString() : "N/A";
-                            tableModel.addRow(new Object[]{fileName, starDateTime, endDateTime});
+                            String numberOfPlayers = fileContent.has("numberOfPlayers") ? fileContent.get("numberOfPlayers").getAsString() : "N/A";
+                            tableModel.addRow(new Object[]{fileName, numberOfPlayers, starDateTime});
                         }
                         
                         

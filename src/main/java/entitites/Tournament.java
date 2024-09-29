@@ -39,6 +39,7 @@ public class Tournament {
         this.playerList = playerList;
         LocalDateTime startDatetime = LocalDateTime.now();
         formattedStartDateTime =  formatter.format(startDatetime);
+        numberOfPlayers = playerList.size();
         startRound(playerList);
     }
 
