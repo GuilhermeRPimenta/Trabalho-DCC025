@@ -214,6 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void tournamentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tournamentButtonActionPerformed
         // TODO add your handling code here:
         updateSidebarButtonAndContentPanel(evt, tournamentPanel);
+        tournamentPanel.updateTournamentTable();
         adminPanel.deslogar();
     }//GEN-LAST:event_tournamentButtonActionPerformed
 

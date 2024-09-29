@@ -26,43 +26,26 @@ public class TournamentPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tournamentTable1 = new customPalette.TournamentTable();
+        tournamentPanelTournamentsTable1 = new com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanelTournamentsTable();
 
         setBackground(new java.awt.Color(51, 51, 51));
-
-        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText("Selecione um torneio");
-
-        jScrollPane1.setViewportView(tournamentTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+            .addComponent(tournamentPanelTournamentsTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+            .addComponent(tournamentPanelTournamentsTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void updateTournamentTable(){
+        tournamentPanelTournamentsTable1.refreshTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel titleLabel;
-    private customPalette.TournamentTable tournamentTable1;
+    private com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanelTournamentsTable tournamentPanelTournamentsTable1;
     // End of variables declaration//GEN-END:variables
 }

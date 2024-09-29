@@ -75,6 +75,42 @@ public class Tournament {
         currentRoundIndex++;
     }
     
+    private void checkIfShouldStartNextRound(){
+        List<TournamentMatch> currentRoundMatches = getCurrentRoundMatches();
+        for(TournamentMatch match : currentRoundMatches){
+            if(match.getWinner() == null){
+                return;
+            }
+        }
+        
+        List<Player> winners = new ArrayList<>();
+        for (TournamentMatch match : currentRoundMatches) {
+            winners.add(match.getWinner());
+        }
+        
+        if(winners.size() != 1){
+            startRound(winners);
+        }
+        else{
+            winner = winners.get(0);
+        }
+        
+    }
+    
+    public List<TournamentMatch> getAllMatches(){
+        List<TournamentMatch> allMatches = new ArrayList<>();
+        
+        for(TournamentRound round : tournamentRounds){
+            allMatches.addAll(round.getMatches());
+        }
+        
+        return allMatches;
+    }
+    
+    public List<TournamentMatch> getCurrentRoundMatches(){
+        return tournamentRounds.get(currentRoundIndex).getMatches();
+    }
+    
     public String getName(){
         return name;
     }
