@@ -10,6 +10,7 @@ import entitites.Player;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author guilh
@@ -102,15 +103,20 @@ public class GameScreen extends javax.swing.JPanel {
     private void stalemateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stalemateButtonActionPerformed
         // TODO add your handling code here:
         stalemate();
+        player1.updateMmr(player2, 0.5);
     }//GEN-LAST:event_stalemateButtonActionPerformed
     public void nextTurn(boolean end) {
         if (end) {
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             if (player1Turn) {
-                JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:");
+                
+                player1.updateMmr(player2, 1.0);
+                JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
             } else {
-                JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:");
+                
+                player1.updateMmr(player2, 0.0);
+                JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
             }
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
@@ -128,7 +134,7 @@ public class GameScreen extends javax.swing.JPanel {
     private void stalemate(){
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
-            JOptionPane.showMessageDialog(this,"Declarado empate!");
+            JOptionPane.showMessageDialog(this,"Declarado empate!\n Novos MMRs:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
     }

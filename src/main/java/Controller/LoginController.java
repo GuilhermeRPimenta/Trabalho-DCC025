@@ -48,7 +48,7 @@ public class LoginController<T extends LoginScreenInterface> {
 
                 if (fileName.equals(n) && filePassword.equals(p)) {                   
                     userFound = true;
-                    player = new Player(fields[0], fields[1], fields[3]);
+                    player = new Player(fields[0], fields[1], Integer.parseInt(fields[3]));
                     break;
                 }
             }

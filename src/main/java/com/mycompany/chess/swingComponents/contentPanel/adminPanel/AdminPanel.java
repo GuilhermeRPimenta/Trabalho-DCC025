@@ -1034,7 +1034,7 @@ public class AdminPanel extends javax.swing.JPanel {
         private void initTableListenersTournaments() {
         tournamentTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                int selectedRow = adminTable.getSelectedRow();
+                int selectedRow = tournamentTable.getSelectedRow();
                 if (selectedRow >= 0) {
                     ButtonsBottom.removeAll();
                     ButtonsBottom.add(ButtonsBottomTournaments);
