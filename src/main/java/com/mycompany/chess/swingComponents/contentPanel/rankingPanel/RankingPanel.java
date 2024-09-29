@@ -141,7 +141,6 @@ public class RankingPanel extends javax.swing.JPanel {
         
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
-            System.out.println(line);
             while (line != null) {
                 String[] fields = line.split(",");
                 if (fields.length >= 4) {
