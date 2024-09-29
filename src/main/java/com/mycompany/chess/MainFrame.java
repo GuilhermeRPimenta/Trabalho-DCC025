@@ -36,12 +36,13 @@ public class MainFrame extends javax.swing.JFrame {
         registerPanel = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel();
         adminPanel = new com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminPanel();
         rankingPanel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        rankingPanel2 = new com.mycompany.chess.swingComponents.contentPanel.rankingPanel.RankingPanel();
         replaysPanel = new com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png")).getImage());
+        setPreferredSize(new java.awt.Dimension(1364, 800));
 
         sidebar.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -132,23 +133,20 @@ public class MainFrame extends javax.swing.JFrame {
 
         rankingPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tela de ranking");
-
         javax.swing.GroupLayout rankingPanelLayout = new javax.swing.GroupLayout(rankingPanel);
         rankingPanel.setLayout(rankingPanelLayout);
         rankingPanelLayout.setHorizontalGroup(
             rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(rankingPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(1049, Short.MAX_VALUE))
         );
         rankingPanelLayout.setVerticalGroup(
             rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rankingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(rankingPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(778, Short.MAX_VALUE))
         );
 
@@ -256,10 +254,10 @@ public class MainFrame extends javax.swing.JFrame {
     private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminPanel adminPanel;
     private javax.swing.JPanel contentPanel;
     private com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel gamePanel;
-    private javax.swing.JLabel jLabel4;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton playButton;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton rankingButton;
     private javax.swing.JPanel rankingPanel;
+    private com.mycompany.chess.swingComponents.contentPanel.rankingPanel.RankingPanel rankingPanel2;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton registerButton;
     private com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel registerPanel;
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;

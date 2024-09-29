@@ -4,6 +4,8 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
+import entitites.BoardSquare;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -15,50 +17,43 @@ import javax.swing.JPanel;
  *
  * @author guilh
  */
-public class ReplaySquare extends JPanel {
-    private JLabel pieceLabel;
-    public ReplaySquare(boolean brown, ReplayPiece replayPiece, int height){
+public class ReplaySquare extends JPanel implements BoardSquare{
+
+    private boolean brown;
+
+    public ReplaySquare(boolean brown, SquareSaveData squareSaveData, int height) {
+        this.brown = brown;
         if (brown) {
             setBackground(new Color(177, 110, 65));
         } else {
             setBackground(new Color(251, 209, 151));
         }
         setPreferredSize(new Dimension(height, height));
-        String pieceType = replayPiece.getType();
-        boolean white = replayPiece.isWhite();
-        if(pieceType == "none"){
-            return;
-        }
-        
-        switch (pieceType){
-            case "bishop":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white? "/images/pieces/white-bishop.png":"/images/pieces/black-bishop.png"))));
-                break;
-            case "king":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white? "/images/pieces/white-king.png":"/images/pieces/black-king.png"))) );
-                break;
-            case "knight":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white? "/images/pieces/white-knight.png":"/images/pieces/black-knight.png"))));
-                break;
-            case "pawn":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white ? "/images/pieces/white-pawn.png" : "/images/pieces/black-pawn.png"))));
-                break;
-            case "queen":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white? "/images/pieces/white-queen.png":"/images/pieces/black-queen.png"))));
-                break;
-            case "rook":
-                pieceLabel = new JLabel(scaleImage(new ImageIcon(getClass().getResource(white? "/images/pieces/white-rook.png":"/images/pieces/black-rook.png"))));
-                break;
-        }
         setLayout(new java.awt.BorderLayout());
-        if(pieceLabel != null){
-            add(pieceLabel);
+        ReplayPiece initialReplayPiece = new ReplayPiece(squareSaveData.getType(), squareSaveData.isWhite());
+        setPiece(initialReplayPiece);
+    }
+
+    public void highlight() {
+        setBackground(new Color(100, 100, 255));
+    }
+
+    public void updateSquare(SquareSaveData squareSaveData) {
+        setPiece(new ReplayPiece(squareSaveData.getType(), squareSaveData.isWhite()));
+        if (brown) {
+            setBackground(new Color(177, 110, 65));
+        } else {
+            setBackground(new Color(251, 209, 151));
         }
     }
-    
-    protected ImageIcon scaleImage(ImageIcon image){
-        Image scaledImage = image.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-        image = new ImageIcon(scaledImage);
-        return image;
+
+    private void setPiece(ReplayPiece piece) {
+        removeAll();
+        if (piece.getIcon() != null) {
+            JLabel pieceLabel = new JLabel(piece.getIcon());
+            if (pieceLabel != null) {
+                add(pieceLabel);
+            }
+        }
     }
 }

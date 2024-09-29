@@ -54,8 +54,13 @@ public class ReplaysPanel extends javax.swing.JPanel {
     public void goToReplayGameScreen(Replay replay){
         replayGameScreen = new ReplayGameScreen(replay);
         add(replayGameScreen, "replayGameScreen");
+        replayGameScreen.setReplaysPanel(this);
         cardLayout.show(this, "replayGameScreen");
-        
+    }
+    
+    public void goToReplaysTable(){
+        remove(replayGameScreen);
+        cardLayout.show(this, "card2");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysTable replaysTable1;
