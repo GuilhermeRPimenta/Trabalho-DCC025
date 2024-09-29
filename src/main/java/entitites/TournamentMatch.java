@@ -40,6 +40,10 @@ public class TournamentMatch {
         return winner;
     }
     
+    public void setWinner(Player winner){
+        this.winner = winner;
+    }
+    
     public int getRound(){
         return round;
     }

@@ -75,7 +75,7 @@ public class Tournament {
         tournamentRounds.add(new TournamentRound(roundPlayers, currentRoundIndex));
     }
     
-    private void checkIfShouldStartNextRound(){
+    public void checkIfShouldStartNextRound(){
         List<TournamentMatch> currentRoundMatches = getCurrentRoundMatches();
         for(TournamentMatch match : currentRoundMatches){
             if(match.getWinner() == null){
