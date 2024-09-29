@@ -39,19 +39,13 @@ public class ReplayBoard extends JPanel{
     }
     
     public void updateBoard(int index){
-        removeAll();
         BoardState currentState = statesList.get(index);
         SquareSaveData[][] currentBoardPiecesMatrix = currentState.getBoardPiecesesMatrix();
         boolean brown = true;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                ReplaySquare replaySquare = new ReplaySquare(brown, currentBoardPiecesMatrix[i][j], 80);
-                tiles[i][j] = replaySquare;
-
-                brown = !brown;
-                this.add(replaySquare);
+                tiles[i][j].updateSquare(currentBoardPiecesMatrix[i][j]);  
             }
-            brown = !brown;
         }
         
         Position initialPositionOfPieceThatMoves = currentState.getInitialPositionOfPieceThatMoves();

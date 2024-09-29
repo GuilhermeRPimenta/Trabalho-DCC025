@@ -12,6 +12,7 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.K
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
+import entitites.BoardSquare;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -27,7 +28,7 @@ import javax.swing.JOptionPane;
  *
  * @author guilh
  */
-public class Square extends javax.swing.JPanel {
+public class Square extends javax.swing.JPanel implements BoardSquare{
 
     private Position position;
     private Piece piece;
