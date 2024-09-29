@@ -18,6 +18,8 @@ public class ReplayGameScreen extends javax.swing.JPanel {
      */
     public ReplayGameScreen(Replay replay) {
         initComponents();
+        player1Label.setText("Branco: " + replay.getPlayer1Name());
+        player2Label.setText("Preto: " + replay.getPlayer2Name());
         numberOfStates = replay.getStatesList().size();
         replayBoard = new ReplayBoard(replay.getStatesList());
         add(replayBoard);
@@ -32,14 +34,23 @@ public class ReplayGameScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        prevStateButton = new javax.swing.JButton();
-        nextStateButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
+        player1Label = new javax.swing.JLabel();
+        prevStateButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         turnCount = new javax.swing.JLabel();
+        nextStateButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        exitButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        player2Label = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1009, 688));
 
+        player1Label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        player1Label.setForeground(new java.awt.Color(255, 255, 255));
+        player1Label.setText("jLabel1");
+        add(player1Label);
+
+        prevStateButton.setBackground(new java.awt.Color(255, 255, 255));
+        prevStateButton.setForeground(new java.awt.Color(51, 51, 51));
         prevStateButton.setText("Voltar");
         prevStateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +59,13 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         });
         add(prevStateButton);
 
+        turnCount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        turnCount.setForeground(new java.awt.Color(255, 255, 255));
+        turnCount.setText("Turno: 1");
+        add(turnCount);
+
+        nextStateButton.setBackground(new java.awt.Color(255, 255, 255));
+        nextStateButton.setForeground(new java.awt.Color(51, 51, 51));
         nextStateButton.setText("Avançar");
         nextStateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +74,8 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         });
         add(nextStateButton);
 
+        exitButton.setBackground(new java.awt.Color(255, 255, 255));
+        exitButton.setForeground(new java.awt.Color(51, 51, 51));
         exitButton.setText("Sair");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,9 +84,10 @@ public class ReplayGameScreen extends javax.swing.JPanel {
         });
         add(exitButton);
 
-        turnCount.setForeground(new java.awt.Color(255, 255, 255));
-        turnCount.setText("Turno: 1");
-        add(turnCount);
+        player2Label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        player2Label.setForeground(new java.awt.Color(255, 255, 255));
+        player2Label.setText("jLabel1");
+        add(player2Label);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextStateButtonActionPerformed
@@ -97,9 +118,11 @@ public class ReplayGameScreen extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton exitButton;
-    private javax.swing.JButton nextStateButton;
-    private javax.swing.JButton prevStateButton;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton exitButton;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton nextStateButton;
+    private javax.swing.JLabel player1Label;
+    private javax.swing.JLabel player2Label;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton prevStateButton;
     private javax.swing.JLabel turnCount;
     // End of variables declaration//GEN-END:variables
 }
