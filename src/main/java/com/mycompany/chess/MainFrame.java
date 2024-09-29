@@ -203,6 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void rankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingButtonActionPerformed
         updateSidebarButtonAndContentPanel(evt, rankingPanel);
+        rankingPanel2.updateTable();
         adminPanel.deslogar();
     }//GEN-LAST:event_rankingButtonActionPerformed
 
