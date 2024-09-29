@@ -24,6 +24,8 @@ public class AdminField extends JPanel {
             path = "src/main/resources/userData/adminData.csv";
         }
 
+        boolean userFound = false;
+
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
 
@@ -35,11 +37,17 @@ public class AdminField extends JPanel {
                 String fileEmail = fields[1];
 
                 if (fileName.equals(n) && filePassword.equals(p)) {
-                    adminEmail = fileEmail;      
+                    userFound = true;
+                    adminEmail = fileEmail;
                     break;
                 }
 
                 line = br.readLine();
+
+            }
+
+            if (!userFound) {
+                throw new camposInvalidosException("Usuário não é admin !");
             }
 
             return true;
