@@ -24,10 +24,17 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen" name="loginScreen1">
+    <Component class="com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen1" name="loginScreen1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="card2"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen2" name="loginScreen2">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card3"/>
         </Constraint>
       </Constraints>
     </Component>

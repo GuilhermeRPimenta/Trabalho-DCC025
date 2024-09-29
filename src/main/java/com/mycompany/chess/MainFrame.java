@@ -7,8 +7,6 @@ import javax.swing.JButton;
 public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JButton currentClickedSidebarButton = null;
-//    private customPalette.customPlayerTable playerTable;
-//    private customPalette.customAdminTable adminTable;
     
     public MainFrame() {
         initComponents();
@@ -16,8 +14,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.setVisible(true);     
         currentClickedSidebarButton = playButton;
         playButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-//        playerTable = adminPanel.getPlayerTable();
-//        adminTable = adminPanel.getAdminTable();
     }
 
     @SuppressWarnings("unchecked")

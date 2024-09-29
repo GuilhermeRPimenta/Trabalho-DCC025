@@ -11,10 +11,10 @@ public class Player extends User{
         this.mmr = 1000;
     }
     
-    public Player(String nome, String email, int mmr){
+    public Player(String nome, String email, int mmr) {
         this.nome = nome;
         this.email = email;
-        this.mmr = mmr;      
+        this.mmr = mmr;
     }
 
     public int getMmr() {

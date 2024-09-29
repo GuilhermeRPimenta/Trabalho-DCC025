@@ -3,6 +3,9 @@ package com.mycompany.chess.swingComponents.contentPanel.registerPanel;
 import entitites.camposInvalidosException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
@@ -127,6 +130,30 @@ public class RegisterPanel extends javax.swing.JPanel {
         timer.start();
     }
 
+    public boolean isNameOrEmailTakenAdminRegister(String name, String email) {
+        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\playerData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/playerData.csv";
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split(",");
+                if (rowData[0].equals(name) || rowData[1].equals(email)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private void confirmRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRegisterButtonActionPerformed
         String name = nameField.getText();
         String email = emailField.getText();
@@ -150,6 +177,10 @@ public class RegisterPanel extends javax.swing.JPanel {
                 throw new camposInvalidosException("Senha não atende aos critérios!");
             }
 
+            if (isNameOrEmailTakenAdminRegister(name, email)) {
+                throw new camposInvalidosException("Nome ou email já estão em uso !");
+            }
+
             if (registerField.savePlayer(name, email, password)) {
                 updateRegisterButton("Jogador adicionado !", confirmRegisterButton);
             }
@@ -157,6 +188,8 @@ public class RegisterPanel extends javax.swing.JPanel {
         } catch (camposInvalidosException ex) {
             updateRegisterButton(ex.getMessage(), confirmRegisterButton);
         }
+
+
     }//GEN-LAST:event_confirmRegisterButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

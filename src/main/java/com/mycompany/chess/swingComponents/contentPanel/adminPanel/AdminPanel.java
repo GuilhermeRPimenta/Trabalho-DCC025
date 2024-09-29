@@ -671,7 +671,7 @@ public class AdminPanel extends javax.swing.JPanel {
         add(configPanel, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean savePlayer(String name, String email, String password) {
+    public boolean saveAdmin(String name, String email, String password) {
         Admin admin = new Admin(name, email, password);
         return saveCSVAdmin(admin);
     }
@@ -845,9 +845,13 @@ public class AdminPanel extends javax.swing.JPanel {
                 throw new camposInvalidosException("Senha não atende aos critérios !");
             }
 
-            String[] newData = {nome, email, senha, mmr};
-
             String oldEmail = playerTable.getValueAt(playerTable.getSelectedRow(), 1).toString();
+
+            if (isNameOrEmailTakenPlayer(nome, email, oldEmail)) {
+                throw new camposInvalidosException("Nome ou email já estão em uso !");
+            }
+
+            String[] newData = {nome, email, senha, mmr};
 
             editCSVPlayer(oldEmail, newData);
         } catch (camposInvalidosException ex) {
@@ -878,9 +882,13 @@ public class AdminPanel extends javax.swing.JPanel {
                 throw new camposInvalidosException("Senha não atende aos critérios !");
             }
 
-            String[] newData = {nome, email, senha};
-
             String oldEmail = adminTable.getValueAt(adminTable.getSelectedRow(), 1).toString();
+
+            if (isNameOrEmailTakenAdmin(nome, email, oldEmail)) {
+                throw new camposInvalidosException("Nome ou email já estão em uso !");
+            }
+
+            String[] newData = {nome, email, senha};
 
             editCSVAdmin(oldEmail, newData);
         } catch (camposInvalidosException ex) {
@@ -888,6 +896,82 @@ public class AdminPanel extends javax.swing.JPanel {
             return false;
         }
         return true;
+    }
+
+    public boolean isNameOrEmailTakenPlayer(String name, String email, String currentEmail) {
+        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\playerData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/playerData.csv";
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split(",");
+                if (!rowData[1].equals(currentEmail)) {
+                    if (rowData[0].equals(name) || rowData[1].equals(email)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isNameOrEmailTakenAdmin(String name, String email, String currentEmail) {
+        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\adminData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/adminData.csv";
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split(",");
+                if (!rowData[1].equals(currentEmail)) {
+                    if (rowData[0].equals(name) || rowData[1].equals(email)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean isNameOrEmailTakenAdminRegister(String name, String email) {
+        String path = "";
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.contains("win")) {
+            path = "src\\main\\resources\\userData\\adminData.csv";
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            path = "src/main/resources/userData/adminData.csv";
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split(",");
+                if (rowData[0].equals(name) || rowData[1].equals(email)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private void initTableListenersPlayers() {
@@ -1033,15 +1117,16 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_editarButtonAdminActionPerformed
 
     private void apagarButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonAdminActionPerformed
-            ButtonsBottom.removeAll();
-            ButtonsBottom.repaint();
-            ButtonsBottom.revalidate();
-            adminTable.deleteSelectedRow();
-            Components.removeAll();
-            Components.add(adminScrollPane);
-            Components.repaint();
-            Components.revalidate();
-            controller.populateTableFromCSV(adminTable);
+        ButtonsBottom.removeAll();
+        ButtonsBottom.add(cadastrarButtonAdmin);
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        adminTable.deleteSelectedRow();
+        Components.removeAll();
+        Components.add(adminScrollPane);
+        Components.repaint();
+        Components.revalidate();
+        controller.populateTableFromCSV(adminTable);
     }//GEN-LAST:event_apagarButtonAdminActionPerformed
 
     private void confirmButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonAdminActionPerformed
@@ -1077,7 +1162,11 @@ public class AdminPanel extends javax.swing.JPanel {
                 throw new camposInvalidosException("Senha não atende aos critérios !");
             }
 
-            if (savePlayer(name, email, password)) {
+            if (isNameOrEmailTakenAdminRegister(name, email)) {
+                throw new camposInvalidosException("Nome ou email já estão em uso !");
+            }
+
+            if (saveAdmin(name, email, password)) {
                 ButtonsBottom.removeAll();
                 ButtonsBottom.add(cadastrarButtonAdmin);
                 ButtonsBottom.repaint();
@@ -1099,6 +1188,9 @@ public class AdminPanel extends javax.swing.JPanel {
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
         Components.removeAll();
+        nameFieldAdminRegister.setText("");
+        emailFieldAdminRegister.setText("");
+        senhaFieldAdminRegister.setText("");
         Components.add(adminRegisterPanel);
         Components.repaint();
         Components.revalidate();
