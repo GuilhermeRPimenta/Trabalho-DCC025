@@ -97,7 +97,7 @@ public class ReplaysTable extends JPanel{
                         if(fileContent != null){
                             String starDateTime = fileContent.has("startDateTime") ? fileContent.get("startDateTime").getAsString() : "N/A";
                             String endDateTime = fileContent.has("endDateTime") ? fileContent.get("endDateTime").getAsString() : "N/A";
-                        tableModel.addRow(new Object[]{fileName, starDateTime, endDateTime});
+                            tableModel.addRow(new Object[]{fileName, starDateTime, endDateTime});
                         }
                         
                         
