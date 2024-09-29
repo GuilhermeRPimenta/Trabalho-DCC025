@@ -42,7 +42,6 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png")).getImage());
-        setPreferredSize(new java.awt.Dimension(1364, 800));
 
         sidebar.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -132,23 +131,8 @@ public class MainFrame extends javax.swing.JFrame {
         contentPanel.add(adminPanel, "card6");
 
         rankingPanel.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout rankingPanelLayout = new javax.swing.GroupLayout(rankingPanel);
-        rankingPanel.setLayout(rankingPanelLayout);
-        rankingPanelLayout.setHorizontalGroup(
-            rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rankingPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rankingPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1049, Short.MAX_VALUE))
-        );
-        rankingPanelLayout.setVerticalGroup(
-            rankingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rankingPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rankingPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(778, Short.MAX_VALUE))
-        );
+        rankingPanel.setLayout(new java.awt.GridBagLayout());
+        rankingPanel.add(rankingPanel2, new java.awt.GridBagConstraints());
 
         contentPanel.add(rankingPanel, "card4");
         contentPanel.add(replaysPanel, "card6");
