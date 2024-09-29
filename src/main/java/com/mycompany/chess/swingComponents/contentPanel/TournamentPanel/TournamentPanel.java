@@ -5,6 +5,7 @@
 package com.mycompany.chess.swingComponents.contentPanel.TournamentPanel;
 
 import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplayGameScreen;
+import entitites.Player;
 import entitites.TournamentMatch;
 import java.awt.CardLayout;
 import java.util.List;
@@ -23,6 +24,7 @@ public class TournamentPanel extends javax.swing.JPanel {
     private TournamentPanelTournamentsTable tournamentPanelTournamentTable;
     private MatchesListPanel matchesListPanel;
     private TournamentPanelTournamentsTable tournamentPanelTournamentsTable;
+    private TournamentGamePanel tournamentGamePanel;
     public TournamentPanel() {
         initComponents();
         cardLayout = (CardLayout) this.getLayout();
@@ -59,6 +61,10 @@ public class TournamentPanel extends javax.swing.JPanel {
     public void goToTournamentsTable(){
         tournamentPanelTournamentsTable.refreshTable();
         cardLayout.show(this, "tournamentPanelTournamentsTable");
+    }
+    
+    public void goToTournamentGamePanel(Player player1ToCheck, Player player2ToCheck, Tournament tournament, TournamentMatch tournamentMatch){
+        tournamentGamePanel = new TournamentGamePanel(player1ToCheck, player2ToCheck, tournament, tournamentMatch);
     }
 
 

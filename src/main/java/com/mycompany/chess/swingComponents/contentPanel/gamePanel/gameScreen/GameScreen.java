@@ -4,6 +4,7 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 
+import com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentGamePanel;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel;
 import entitites.NullPlayerException;
 import entitites.Player;
@@ -145,8 +146,14 @@ public class GameScreen extends javax.swing.JPanel {
                     tournament.checkIfShouldStartNextRound();
                 }
             }
-            GamePanel gamePanel = (GamePanel) getParent();
-            gamePanel.resetPanel();
+            if(tournament == null || tournamentMatch == null){
+                GamePanel gamePanel = (GamePanel) getParent();
+                gamePanel.resetPanel();
+            }else{
+                TournamentGamePanel tournamentGamePanel = (TournamentGamePanel) getParent();
+                tournamentGamePanel.resetPanel();
+            }
+            
         }
         player1Turn = !player1Turn;
         if (player1Turn) {
@@ -162,8 +169,13 @@ public class GameScreen extends javax.swing.JPanel {
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             JOptionPane.showMessageDialog(this,"Declarado empate!\n Novos MMRs:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
-            GamePanel gamePanel = (GamePanel) getParent();
-            gamePanel.resetPanel();
+            if(tournament == null || tournamentMatch == null){
+                GamePanel gamePanel = (GamePanel) getParent();
+                gamePanel.resetPanel();
+            }else{
+                TournamentGamePanel tournamentGamePanel = (TournamentGamePanel) getParent();
+                tournamentGamePanel.resetPanel();
+            }
     }
     
     public boolean isPlayer1Turn() {
