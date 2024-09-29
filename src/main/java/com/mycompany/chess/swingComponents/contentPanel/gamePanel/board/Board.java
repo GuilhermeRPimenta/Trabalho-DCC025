@@ -13,7 +13,7 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Q
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
 import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.Replay;
-import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplayPiece;
+import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.SquareSaveData;
 import entitites.Player;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -96,9 +96,6 @@ public class Board extends JPanel {
 
     public void highlightLegalMoves(ArrayList<Square> legalMoves, Square squareChosen) {
 
-        //for(int i = 0; i < 8; i++)
-        //    for(int j = 0; j< 8; j++)
-        //        tiles[i][j].disableHighlight();
         if (currentAvailableMoves != null) {
             for (Square square : currentAvailableMoves) {
                 square.disableHighlight();
@@ -128,14 +125,14 @@ public class Board extends JPanel {
         gameScreen.nextTurn(end);
     }
 
-    public ReplayPiece[][] getboardPiecesesMatrix() {
-        ReplayPiece[][] boardPiecesesMatrix = new ReplayPiece[8][8];
+    public SquareSaveData[][] getboardPiecesesMatrix() {
+        SquareSaveData[][] boardPiecesesMatrix = new SquareSaveData[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Square currentSquare = tiles[i][j];
                 Piece currentPiece = tiles[i][j].getPiece();
                 if (currentPiece == null) {
-                    boardPiecesesMatrix[i][j] = new ReplayPiece(currentSquare.getPosition(), "none", false);
+                    boardPiecesesMatrix[i][j] = new SquareSaveData(currentSquare.getPosition(), "none", false);
                     continue;
                 }
                 String pieceType = "none";
@@ -152,14 +149,14 @@ public class Board extends JPanel {
                 } else if (currentPiece instanceof Rook) {
                     pieceType = "rook";
                 }
-                boardPiecesesMatrix[i][j] = new ReplayPiece(currentPiece.getPosition(), pieceType, currentPiece.getIsWhite());
+                boardPiecesesMatrix[i][j] = new SquareSaveData(currentPiece.getPosition(), pieceType, currentPiece.getIsWhite());
             }
         }
         return boardPiecesesMatrix;
     }
 
     public void addStateToReplay() {
-        ReplayPiece[][] boardPiecesesMatrix = getboardPiecesesMatrix();
+        SquareSaveData[][] boardPiecesesMatrix = getboardPiecesesMatrix();
         replay.addBoardState(squareChosen.getPosition(), boardPiecesesMatrix);
     }
 
