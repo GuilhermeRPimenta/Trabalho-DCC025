@@ -11,17 +11,19 @@ import javax.swing.JOptionPane;
 
 public class Tournament {
 
-    private String nomeDoTorneio;
+    private String name;
     private List<Player> playerList;
     private List<TournamentRound> tournamentRounds = new ArrayList<>();
     private int currentRoundIndex = -1;
+    private LocalDateTime startDatetime;
+    private Player winner = null;
 
-    public Tournament(String nomeDoTorneio, List<Player> playerList) throws TournamentException {
+    public Tournament(String name, List<Player> playerList) throws TournamentException {
         
-        if(nomeDoTorneio.length() <= 0)
+        if(name.length() <= 0)
             throw new TournamentException("Dê um nome ao torneio");
             
-        this.nomeDoTorneio = nomeDoTorneio;
+        this.name = name;
 
         if (playerList == null || playerList.isEmpty()) {
             throw new TournamentException("A lista de jogadores não pode estar vazia.");
@@ -32,7 +34,7 @@ public class Tournament {
         }
 
         this.playerList = playerList;
-        
+        startDatetime = LocalDateTime.now();
         startRound(playerList);
     }
 
@@ -56,7 +58,7 @@ public class Tournament {
 
         Gson gson = new Gson();
 
-        try (FileWriter fileWriter = new FileWriter("src/main/resources/tournaments/" + nomeDoTorneio + ".json")) {
+        try (FileWriter fileWriter = new FileWriter("src/main/resources/tournaments/" + name + ".json")) {
             gson.toJson(this, fileWriter);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -66,5 +68,18 @@ public class Tournament {
     private void startRound(List<Player> roundPlayers){
         tournamentRounds.add(new TournamentRound(roundPlayers));
         currentRoundIndex++;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public int getNumberOfPlayers(){
+        return playerList.size();
+    }
+    
+    public String getStarDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        return formatter.format(startDatetime);
     }
 }
