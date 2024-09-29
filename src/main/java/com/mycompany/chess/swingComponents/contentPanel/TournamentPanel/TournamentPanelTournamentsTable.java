@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.Replay;
 import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel;
+import entitites.Tournament;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -56,7 +57,7 @@ public class TournamentPanelTournamentsTable extends JPanel{
                 int selectedRow = tournamentTable.getSelectedRow();
                 if(selectedRow != -1){
                     String fileName = (String) tableModel.getValueAt(selectedRow ,0);
-                    //Logica de carregar torneio
+                    tournamentPanel.goToMatchesListPanel(loadTournamentFromFile(fileName));
                 }
             }
             
@@ -75,7 +76,17 @@ public class TournamentPanelTournamentsTable extends JPanel{
         });
     }
     
-    public void setReplaysPanel(TournamentPanel tournamentPanel){
+    private Tournament loadTournamentFromFile(String fileName){
+        Tournament tournament = null;
+        try (FileReader reader = new FileReader("src/main/resources/tournaments/" + fileName)) {
+            tournament = gson.fromJson(reader, Tournament.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tournament;
+    }
+    
+    public void setTournamentPanel(TournamentPanel tournamentPanel){
         this.tournamentPanel = tournamentPanel;
     }
     
@@ -112,16 +123,6 @@ public class TournamentPanelTournamentsTable extends JPanel{
             JOptionPane.showMessageDialog(this,"Diretorio " + directoryPath + "não encontrado!");
         }
     }
-    
-    /*private Replay loadReplayFromFile(String fileName){
-        Replay replay = null;
-        try (FileReader reader = new FileReader("src/main/resources/replays/" + fileName)) {
-            replay = gson.fromJson(reader, Replay.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return replay;
-    }*/
     
     public void refreshTable(){
         loadTournaments();
