@@ -3,8 +3,8 @@ corinthians,corinthians@example.com,@Corinthians2020,610
 Guilherme,Guilherme@mgial.com,@Pimenta,500
 Feenixs,feenixs@gmail.com,12345678!Aa,3000
 TesteA,testea@teste.com,testeA!111,1001
-TesteB,testeb@testeb.com,testeB!111,1000
-TesteC,testec@testec.com,testeB!111,2000
+TesteB,testeb@testeb.com,testeB!111,1016
+TesteC,testec@testec.com,testeB!111,984
 TesteD,tested@tested.com,testeB!111,1000
 TesteE,testee@testee.com,testeB!111,1
 TesteF,testef@testef.com,testeB!111,9999
@@ -13,3 +13,7 @@ GUILHERME,guilherme@fmail.com,123aA!qqq,1000
 Pablo,Pablo@gmail.com,123aA!qqq,1000
 a,a,a,1000
 b,b,b,1000
+TesteRatingA,a@a.com,Chess@2024,1968
+TesteRatingB,b@b.com,Chess@2024,1014
+gui,gui@gmail.com,@Chess11,1030
+guii,guii@gmail.com,@Chess11,969
