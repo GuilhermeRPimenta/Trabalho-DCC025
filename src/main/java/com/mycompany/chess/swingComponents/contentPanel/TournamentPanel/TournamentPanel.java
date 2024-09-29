@@ -4,17 +4,33 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.TournamentPanel;
 
+import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplayGameScreen;
+import entitites.TournamentMatch;
+import java.awt.CardLayout;
+import java.util.List;
+import entitites.Tournament;
+
 /**
  *
  * @author guilh
  */
 public class TournamentPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form TournamentPanel
      */
+    private CardLayout cardLayout;
+    private TournamentPanelTournamentsTable tournamentPanelTournamentTable;
+    private MatchesListPanel matchesListPanel;
+    private TournamentPanelTournamentsTable tournamentPanelTournamentsTable;
     public TournamentPanel() {
         initComponents();
+        cardLayout = (CardLayout) this.getLayout();
+        tournamentPanelTournamentsTable = new TournamentPanelTournamentsTable();
+        add(tournamentPanelTournamentsTable, "tournamentPanelTournamentsTable");
+        tournamentPanelTournamentsTable.setTournamentPanel(this);
+        cardLayout.show(this, "tournamentPanelTournamentsTable");;
+        
     }
 
     /**
@@ -26,26 +42,26 @@ public class TournamentPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tournamentPanelTournamentsTable1 = new com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanelTournamentsTable();
-
         setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tournamentPanelTournamentsTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tournamentPanelTournamentsTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-        );
+        setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
     public void updateTournamentTable(){
-        tournamentPanelTournamentsTable1.refreshTable();
+        tournamentPanelTournamentsTable.refreshTable();
+    }
+    
+    public void goToMatchesListPanel(Tournament tournament){
+        matchesListPanel = new MatchesListPanel(tournament);
+        add(matchesListPanel, "matchesListPanel");
+        matchesListPanel.setTournamentPanel(this);
+        cardLayout.show(this, "matchesListPanel");
+    }
+    
+    public void goToTournamentsTable(){
+        tournamentPanelTournamentsTable.refreshTable();
+        cardLayout.show(this, "tournamentPanelTournamentsTable");
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanelTournamentsTable tournamentPanelTournamentsTable1;
     // End of variables declaration//GEN-END:variables
 }
