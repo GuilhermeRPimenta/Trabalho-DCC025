@@ -32,7 +32,12 @@ public class AdminTable extends Table {
     @Override
     public void initiateTable() {
         String[] columns = {"Nome", "Email", "Senha"};
-        tableModel = new DefaultTableModel(columns, 0);
+        tableModel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.setModel(tableModel);
     }
 
@@ -91,5 +96,5 @@ public class AdminTable extends Table {
             tempCSV.renameTo(originalFile);
         }
     }
-   
+
 }
