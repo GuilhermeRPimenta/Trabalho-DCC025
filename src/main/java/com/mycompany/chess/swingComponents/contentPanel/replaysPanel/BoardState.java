@@ -12,10 +12,10 @@ import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.P
  * @author guilh
  */
 public class BoardState {
-    private ReplayPiece[][] boardPiecesesMatrix = new ReplayPiece[8][8];
+    private SquareSaveData[][] boardPiecesesMatrix = new SquareSaveData[8][8];
     private Position initialPositionOfPieceThatMoves;
     private int turnNumber;
-    public BoardState(int turnNumber, Position initialPositionOfPieceThatMoves , ReplayPiece[][] boardPiecesesMatrix){
+    public BoardState(int turnNumber, Position initialPositionOfPieceThatMoves , SquareSaveData[][] boardPiecesesMatrix){
         this.turnNumber = turnNumber;
         this.initialPositionOfPieceThatMoves = initialPositionOfPieceThatMoves;
         this.boardPiecesesMatrix = boardPiecesesMatrix;
@@ -29,7 +29,7 @@ public class BoardState {
         return turnNumber;
     }
     
-    public ReplayPiece[][] getBoardPiecesesMatrix(){
+    public SquareSaveData[][] getBoardPiecesesMatrix(){
         return boardPiecesesMatrix;
     }
 }
