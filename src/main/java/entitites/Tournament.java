@@ -14,8 +14,9 @@ public class Tournament {
     private String name;
     private List<Player> playerList;
     private List<TournamentRound> tournamentRounds = new ArrayList<>();
+    private int numberOfPlayers  = 0;
     private int currentRoundIndex = -1;
-    private LocalDateTime startDatetime;
+    private String formattedStartDateTime;
     private Player winner = null;
 
     public Tournament(String name, List<Player> playerList) throws TournamentException {
@@ -32,9 +33,12 @@ public class Tournament {
         if (!isPowerOfTwo(playerList.size()) || playerList.size() == 1) {
             throw new TournamentException("Quantidade de jogadodes inválida (Potência de 2)");
         }
-
+        
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+         
         this.playerList = playerList;
-        startDatetime = LocalDateTime.now();
+        LocalDateTime startDatetime = LocalDateTime.now();
+        formattedStartDateTime =  formatter.format(startDatetime);
         startRound(playerList);
     }
 
@@ -75,11 +79,10 @@ public class Tournament {
     }
     
     public int getNumberOfPlayers(){
-        return playerList.size();
+        return numberOfPlayers;
     }
     
-    public String getStarDate(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-        return formatter.format(startDatetime);
+    public String getFormattedStarDate(){
+        return formattedStartDateTime;
     }
 }

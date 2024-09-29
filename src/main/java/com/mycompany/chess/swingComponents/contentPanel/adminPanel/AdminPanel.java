@@ -92,10 +92,10 @@ public class AdminPanel extends javax.swing.JPanel {
         senhaFieldAdminRegister = new javax.swing.JTextField();
         confirmCadastrarButtonAdmin = new javax.swing.JButton();
         tournamentPanel = new javax.swing.JPanel();
-        tournamentScrollPane = new javax.swing.JScrollPane();
-        tournamentTableTournaments = new customPalette.TournamentPlayerTable();
         tituloLabelTournament1 = new javax.swing.JLabel();
         showCreateTournamentPanelButton = new javax.swing.JButton();
+        tournamentTableScrollPane = new javax.swing.JScrollPane();
+        tournamentTable = new customPalette.TournamentTable();
         tournamentCreatePanel = new javax.swing.JPanel();
         tituloLabelTournament = new javax.swing.JLabel();
         nomeLabelTournament = new javax.swing.JLabel();
@@ -105,6 +105,7 @@ public class AdminPanel extends javax.swing.JPanel {
         playersScrollPaneTournament = new javax.swing.JScrollPane();
         tournamentTablePlayers = new customPalette.TournamentPlayerTable();
         observacaoLabel = new javax.swing.JLabel();
+        cancelTournamentCreationButton = new javax.swing.JButton();
         ButtonsBottom = new javax.swing.JPanel();
         ButtonsBottomPlayer = new javax.swing.JPanel();
         editarButtonPlayer = new javax.swing.JButton();
@@ -438,27 +439,6 @@ public class AdminPanel extends javax.swing.JPanel {
 
         Components.add(adminRegisterPanel, "card6");
 
-        tournamentTableTournaments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nome do Torneio", "Número de Jogadores", "Data de Criação"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tournamentScrollPane.setViewportView(tournamentTableTournaments);
-
         tituloLabelTournament1.setText("Lista de Torneios");
 
         showCreateTournamentPanelButton.setText("Criar um torneio");
@@ -468,34 +448,39 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        tournamentTableScrollPane.setViewportView(tournamentTable);
+
         javax.swing.GroupLayout tournamentPanelLayout = new javax.swing.GroupLayout(tournamentPanel);
         tournamentPanel.setLayout(tournamentPanelLayout);
         tournamentPanelLayout.setHorizontalGroup(
             tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tournamentPanelLayout.createSequentialGroup()
-                .addGroup(tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tournamentPanelLayout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(tituloLabelTournament1))
-                    .addGroup(tournamentPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(tournamentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(204, 204, 204)
+                .addComponent(tituloLabelTournament1)
+                .addContainerGap(213, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(showCreateTournamentPanelButton)
                 .addGap(187, 187, 187))
+            .addGroup(tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
+                    .addContainerGap(26, Short.MAX_VALUE)
+                    .addComponent(tournamentTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
         tournamentPanelLayout.setVerticalGroup(
             tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tournamentPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(tituloLabelTournament1)
-                .addGap(18, 18, 18)
-                .addComponent(tournamentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(364, 364, 364)
                 .addComponent(showCreateTournamentPanelButton)
                 .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
+                    .addContainerGap(55, Short.MAX_VALUE)
+                    .addComponent(tournamentTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(92, Short.MAX_VALUE)))
         );
 
         Components.add(tournamentPanel, "card9");
@@ -517,6 +502,13 @@ public class AdminPanel extends javax.swing.JPanel {
 
         observacaoLabel.setText("OBS: Utilize o CTRL para selecionar os jogadores, ou clique e arraste.");
 
+        cancelTournamentCreationButton.setText("Cancelar");
+        cancelTournamentCreationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelTournamentCreationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tournamentCreatePanelLayout = new javax.swing.GroupLayout(tournamentCreatePanel);
         tournamentCreatePanel.setLayout(tournamentCreatePanelLayout);
         tournamentCreatePanelLayout.setHorizontalGroup(
@@ -533,7 +525,10 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nomeFieldTournament, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(confirmCreateTournament)
+                        .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                            .addComponent(cancelTournamentCreationButton)
+                            .addGap(18, 18, 18)
+                            .addComponent(confirmCreateTournament))
                         .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(listaLabelTournament)
                             .addComponent(playersScrollPaneTournament, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +551,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(observacaoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmCreateTournament)
+                .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmCreateTournament)
+                    .addComponent(cancelTournamentCreationButton))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -1159,7 +1156,19 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.repaint();
         Components.revalidate();
         
+        tournamentTable.refreshTable();
     }//GEN-LAST:event_confirmCreateTournamentActionPerformed
+
+    private void cancelTournamentCreationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTournamentCreationButtonActionPerformed
+        // TODO add your handling code here:
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        Components.removeAll();
+        Components.add(tournamentPanel);
+        Components.repaint();
+        Components.revalidate();
+    }//GEN-LAST:event_cancelTournamentCreationButtonActionPerformed
     
     
     
@@ -1187,6 +1196,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton apagarButtonAdmin;
     private javax.swing.JButton apagarButtonPlayer;
     private javax.swing.JButton cadastrarButtonAdmin;
+    private javax.swing.JButton cancelTournamentCreationButton;
     private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminConfigPanel config;
     private javax.swing.JPanel configPanel;
     private javax.swing.JButton confirmButtonAdmin;
@@ -1229,8 +1239,8 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton tournamentButton;
     private javax.swing.JPanel tournamentCreatePanel;
     private javax.swing.JPanel tournamentPanel;
-    private javax.swing.JScrollPane tournamentScrollPane;
+    private customPalette.TournamentTable tournamentTable;
     private customPalette.TournamentPlayerTable tournamentTablePlayers;
-    private customPalette.TournamentPlayerTable tournamentTableTournaments;
+    private javax.swing.JScrollPane tournamentTableScrollPane;
     // End of variables declaration//GEN-END:variables
 }
