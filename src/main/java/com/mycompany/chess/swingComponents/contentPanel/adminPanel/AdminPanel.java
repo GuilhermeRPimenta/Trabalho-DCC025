@@ -89,6 +89,9 @@ public class AdminPanel extends javax.swing.JPanel {
         confirmCadastrarButtonAdmin = new javax.swing.JButton();
         tournamentScrollPane = new javax.swing.JScrollPane();
         tournamentTable1 = new customPalette.TournamentTable();
+        tournamentCreatePanel = new javax.swing.JPanel();
+        tituloLabelTournament = new javax.swing.JLabel();
+        nomeLabelTournament = new javax.swing.JLabel();
         ButtonsBottom = new javax.swing.JPanel();
         ButtonsBottomPlayer = new javax.swing.JPanel();
         editarButtonPlayer = new javax.swing.JButton();
@@ -428,6 +431,36 @@ public class AdminPanel extends javax.swing.JPanel {
         tournamentScrollPane.setViewportView(tournamentTable1);
 
         Components.add(tournamentScrollPane, "card7");
+
+        tituloLabelTournament.setText("Criação de Torneios");
+
+        nomeLabelTournament.setText("Nome do torneio");
+
+        javax.swing.GroupLayout tournamentCreatePanelLayout = new javax.swing.GroupLayout(tournamentCreatePanel);
+        tournamentCreatePanel.setLayout(tournamentCreatePanelLayout);
+        tournamentCreatePanelLayout.setHorizontalGroup(
+            tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(tituloLabelTournament))
+                    .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(nomeLabelTournament)))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        tournamentCreatePanelLayout.setVerticalGroup(
+            tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloLabelTournament)
+                .addGap(44, 44, 44)
+                .addComponent(nomeLabelTournament)
+                .addContainerGap(398, Short.MAX_VALUE))
+        );
+
+        Components.add(tournamentCreatePanel, "card8");
 
         config.add(Components);
 
@@ -1014,6 +1047,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabelAdmin;
     private javax.swing.JLabel nameLabelAdminRegister;
     private javax.swing.JLabel nameLabelPlayer;
+    private javax.swing.JLabel nomeLabelTournament;
     private javax.swing.JButton playerButton;
     private javax.swing.JPanel playerEditPanel;
     private javax.swing.JScrollPane playerScrollPane;
@@ -1024,7 +1058,9 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel senhaLabelAdmin;
     private javax.swing.JLabel senhaLabelAdminRegister;
     private javax.swing.JLabel senhaLabelPlayer;
+    private javax.swing.JLabel tituloLabelTournament;
     private javax.swing.JButton tournamentButton;
+    private javax.swing.JPanel tournamentCreatePanel;
     private javax.swing.JScrollPane tournamentScrollPane;
     private customPalette.TournamentTable tournamentTable1;
     // End of variables declaration//GEN-END:variables
