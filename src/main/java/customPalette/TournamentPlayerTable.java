@@ -16,15 +16,20 @@ public class TournamentPlayerTable extends Table {
     @Override
     public void initiateTable() {
         String[] columns = {"Nome", "Email", "MMR"};
-        tableModel = new DefaultTableModel(columns, 0);
+        tableModel = new DefaultTableModel(columns, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Todas as células são não editáveis
+                return false;
+            }
+        };
+        
         this.setModel(tableModel);
     }
     
     @Override
-    public void deleteSelectedRow() {
+    public void deleteSelectedRow(){};
 
-    }
-    
     public void populateTableFromCSV() {
         String path = "";
         String line;
