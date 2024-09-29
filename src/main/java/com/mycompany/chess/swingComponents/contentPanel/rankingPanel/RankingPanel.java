@@ -148,7 +148,6 @@ public class RankingPanel extends javax.swing.JPanel {
                    String name = fields[0];
                     String mmr = fields[3];
                     RankingEntry aux = new RankingEntry(name, mmr);
-                    System.out.println(aux);
                     jogadores.add(aux);
                 }
                 line = br.readLine();
