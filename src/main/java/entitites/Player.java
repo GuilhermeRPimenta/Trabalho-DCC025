@@ -24,4 +24,8 @@ public class Player extends User{
     public void setMmr(int mmr) {
         this.mmr = mmr;
     }
+    
+    public String getName(){
+        return nome;
+    }
 }

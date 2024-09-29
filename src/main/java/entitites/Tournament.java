@@ -71,8 +71,8 @@ public class Tournament {
     }
     
     private void startRound(List<Player> roundPlayers){
-        tournamentRounds.add(new TournamentRound(roundPlayers));
         currentRoundIndex++;
+        tournamentRounds.add(new TournamentRound(roundPlayers, currentRoundIndex));
     }
     
     private void checkIfShouldStartNextRound(){

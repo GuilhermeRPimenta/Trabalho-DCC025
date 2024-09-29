@@ -40,22 +40,46 @@ public class MatchesListPanel extends JPanel {
                 tournamentPanel.goToTournamentsTable();
             }
         });
-        String[] columnNames = {"Jogadores", "Round", "Ganhador"};
+         String[] columnNames = {"Jogador 1", "Jogador 2", "Round", "Ganhador"};
         tableModel = new DefaultTableModel(columnNames, 0);
         matchesTable = new JTable(tableModel);
+        
+        // Configurações de estilo
         matchesTable.setBackground(new Color(51, 51, 51));
         matchesTable.setForeground(Color.white);
-
         JTableHeader tableHeader = matchesTable.getTableHeader();
         tableHeader.setBackground(new Color(51, 51, 51));
         tableHeader.setForeground(Color.WHITE);
+        
+        // Adicionando a tabela a um JScrollPane
         JScrollPane scrollPane = new JScrollPane(matchesTable);
         scrollPane.getViewport().setBackground(new Color(51, 51, 51));
         scrollPane.setForeground(Color.white);
         add(scrollPane, BorderLayout.CENTER);
+        
+        // Preencher a tabela com os dados dos matches
+        populateMatchesTable();
     }
 
     public void setTournamentPanel(TournamentPanel tournamentPanel) {
         this.tournamentPanel = tournamentPanel;
     }
+    
+    
+    private void populateMatchesTable() {
+        // Limpa a tabela atual
+        tableModel.setRowCount(0);
+        
+        // Percorre todas as partidas e adiciona à tabela
+        for (TournamentMatch match : matches) {
+            String player1 = match.getPlayer1().getName();  // Obtenha o nome do Jogador 1
+            String player2 = match.getPlayer2().getName();  // Obtenha o nome do Jogador 2
+            String round = String.valueOf(match.getRound()); // Round do match
+            String winner = (match.getWinner() != null) ? match.getWinner().getName() : ""; // Verifica se há ganhador
+            
+            // Adiciona a linha na tabela
+            tableModel.addRow(new Object[]{player1, player2, round, winner});
+        }
+    }
+
 }
