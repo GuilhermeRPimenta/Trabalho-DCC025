@@ -5,30 +5,35 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Tournament {
 
     private String nomeDoTorneio;
-    private List<Player> listaPlayers;
+    private List<Player> playerList;
+    private List<TournamentRound> tournamentRounds = new ArrayList<>();
+    private int currentRoundIndex = -1;
 
-    public Tournament(String nomeDoTorneio, List<Player> listaPlayers) throws TournamentException {
+    public Tournament(String nomeDoTorneio, List<Player> playerList) throws TournamentException {
         
         if(nomeDoTorneio.length() <= 0)
             throw new TournamentException("Dê um nome ao torneio");
             
         this.nomeDoTorneio = nomeDoTorneio;
 
-        if (listaPlayers == null || listaPlayers.isEmpty()) {
+        if (playerList == null || playerList.isEmpty()) {
             throw new TournamentException("A lista de jogadores não pode estar vazia.");
         }
 
-        if (!isPowerOfTwo(listaPlayers.size()) || listaPlayers.size() == 1) {
+        if (!isPowerOfTwo(playerList.size()) || playerList.size() == 1) {
             throw new TournamentException("Quantidade de jogadodes inválida (Potência de 2)");
         }
 
-        this.listaPlayers = listaPlayers;
+        this.playerList = playerList;
+        
+        startRound(playerList);
     }
 
     public Tournament() {
@@ -57,5 +62,9 @@ public class Tournament {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
+    
+    private void startRound(List<Player> roundPlayers){
+        tournamentRounds.add(new TournamentRound(roundPlayers));
+        currentRoundIndex++;
+    }
 }
