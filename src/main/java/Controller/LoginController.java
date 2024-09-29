@@ -14,6 +14,8 @@ public class LoginController<T extends LoginScreenInterface> {
 
     private T loginScreen;
     private Player player = null;
+    private String name = "";
+    private boolean firstTime = true;
 
     public LoginController(T loginScreen) {
         this.loginScreen = loginScreen;
@@ -37,6 +39,7 @@ public class LoginController<T extends LoginScreenInterface> {
                 : "src/main/resources/userData/playerData.csv";
 
         boolean userFound = false;
+        
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
@@ -49,6 +52,10 @@ public class LoginController<T extends LoginScreenInterface> {
                 if (fileName.equals(n) && filePassword.equals(p)) {                   
                     userFound = true;
                     player = new Player(fields[0], fields[1], fields[3]);
+                    if(firstTime) {
+                        name = fields[0];
+                        firstTime = false;
+                    }
                     break;
                 }
             }
@@ -63,6 +70,13 @@ public class LoginController<T extends LoginScreenInterface> {
         }
 
         return false;
+    }
+    
+    public boolean sameLogin() throws camposInvalidosException {
+        if(name.equals(player.getNome())) {
+            throw new camposInvalidosException("Usuário já logado !");
+        }
+        return true;
     }
 
     public boolean confirmLogin() {

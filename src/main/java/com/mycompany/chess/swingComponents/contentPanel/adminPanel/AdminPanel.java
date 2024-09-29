@@ -7,7 +7,6 @@ import entitites.Player;
 import entitites.Tournament;
 import entitites.TournamentException;
 import entitites.camposInvalidosException;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -26,7 +25,6 @@ public class AdminPanel extends javax.swing.JPanel {
 
     private String email = "";
     private AdminPanelController controller;
-
 
     public AdminPanel() {
         initComponents();
@@ -733,8 +731,8 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.repaint();
         Components.revalidate();
     }
-    
-     public void createTournamentButton(javax.swing.JPanel editPanel) {
+
+    public void createTournamentButton(javax.swing.JPanel editPanel) {
         ButtonsBottom.removeAll();
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
@@ -743,7 +741,6 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.repaint();
         Components.revalidate();
     }
-
 
     public void editCSVPlayer(String emailToEdit, String[] newData) {
         String path = "";
@@ -919,7 +916,7 @@ public class AdminPanel extends javax.swing.JPanel {
         }
         return true;
     }
-    
+
     public boolean isNameOrEmailTakenPlayer(String name, String email, String currentEmail) {
         String path = "";
         String os = System.getProperty("os.name").toLowerCase();
@@ -971,7 +968,7 @@ public class AdminPanel extends javax.swing.JPanel {
         }
         return false;
     }
-    
+
     public boolean isNameOrEmailTakenAdminRegister(String name, String email) {
         String path = "";
         String os = System.getProperty("os.name").toLowerCase();
@@ -1030,11 +1027,11 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
     }
-    
-        private void initTableListenersTournaments() {
+
+    private void initTableListenersTournaments() {
         tournamentTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                int selectedRow = adminTable.getSelectedRow();
+                int selectedRow = tournamentTable.getSelectedRow();
                 if (selectedRow >= 0) {
                     ButtonsBottom.removeAll();
                     ButtonsBottom.add(ButtonsBottomTournaments);
@@ -1253,7 +1250,7 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_showCreateTournamentPanelButtonActionPerformed
 
     private void confirmCreateTournamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCreateTournamentActionPerformed
-        
+
         List<Player> selectedPlayers = new ArrayList<>();
 
         int[] selectedRows = tournamentTablePlayers.getSelectedRows();
@@ -1262,23 +1259,23 @@ public class AdminPanel extends javax.swing.JPanel {
             String playerName = tournamentTablePlayers.getValueAt(rowIndex, 0).toString();
             String playerEmail = tournamentTablePlayers.getValueAt(rowIndex, 1).toString();
             int playerMmr = Integer.parseInt(tournamentTablePlayers.getValueAt(rowIndex, 2).toString());
-            
+
             selectedPlayers.add(new Player(playerName, playerEmail, playerMmr));
-            
+
         }
-        
+
         Tournament torneio = null;
-                
-        try{
+
+        try {
             torneio = new Tournament(nomeFieldTournament.getText(), selectedPlayers);
-        }
-        catch(TournamentException e){
+        } catch (TournamentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-        if(torneio != null)
+
+        if (torneio != null) {
             torneio.adicionarTorneio();
-        
+        }
+
         ButtonsBottom.removeAll();
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
@@ -1286,7 +1283,7 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.add(tournamentPanel);
         Components.repaint();
         Components.revalidate();
-        
+
         tournamentTable.refreshTable();
     }//GEN-LAST:event_confirmCreateTournamentActionPerformed
 
@@ -1305,9 +1302,8 @@ public class AdminPanel extends javax.swing.JPanel {
         tournamentTable.deleteSelectedRow();
         tournamentTable.refreshTable();
     }//GEN-LAST:event_apagarButtonTournamentsActionPerformed
-    
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsBottom;
     private javax.swing.JPanel ButtonsBottomAdmin;
