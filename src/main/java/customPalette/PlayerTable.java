@@ -17,12 +17,18 @@ public class PlayerTable extends Table {
         for (int i = 0; i < this.getColumnModel().getColumnCount(); i++) {
             this.getColumnModel().getColumn(i).setResizable(false);
         }
+
     }
 
     @Override
     public void initiateTable() {
         String[] columns = {"Nome", "Email", "Senha", "MMR"};
-        tableModel = new DefaultTableModel(columns, 0);
+        tableModel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.setModel(tableModel);
     }
 
@@ -103,7 +109,7 @@ public class PlayerTable extends Table {
             tempCSV.renameTo(originalFile);
         }
     }
-    
+
     public void refreshTable() {
         tableModel.setRowCount(0);
         populateTableFromCSV();
