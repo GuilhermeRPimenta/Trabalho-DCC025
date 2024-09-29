@@ -40,7 +40,6 @@ public class RankingPanel extends javax.swing.JPanel {
         jogadores = new ArrayList<RankingEntry>();
         try {
             preencheLista();
-            preencheTabela();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -132,7 +131,10 @@ public class RankingPanel extends javax.swing.JPanel {
         Collections.sort(jogadores);
     }
 
-    public void preencheLista() throws camposInvalidosException {
+    private void preencheLista() throws camposInvalidosException {
+        jogadores = new ArrayList<RankingEntry>();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+        tableModel.setRowCount(0);
         String path = "";
 
         path = "src/main/resources/userData/playerData.csv";
@@ -151,6 +153,7 @@ public class RankingPanel extends javax.swing.JPanel {
                 }
                 line = br.readLine();
             }
+            preencheTabela();
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
@@ -158,13 +161,21 @@ public class RankingPanel extends javax.swing.JPanel {
         }
     }
 
-    public void preencheTabela() {
+    private void preencheTabela() {
         DefaultTableModel tabela = (DefaultTableModel) jTable2.getModel();
         ordenaMMR();
         for (RankingEntry aux : jogadores) {
             tabela.addRow(new Object[]{aux.getNome(), aux.getMmr()});
         }
          jTable2.setDefaultRenderer(Object.class, new CorPodio());
+    }
+    
+    public void updateTable(){
+        try {
+            preencheLista();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
