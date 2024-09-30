@@ -7,8 +7,11 @@ package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel;
 import entitites.NullPlayerException;
 import entitites.Player;
+import entitites.Tournament;
+import entitites.TournamentMatch;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -19,6 +22,8 @@ public class GameScreen extends javax.swing.JPanel {
     private Player player1;
     private Player player2;
     private boolean player1Turn;
+    private Tournament tournament;
+    private TournamentMatch tournamentMatch;
 
     /**
      * Creates new form GameScreen
@@ -37,7 +42,22 @@ public class GameScreen extends javax.swing.JPanel {
         board1.setGameScreen(this);
         player1Info.setText(player1.getNome());
         player2Info.setText(player2.getNome());
-
+    }
+    
+    public GameScreen(Player player1, Player player2, Tournament tounament, TournamentMatch tournamentMatch) throws NullPlayerException{
+        if (player1 == null) {
+            throw new NullPlayerException("Player 1 invalido!");
+        }
+        if (player2 == null) {
+            throw new NullPlayerException("Player 2 invalido!");
+        }
+        this.player1 = player1;
+        this.player2 = player2;
+        player1Turn = true;
+        initComponents();
+        board1.setGameScreen(this);
+        player1Info.setText(player1.getNome());
+        player2Info.setText(player2.getNome());
     }
 
     /**
@@ -102,15 +122,28 @@ public class GameScreen extends javax.swing.JPanel {
     private void stalemateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stalemateButtonActionPerformed
         // TODO add your handling code here:
         stalemate();
+        player1.updateMmr(player2, 0.5);
     }//GEN-LAST:event_stalemateButtonActionPerformed
     public void nextTurn(boolean end) {
         if (end) {
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             if (player1Turn) {
-                JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:");
+                
+                player1.updateMmr(player2, 1.0);
+                JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
+                if(tournament != null && tournamentMatch != null){
+                    tournamentMatch.setWinner(player1);
+                    tournament.checkIfShouldStartNextRound();
+                }
             } else {
-                JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:");
+                
+                player1.updateMmr(player2, 0.0);
+                JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
+                if(tournament != null && tournamentMatch != null){
+                    tournamentMatch.setWinner(player2);
+                    tournament.checkIfShouldStartNextRound();
+                }
             }
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
@@ -128,7 +161,7 @@ public class GameScreen extends javax.swing.JPanel {
     private void stalemate(){
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
-            JOptionPane.showMessageDialog(this,"Declarado empate!");
+            JOptionPane.showMessageDialog(this,"Declarado empate!\n Novos MMRs:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
             GamePanel gamePanel = (GamePanel) getParent();
             gamePanel.resetPanel();
     }

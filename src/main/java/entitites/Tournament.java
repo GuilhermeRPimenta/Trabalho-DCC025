@@ -14,8 +14,9 @@ public class Tournament {
     private String name;
     private List<Player> playerList;
     private List<TournamentRound> tournamentRounds = new ArrayList<>();
+    private int numberOfPlayers  = 0;
     private int currentRoundIndex = -1;
-    private LocalDateTime startDatetime;
+    private String formattedStartDateTime;
     private Player winner = null;
 
     public Tournament(String name, List<Player> playerList) throws TournamentException {
@@ -32,9 +33,13 @@ public class Tournament {
         if (!isPowerOfTwo(playerList.size()) || playerList.size() == 1) {
             throw new TournamentException("Quantidade de jogadodes inválida (Potência de 2)");
         }
-
+        
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+         
         this.playerList = playerList;
-        startDatetime = LocalDateTime.now();
+        LocalDateTime startDatetime = LocalDateTime.now();
+        formattedStartDateTime =  formatter.format(startDatetime);
+        numberOfPlayers = playerList.size();
         startRound(playerList);
     }
 
@@ -66,8 +71,44 @@ public class Tournament {
     }
     
     private void startRound(List<Player> roundPlayers){
-        tournamentRounds.add(new TournamentRound(roundPlayers));
         currentRoundIndex++;
+        tournamentRounds.add(new TournamentRound(roundPlayers, currentRoundIndex));
+    }
+    
+    public void checkIfShouldStartNextRound(){
+        List<TournamentMatch> currentRoundMatches = getCurrentRoundMatches();
+        for(TournamentMatch match : currentRoundMatches){
+            if(match.getWinner() == null){
+                return;
+            }
+        }
+        
+        List<Player> winners = new ArrayList<>();
+        for (TournamentMatch match : currentRoundMatches) {
+            winners.add(match.getWinner());
+        }
+        
+        if(winners.size() != 1){
+            startRound(winners);
+        }
+        else{
+            winner = winners.get(0);
+        }
+        
+    }
+    
+    public List<TournamentMatch> getAllMatches(){
+        List<TournamentMatch> allMatches = new ArrayList<>();
+        
+        for(TournamentRound round : tournamentRounds){
+            allMatches.addAll(round.getMatches());
+        }
+        
+        return allMatches;
+    }
+    
+    public List<TournamentMatch> getCurrentRoundMatches(){
+        return tournamentRounds.get(currentRoundIndex).getMatches();
     }
     
     public String getName(){
@@ -75,11 +116,10 @@ public class Tournament {
     }
     
     public int getNumberOfPlayers(){
-        return playerList.size();
+        return numberOfPlayers;
     }
     
-    public String getStarDate(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-        return formatter.format(startDatetime);
+    public String getFormattedStarDate(){
+        return formattedStartDateTime;
     }
 }

@@ -141,14 +141,12 @@ public class RankingPanel extends javax.swing.JPanel {
         
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
-            System.out.println(line);
             while (line != null) {
                 String[] fields = line.split(",");
                 if (fields.length >= 4) {
                    String name = fields[0];
                     String mmr = fields[3];
                     RankingEntry aux = new RankingEntry(name, mmr);
-                    System.out.println(aux);
                     jogadores.add(aux);
                 }
                 line = br.readLine();

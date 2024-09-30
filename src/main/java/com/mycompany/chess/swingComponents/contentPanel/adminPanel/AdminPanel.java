@@ -7,7 +7,6 @@ import entitites.Player;
 import entitites.Tournament;
 import entitites.TournamentException;
 import entitites.camposInvalidosException;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -27,13 +26,13 @@ public class AdminPanel extends javax.swing.JPanel {
     private String email = "";
     private AdminPanelController controller;
 
-
     public AdminPanel() {
         initComponents();
         admin.setVisible(true);
         config.setVisible(false);
         initTableListenersPlayers();
         initTableListenersAdmins();
+        initTableListenersTournaments();
         ButtonsBottom.removeAll();
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
@@ -92,10 +91,10 @@ public class AdminPanel extends javax.swing.JPanel {
         senhaFieldAdminRegister = new javax.swing.JTextField();
         confirmCadastrarButtonAdmin = new javax.swing.JButton();
         tournamentPanel = new javax.swing.JPanel();
-        tournamentScrollPane = new javax.swing.JScrollPane();
-        tournamentTableTournaments = new customPalette.TournamentPlayerTable();
         tituloLabelTournament1 = new javax.swing.JLabel();
         showCreateTournamentPanelButton = new javax.swing.JButton();
+        tournamentTableScrollPane = new javax.swing.JScrollPane();
+        tournamentTable = new customPalette.TournamentTable();
         tournamentCreatePanel = new javax.swing.JPanel();
         tituloLabelTournament = new javax.swing.JLabel();
         nomeLabelTournament = new javax.swing.JLabel();
@@ -105,6 +104,7 @@ public class AdminPanel extends javax.swing.JPanel {
         playersScrollPaneTournament = new javax.swing.JScrollPane();
         tournamentTablePlayers = new customPalette.TournamentPlayerTable();
         observacaoLabel = new javax.swing.JLabel();
+        cancelTournamentCreationButton = new javax.swing.JButton();
         ButtonsBottom = new javax.swing.JPanel();
         ButtonsBottomPlayer = new javax.swing.JPanel();
         editarButtonPlayer = new javax.swing.JButton();
@@ -113,6 +113,8 @@ public class AdminPanel extends javax.swing.JPanel {
         apagarButtonAdmin = new javax.swing.JButton();
         editarButtonAdmin = new javax.swing.JButton();
         cadastrarButtonAdmin = new javax.swing.JButton();
+        ButtonsBottomTournaments = new javax.swing.JPanel();
+        apagarButtonTournaments = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setMinimumSize(new java.awt.Dimension(1135, 800));
@@ -229,17 +231,9 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.setPreferredSize(new java.awt.Dimension(505, 480));
         Components.setLayout(new java.awt.CardLayout());
 
-        adminTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         adminScrollPane.setViewportView(adminTable);
 
-        Components.add(adminScrollPane, "card2");
+        Components.add(adminScrollPane, "card9");
 
         playerScrollPane.setViewportView(playerTable);
 
@@ -438,27 +432,6 @@ public class AdminPanel extends javax.swing.JPanel {
 
         Components.add(adminRegisterPanel, "card6");
 
-        tournamentTableTournaments.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nome do Torneio", "Número de Jogadores", "Data de Criação"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tournamentScrollPane.setViewportView(tournamentTableTournaments);
-
         tituloLabelTournament1.setText("Lista de Torneios");
 
         showCreateTournamentPanelButton.setText("Criar um torneio");
@@ -467,6 +440,8 @@ public class AdminPanel extends javax.swing.JPanel {
                 showCreateTournamentPanelButtonActionPerformed(evt);
             }
         });
+
+        tournamentTableScrollPane.setViewportView(tournamentTable);
 
         javax.swing.GroupLayout tournamentPanelLayout = new javax.swing.GroupLayout(tournamentPanel);
         tournamentPanel.setLayout(tournamentPanelLayout);
@@ -478,24 +453,28 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addGap(204, 204, 204)
                         .addComponent(tituloLabelTournament1))
                     .addGroup(tournamentPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(tournamentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(showCreateTournamentPanelButton)
-                .addGap(187, 187, 187))
+                        .addGap(192, 192, 192)
+                        .addComponent(showCreateTournamentPanelButton)))
+                .addContainerGap(199, Short.MAX_VALUE))
+            .addGroup(tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
+                    .addContainerGap(27, Short.MAX_VALUE)
+                    .addComponent(tournamentTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(28, Short.MAX_VALUE)))
         );
         tournamentPanelLayout.setVerticalGroup(
             tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tournamentPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(tituloLabelTournament1)
-                .addGap(18, 18, 18)
-                .addComponent(tournamentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(364, 364, 364)
                 .addComponent(showCreateTournamentPanelButton)
                 .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(tournamentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tournamentPanelLayout.createSequentialGroup()
+                    .addContainerGap(55, Short.MAX_VALUE)
+                    .addComponent(tournamentTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(92, Short.MAX_VALUE)))
         );
 
         Components.add(tournamentPanel, "card9");
@@ -517,6 +496,13 @@ public class AdminPanel extends javax.swing.JPanel {
 
         observacaoLabel.setText("OBS: Utilize o CTRL para selecionar os jogadores, ou clique e arraste.");
 
+        cancelTournamentCreationButton.setText("Cancelar");
+        cancelTournamentCreationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelTournamentCreationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tournamentCreatePanelLayout = new javax.swing.GroupLayout(tournamentCreatePanel);
         tournamentCreatePanel.setLayout(tournamentCreatePanelLayout);
         tournamentCreatePanelLayout.setHorizontalGroup(
@@ -533,7 +519,10 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nomeFieldTournament, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(confirmCreateTournament)
+                        .addGroup(tournamentCreatePanelLayout.createSequentialGroup()
+                            .addComponent(cancelTournamentCreationButton)
+                            .addGap(18, 18, 18)
+                            .addComponent(confirmCreateTournament))
                         .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(listaLabelTournament)
                             .addComponent(playersScrollPaneTournament, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +545,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(observacaoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmCreateTournament)
+                .addGroup(tournamentCreatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmCreateTournament)
+                    .addComponent(cancelTournamentCreationButton))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -658,6 +649,35 @@ public class AdminPanel extends javax.swing.JPanel {
         });
         ButtonsBottom.add(cadastrarButtonAdmin, "card4");
 
+        ButtonsBottomTournaments.setBackground(new java.awt.Color(51, 51, 51));
+        ButtonsBottomTournaments.setPreferredSize(new java.awt.Dimension(515, 35));
+
+        apagarButtonTournaments.setText("Apagar");
+        apagarButtonTournaments.setPreferredSize(new java.awt.Dimension(250, 25));
+        apagarButtonTournaments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apagarButtonTournamentsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ButtonsBottomTournamentsLayout = new javax.swing.GroupLayout(ButtonsBottomTournaments);
+        ButtonsBottomTournaments.setLayout(ButtonsBottomTournamentsLayout);
+        ButtonsBottomTournamentsLayout.setHorizontalGroup(
+            ButtonsBottomTournamentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsBottomTournamentsLayout.createSequentialGroup()
+                .addContainerGap(424, Short.MAX_VALUE)
+                .addComponent(apagarButtonTournaments, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        ButtonsBottomTournamentsLayout.setVerticalGroup(
+            ButtonsBottomTournamentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonsBottomTournamentsLayout.createSequentialGroup()
+                .addComponent(apagarButtonTournaments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        ButtonsBottom.add(ButtonsBottomTournaments, "card5");
+
         config.add(ButtonsBottom);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -711,8 +731,8 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.repaint();
         Components.revalidate();
     }
-    
-     public void createTournamentButton(javax.swing.JPanel editPanel) {
+
+    public void createTournamentButton(javax.swing.JPanel editPanel) {
         ButtonsBottom.removeAll();
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
@@ -721,7 +741,6 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.repaint();
         Components.revalidate();
     }
-
 
     public void editCSVPlayer(String emailToEdit, String[] newData) {
         String path = "";
@@ -949,7 +968,7 @@ public class AdminPanel extends javax.swing.JPanel {
         }
         return false;
     }
-    
+
     public boolean isNameOrEmailTakenAdminRegister(String name, String email) {
         String path = "";
         String os = System.getProperty("os.name").toLowerCase();
@@ -1004,6 +1023,20 @@ public class AdminPanel extends javax.swing.JPanel {
                     nameFieldAdmin.setText(adminTable.getValueAt(selectedRow, 0).toString());
                     emailFieldAdmin.setText(adminTable.getValueAt(selectedRow, 1).toString());
                     senhaFieldAdmin.setText(adminTable.getValueAt(selectedRow, 2).toString());
+                }
+            }
+        });
+    }
+
+    private void initTableListenersTournaments() {
+        tournamentTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            if (!event.getValueIsAdjusting()) {
+                int selectedRow = tournamentTable.getSelectedRow();
+                if (selectedRow >= 0) {
+                    ButtonsBottom.removeAll();
+                    ButtonsBottom.add(ButtonsBottomTournaments);
+                    ButtonsBottom.repaint();
+                    ButtonsBottom.revalidate();
                 }
             }
         });
@@ -1217,7 +1250,7 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_showCreateTournamentPanelButtonActionPerformed
 
     private void confirmCreateTournamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCreateTournamentActionPerformed
-        
+
         List<Player> selectedPlayers = new ArrayList<>();
 
         int[] selectedRows = tournamentTablePlayers.getSelectedRows();
@@ -1226,23 +1259,23 @@ public class AdminPanel extends javax.swing.JPanel {
             String playerName = tournamentTablePlayers.getValueAt(rowIndex, 0).toString();
             String playerEmail = tournamentTablePlayers.getValueAt(rowIndex, 1).toString();
             int playerMmr = Integer.parseInt(tournamentTablePlayers.getValueAt(rowIndex, 2).toString());
-            
+
             selectedPlayers.add(new Player(playerName, playerEmail, playerMmr));
-            
+
         }
-        
+
         Tournament torneio = null;
-                
-        try{
+
+        try {
             torneio = new Tournament(nomeFieldTournament.getText(), selectedPlayers);
-        }
-        catch(TournamentException e){
+        } catch (TournamentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
-        if(torneio != null)
+
+        if (torneio != null) {
             torneio.adicionarTorneio();
-        
+        }
+
         ButtonsBottom.removeAll();
         ButtonsBottom.repaint();
         ButtonsBottom.revalidate();
@@ -1250,15 +1283,32 @@ public class AdminPanel extends javax.swing.JPanel {
         Components.add(tournamentPanel);
         Components.repaint();
         Components.revalidate();
-        
+
+        tournamentTable.refreshTable();
     }//GEN-LAST:event_confirmCreateTournamentActionPerformed
-    
-    
-    
+
+    private void cancelTournamentCreationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTournamentCreationButtonActionPerformed
+        // TODO add your handling code here:
+        ButtonsBottom.removeAll();
+        ButtonsBottom.repaint();
+        ButtonsBottom.revalidate();
+        Components.removeAll();
+        Components.add(tournamentPanel);
+        Components.repaint();
+        Components.revalidate();
+    }//GEN-LAST:event_cancelTournamentCreationButtonActionPerformed
+
+    private void apagarButtonTournamentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonTournamentsActionPerformed
+        tournamentTable.deleteSelectedRow();
+        tournamentTable.refreshTable();
+    }//GEN-LAST:event_apagarButtonTournamentsActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsBottom;
     private javax.swing.JPanel ButtonsBottomAdmin;
     private javax.swing.JPanel ButtonsBottomPlayer;
+    private javax.swing.JPanel ButtonsBottomTournaments;
     private javax.swing.JPanel ButtonsTop;
     private javax.swing.JPanel Components;
     private javax.swing.JTextField MMRFieldPlayer;
@@ -1278,7 +1328,9 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel adminTitle;
     private javax.swing.JButton apagarButtonAdmin;
     private javax.swing.JButton apagarButtonPlayer;
+    private javax.swing.JButton apagarButtonTournaments;
     private javax.swing.JButton cadastrarButtonAdmin;
+    private javax.swing.JButton cancelTournamentCreationButton;
     private com.mycompany.chess.swingComponents.contentPanel.adminPanel.AdminConfigPanel config;
     private javax.swing.JPanel configPanel;
     private javax.swing.JButton confirmButtonAdmin;
@@ -1321,8 +1373,8 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton tournamentButton;
     private javax.swing.JPanel tournamentCreatePanel;
     private javax.swing.JPanel tournamentPanel;
-    private javax.swing.JScrollPane tournamentScrollPane;
+    private customPalette.TournamentTable tournamentTable;
     private customPalette.TournamentPlayerTable tournamentTablePlayers;
-    private customPalette.TournamentPlayerTable tournamentTableTournaments;
+    private javax.swing.JScrollPane tournamentTableScrollPane;
     // End of variables declaration//GEN-END:variables
 }

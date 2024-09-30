@@ -27,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
         rankingButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         replaysButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         adminButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
+        tournamentButton = new com.mycompany.chess.swingComponents.sidebar.SidebarButton();
         contentPanel = new javax.swing.JPanel();
         gamePanel = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel();
         registerPanel = new com.mycompany.chess.swingComponents.contentPanel.registerPanel.RegisterPanel();
@@ -34,6 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         rankingPanel = new javax.swing.JPanel();
         rankingPanel2 = new com.mycompany.chess.swingComponents.contentPanel.rankingPanel.RankingPanel();
         replaysPanel = new com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel();
+        tournamentPanel = new com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -83,6 +85,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        tournamentButton.setText("TORNEIO");
+        tournamentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tournamentButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -99,7 +108,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(playButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rankingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(replaysButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(adminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(adminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tournamentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         sidebarLayout.setVerticalGroup(
@@ -117,6 +127,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(replaysButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tournamentButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,6 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         contentPanel.add(rankingPanel, "card4");
         contentPanel.add(replaysPanel, "card6");
+        contentPanel.add(tournamentPanel, "card7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,6 +211,13 @@ public class MainFrame extends javax.swing.JFrame {
         adminPanel.deslogar();
     }//GEN-LAST:event_adminButtonActionPerformed
 
+    private void tournamentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tournamentButtonActionPerformed
+        // TODO add your handling code here:
+        updateSidebarButtonAndContentPanel(evt, tournamentPanel);
+        tournamentPanel.updateTournamentTable();
+        adminPanel.deslogar();
+    }//GEN-LAST:event_tournamentButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -244,5 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
     private com.mycompany.chess.swingComponents.sidebar.SidebarButton replaysButton;
     private com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel replaysPanel;
     private javax.swing.JPanel sidebar;
+    private com.mycompany.chess.swingComponents.sidebar.SidebarButton tournamentButton;
+    private com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanel tournamentPanel;
     // End of variables declaration//GEN-END:variables
 }

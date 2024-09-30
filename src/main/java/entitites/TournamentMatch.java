@@ -11,11 +11,13 @@ package entitites;
 public class TournamentMatch {
     private Player player1;
     private Player player2;
-    private Player winner;
+    private int round;
+    private Player winner = null;
     
-    public TournamentMatch(Player player1, Player player2){
+    public TournamentMatch(Player player1, Player player2, int round){
         this.player1 = player1;
         this.player2 = player2;
+        this.round = round;
     }
     
     public void endMatch(Player winner, boolean stalemate){
@@ -25,4 +27,26 @@ public class TournamentMatch {
         
         this.winner = winner;
     }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+    
+    public void setWinner(Player winner){
+        this.winner = winner;
+    }
+    
+    public int getRound(){
+        return round;
+    }
+    
+    
 }

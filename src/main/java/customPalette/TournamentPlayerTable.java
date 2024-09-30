@@ -55,4 +55,9 @@ public class TournamentPlayerTable extends Table {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    
+    public void refreshTable() {
+        tableModel.setRowCount(0);
+        populateTableFromCSV();
+    }
 }

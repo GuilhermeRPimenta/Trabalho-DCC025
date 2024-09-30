@@ -66,6 +66,7 @@
                               <Component id="rankingButton" alignment="0" max="32767" attributes="0"/>
                               <Component id="replaysButton" alignment="0" max="32767" attributes="0"/>
                               <Component id="adminButton" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tournamentButton" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -88,6 +89,8 @@
                   <Component id="replaysButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="adminButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="tournamentButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -154,6 +157,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminButtonActionPerformed"/>
           </Events>
         </Component>
+        <Component class="com.mycompany.chess.swingComponents.sidebar.SidebarButton" name="tournamentButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TORNEIO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tournamentButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="contentPanel">
@@ -213,6 +224,13 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card6"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanel" name="tournamentPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card7"/>
             </Constraint>
           </Constraints>
         </Component>
