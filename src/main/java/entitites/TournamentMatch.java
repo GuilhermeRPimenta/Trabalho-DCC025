@@ -48,5 +48,9 @@ public class TournamentMatch {
         return round;
     }
     
+    public void endMatch(Player winner){
+        this.winner = winner;
+    }
+    
     
 }

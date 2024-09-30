@@ -56,6 +56,8 @@ public class GameScreen extends javax.swing.JPanel {
             throw new NullPlayerException("Player 2 invalido!");
         }
         this.isTournament = true;
+        this.tournament = tounament;
+        this.tournamentMatch = tournamentMatch;
         this.player1 = player1;
         this.player2 = player2;
         player1Turn = true;
@@ -139,7 +141,9 @@ public class GameScreen extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, player1.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
                 if(tournament != null && tournamentMatch != null){
                     tournamentMatch.setWinner(player1);
+                    tournamentMatch.endMatch(player1);
                     tournament.checkIfShouldStartNextRound();
+                    tournament.adicionarTorneio();
                 }
             } else {
                 
@@ -147,7 +151,9 @@ public class GameScreen extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, player2.getNome() + " ganhou!\n MMRs atualizados:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
                 if(tournament != null && tournamentMatch != null){
                     tournamentMatch.setWinner(player2);
+                    tournamentMatch.endMatch(player2);
                     tournament.checkIfShouldStartNextRound();
+                    tournament.adicionarTorneio();
                 }
             }
             if(!isTournament){
