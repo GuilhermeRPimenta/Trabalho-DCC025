@@ -26,6 +26,7 @@ public class GameScreen extends javax.swing.JPanel {
     private boolean player1Turn;
     private Tournament tournament;
     private TournamentMatch tournamentMatch;
+    private boolean isTournament;
 
     /**
      * Creates new form GameScreen
@@ -37,6 +38,7 @@ public class GameScreen extends javax.swing.JPanel {
         if (player2 == null) {
             throw new NullPlayerException("Player 2 invalido!");
         }
+        this.isTournament = false;
         this.player1 = player1;
         this.player2 = player2;
         player1Turn = true;
@@ -53,6 +55,7 @@ public class GameScreen extends javax.swing.JPanel {
         if (player2 == null) {
             throw new NullPlayerException("Player 2 invalido!");
         }
+        this.isTournament = true;
         this.player1 = player1;
         this.player2 = player2;
         player1Turn = true;
@@ -147,7 +150,7 @@ public class GameScreen extends javax.swing.JPanel {
                     tournament.checkIfShouldStartNextRound();
                 }
             }
-            if(tournament == null || tournamentMatch == null){
+            if(!isTournament){
                 GamePanel gamePanel = (GamePanel) getParent();
                 gamePanel.resetPanel();
             }else{
@@ -172,7 +175,7 @@ public class GameScreen extends javax.swing.JPanel {
             board1.getReplay().addBoardState(null, board1.getboardPiecesesMatrix());
             board1.getReplay().saveReplay(player1.getNome() + " vs. "  + player2.getNome() + "-" + System.currentTimeMillis());
             JOptionPane.showMessageDialog(this,"Declarado empate!\n Novos MMRs:\n" + player1.getNome() + " - " + player1.getMmr() + "\n" + player2.getNome() + " - " + player2.getMmr());
-            if(tournament == null || tournamentMatch == null){
+            if(!isTournament){
                 GamePanel gamePanel = (GamePanel) getParent();
                 gamePanel.resetPanel();
             }else{

@@ -36,6 +36,8 @@ public class TournamentGamePanel extends javax.swing.JPanel {
     public TournamentGamePanel(Player player1ToCheck, Player player2ToCheck, Tournament tournament, TournamentMatch match) {
         this.player1ToCheck = player1ToCheck;
         this.player2ToCheck = player2ToCheck;
+        this.tournament = tournament;
+        this.match = match;
         loginScreen1 = new LoginScreen1(this);
         this.add(loginScreen1);
         loginScreen2 = new LoginScreen2(this);
