@@ -4,6 +4,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.TournamentPanel;
 
+import Controller.LoginController;
+import com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.login.LoginScreen1;
+import com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.login.LoginScreen2;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
 import entitites.NullPlayerException;
 import entitites.Player;
@@ -16,43 +19,69 @@ import java.awt.CardLayout;
  * @author guilh
  */
 public class TournamentGamePanel extends javax.swing.JPanel {
-    
+
     private Player player1;
     private Player player2;
     private Player player1ToCheck;
     private Player player2ToCheck;
     private Tournament tournament;
     private TournamentMatch match;
+    private LoginController<LoginScreen1> controller;
+    private LoginScreen1 loginScreen1;
+    private LoginScreen2 loginScreen2;
+
     /**
      * Creates new form TournamentGamePanel
      */
     public TournamentGamePanel(Player player1ToCheck, Player player2ToCheck, Tournament tournament, TournamentMatch match) {
         this.player1ToCheck = player1ToCheck;
         this.player2ToCheck = player2ToCheck;
+        loginScreen1 = new LoginScreen1(this);
+        this.add(loginScreen1);
+        loginScreen2 = new LoginScreen2(this);
+        this.add(loginScreen2);
+        controller = new LoginController<>(this);
         initComponents();
     }
+
+    public LoginScreen1 getLoginScreen1() {
+        return loginScreen1;
+    }
     
-    public void startGame(){
-        //player1 = loginScreen1.getPlayer();
-        //player2 = loginScreen2.getPlayer();   
-        
-        try{
+    public Player getPlayer1ToCheck() {
+        return player1ToCheck;
+    }
+
+    public Player getPlayer2ToCheck() {
+        return player2ToCheck;
+    }
+
+    public LoginScreen2 getLoginScreen2() {
+        return loginScreen2;
+    }
+
+    public void startGame() {
+        player1 = loginScreen1.getPlayer();
+        player2 = loginScreen2.getPlayer();   
+
+        try {
             GameScreen gameScreen = new GameScreen(player1, player2, tournament, match);
             add(gameScreen, "card3");
             CardLayout cardLayout = (CardLayout) this.getLayout();
             cardLayout.show(this, "card3");
-        }catch(NullPlayerException e){
-            //loginScreen1.showError(e);
+        } catch (NullPlayerException e) {
+            loginScreen1.showError(e);
         }
     }
-    
-    public void resetPanel(){
+
+    public void resetPanel() {
         removeAll();
         //loginScreen1 = new com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen1();
         //add(loginScreen1, "card2");
         revalidate();
         repaint();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,17 +92,8 @@ public class TournamentGamePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setPreferredSize(new java.awt.Dimension(600, 300));
+        setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
 
 
