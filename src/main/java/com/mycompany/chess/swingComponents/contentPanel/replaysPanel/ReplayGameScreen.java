@@ -9,6 +9,8 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import entitites.Replay;
+
 /**
  *
  * @author guilh

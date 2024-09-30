@@ -9,6 +9,7 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import entitites.Replay;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.awt.BorderLayout;

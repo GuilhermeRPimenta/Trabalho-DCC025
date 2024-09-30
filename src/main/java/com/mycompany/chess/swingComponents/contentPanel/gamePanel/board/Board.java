@@ -9,16 +9,16 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Bishop;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.King;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Knight;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
+import entitites.Bishop;
+import entitites.King;
+import entitites.Knight;
+import entitites.Pawn;
+import entitites.Piece;
+import entitites.Queen;
+import entitites.Rook;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
-import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.Replay;
-import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.SquareSaveData;
+import entitites.Replay;
+import entitites.SquareSaveData;
 import entitites.Player;
 import java.awt.Dimension;
 import java.awt.GridLayout;

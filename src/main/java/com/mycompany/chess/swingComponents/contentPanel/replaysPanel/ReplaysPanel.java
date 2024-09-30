@@ -9,6 +9,7 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import entitites.Replay;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

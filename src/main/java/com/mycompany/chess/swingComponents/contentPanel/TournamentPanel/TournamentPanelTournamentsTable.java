@@ -11,7 +11,7 @@ package com.mycompany.chess.swingComponents.contentPanel.TournamentPanel;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.Replay;
+import entitites.Replay;
 import com.mycompany.chess.swingComponents.contentPanel.replaysPanel.ReplaysPanel;
 import entitites.Tournament;
 import java.awt.BorderLayout;

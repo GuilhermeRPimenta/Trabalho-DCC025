@@ -9,8 +9,6 @@
  */
 package entitites;
 
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
-
 /**
  *
  * @author guilh

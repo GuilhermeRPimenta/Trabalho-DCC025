@@ -9,14 +9,14 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.board;
 
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Piece;
+import entitites.Piece;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Board;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Bishop;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.King;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Knight;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Pawn;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Queen;
-import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.pieces.Rook;
+import entitites.Bishop;
+import entitites.King;
+import entitites.Knight;
+import entitites.Pawn;
+import entitites.Queen;
+import entitites.Rook;
 import entitites.BoardSquare;
 import java.awt.Color;
 import java.awt.Cursor;

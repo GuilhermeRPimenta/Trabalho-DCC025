@@ -9,6 +9,9 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.replaysPanel;
 
+import entitites.SquareSaveData;
+import entitites.ReplaySquare;
+import entitites.BoardState;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.board.Position;
 import java.awt.GridLayout;
 import java.util.ArrayList;
