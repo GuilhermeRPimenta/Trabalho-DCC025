@@ -1,6 +1,7 @@
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel;
 
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen.GameScreen;
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen1;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.LoginScreen2;
 import entitites.NullPlayerException;
 import entitites.Player;
@@ -31,6 +32,10 @@ public class GamePanel extends javax.swing.JPanel {
 
     public LoginScreen2 getLoginScreen2() {
         return loginScreen2;
+    }
+
+    public LoginScreen1 getLoginScreen1() {
+        return loginScreen1;
     }
     
     public void startGame(){

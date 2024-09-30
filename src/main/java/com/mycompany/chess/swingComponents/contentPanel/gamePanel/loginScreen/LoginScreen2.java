@@ -5,7 +5,6 @@ import Controller.LoginScreenInterface;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel;
 import entitites.NullPlayerException;
 import entitites.Player;
-import entitites.camposInvalidosException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -97,13 +96,15 @@ public class LoginScreen2 extends javax.swing.JPanel implements LoginScreenInter
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        try {
-            if (controller.confirmLogin() && controller.sameLogin()) {
-                GamePanel gamePanel = (GamePanel) this.getParent();
-                gamePanel.startGame();
-            }
-        } catch (camposInvalidosException e) {
-            controller.updateButton(e.getMessage(), loginButton);
+        if (controller.confirmLogin()) {
+            GamePanel gamePanel = (GamePanel) this.getParent();
+            
+            gamePanel.getLoginScreen1().getController().logout(); // LOGOUT TELA 2
+            controller.logout();                                  // LOGOUT LOGIN 2
+            
+            gamePanel.startGame();           
+            nameField.setText("");
+            passwordField.setText("");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

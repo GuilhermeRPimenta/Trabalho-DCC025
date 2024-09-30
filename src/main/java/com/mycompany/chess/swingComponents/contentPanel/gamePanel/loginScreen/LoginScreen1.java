@@ -99,6 +99,10 @@ public class LoginScreen1 extends javax.swing.JPanel implements LoginScreenInter
         JOptionPane.showMessageDialog(this, e.getMessage());
     }
 
+    public LoginController<LoginScreen1> getController() {
+        return controller;
+    }  
+
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if (controller.confirmLogin()) {
             GamePanel gamePanel = (GamePanel) this.getParent();

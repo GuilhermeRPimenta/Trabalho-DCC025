@@ -1,5 +1,6 @@
 package Controller;
 
+import com.mycompany.chess.swingComponents.contentPanel.gamePanel.loginScreen.SessionManager;
 import entitites.NullPlayerException;
 import entitites.Player;
 import entitites.camposInvalidosException;
@@ -14,8 +15,6 @@ public class LoginController<T extends LoginScreenInterface> {
 
     private T loginScreen;
     private Player player = null;
-    private String name = "";
-    private boolean firstTime = true;
 
     public LoginController(T loginScreen) {
         this.loginScreen = loginScreen;
@@ -39,7 +38,6 @@ public class LoginController<T extends LoginScreenInterface> {
                 : "src/main/resources/userData/playerData.csv";
 
         boolean userFound = false;
-        
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
@@ -49,13 +47,9 @@ public class LoginController<T extends LoginScreenInterface> {
                 String fileName = fields[0];
                 String filePassword = fields[2];
 
-                if (fileName.equals(n) && filePassword.equals(p)) {                   
+                if (fileName.equals(n) && filePassword.equals(p)) {
                     userFound = true;
                     player = new Player(fields[0], fields[1], Integer.parseInt(fields[3]));
-                    if(firstTime) {
-                        name = fields[0];
-                        firstTime = false;
-                    }
                     break;
                 }
             }
@@ -71,13 +65,6 @@ public class LoginController<T extends LoginScreenInterface> {
 
         return false;
     }
-    
-    public boolean sameLogin() throws camposInvalidosException {
-        if(name.equals(player.getNome())) {
-            throw new camposInvalidosException("Usuário já logado !");
-        }
-        return true;
-    }
 
     public boolean confirmLogin() {
         String name = loginScreen.getNameFieldText();
@@ -88,14 +75,25 @@ public class LoginController<T extends LoginScreenInterface> {
                 throw new camposInvalidosException("Preencha todos os campos !");
             }
 
+            if (SessionManager.isUserLoggedIn(name)) {
+                throw new camposInvalidosException("Usuário já está logado !");
+            }
+
             if (login(name, password)) {
+                SessionManager.loginUser(name);
                 return true;
             }
 
         } catch (camposInvalidosException ex) {
-            updateButton(ex.getMessage(), loginScreen.getLoginButton());           
+            updateButton(ex.getMessage(), loginScreen.getLoginButton());
         }
         return false;
+    }
+
+    public void logout() {
+        if (player != null) {
+            SessionManager.logoutUser(player.getName());
+        }
     }
 
     public Player getPlayer() {
