@@ -5,6 +5,7 @@
 package com.mycompany.chess.swingComponents.contentPanel.gamePanel.gameScreen;
 
 import com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentGamePanel;
+import com.mycompany.chess.swingComponents.contentPanel.TournamentPanel.TournamentPanel;
 import com.mycompany.chess.swingComponents.contentPanel.gamePanel.GamePanel;
 import entitites.NullPlayerException;
 import entitites.Player;
@@ -152,6 +153,8 @@ public class GameScreen extends javax.swing.JPanel {
             }else{
                 TournamentGamePanel tournamentGamePanel = (TournamentGamePanel) getParent();
                 tournamentGamePanel.resetPanel();
+                TournamentPanel tournamentPanel = (TournamentPanel) tournamentGamePanel.getParent();
+                tournamentPanel.resetPanel();
             }
             
         }
@@ -175,6 +178,8 @@ public class GameScreen extends javax.swing.JPanel {
             }else{
                 TournamentGamePanel tournamentGamePanel = (TournamentGamePanel) getParent();
                 tournamentGamePanel.resetPanel();
+                TournamentPanel tournamentPanel = (TournamentPanel) tournamentGamePanel.getParent();
+                tournamentPanel.resetPanel();
             }
     }
     

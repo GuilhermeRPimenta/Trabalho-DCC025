@@ -34,8 +34,9 @@ public class ReplayBoard extends JPanel{
             }
             brown = !brown;
         }
-        
-        tiles[initialPositionOfPieceThatMoves.X][initialPositionOfPieceThatMoves.Y].highlight();
+        if(initialPositionOfPieceThatMoves != null){
+            tiles[initialPositionOfPieceThatMoves.X][initialPositionOfPieceThatMoves.Y].highlight();
+        }
     }
     
     public void updateBoard(int index){

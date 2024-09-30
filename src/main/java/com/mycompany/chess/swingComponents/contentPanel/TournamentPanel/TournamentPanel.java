@@ -16,7 +16,7 @@ import entitites.Tournament;
  * @author guilh
  */
 public class TournamentPanel extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form TournamentPanel
      */
@@ -25,6 +25,7 @@ public class TournamentPanel extends javax.swing.JPanel {
     private MatchesListPanel matchesListPanel;
     private TournamentPanelTournamentsTable tournamentPanelTournamentsTable;
     private TournamentGamePanel tournamentGamePanel;
+
     public TournamentPanel() {
         initComponents();
         cardLayout = (CardLayout) this.getLayout();
@@ -32,7 +33,7 @@ public class TournamentPanel extends javax.swing.JPanel {
         add(tournamentPanelTournamentsTable, "tournamentPanelTournamentsTable");
         tournamentPanelTournamentsTable.setTournamentPanel(this);
         cardLayout.show(this, "tournamentPanelTournamentsTable");;
-        
+
     }
 
     /**
@@ -47,24 +48,38 @@ public class TournamentPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
-    public void updateTournamentTable(){
+    public void updateTournamentTable() {
         tournamentPanelTournamentsTable.refreshTable();
     }
-    
-    public void goToMatchesListPanel(Tournament tournament){
+
+    public void goToMatchesListPanel(Tournament tournament) {
         matchesListPanel = new MatchesListPanel(tournament);
         add(matchesListPanel, "matchesListPanel");
         matchesListPanel.setTournamentPanel(this);
         cardLayout.show(this, "matchesListPanel");
     }
-    
-    public void goToTournamentsTable(){
+
+    public void goToTournamentsTable() {
         tournamentPanelTournamentsTable.refreshTable();
         cardLayout.show(this, "tournamentPanelTournamentsTable");
     }
-    
-    public void goToTournamentGamePanel(Player player1ToCheck, Player player2ToCheck, Tournament tournament, TournamentMatch tournamentMatch){
+
+    public void goToTournamentGamePanel(Player player1ToCheck, Player player2ToCheck, Tournament tournament, TournamentMatch tournamentMatch) {
         tournamentGamePanel = new TournamentGamePanel(player1ToCheck, player2ToCheck, tournament, tournamentMatch);
+        add(tournamentGamePanel, "tournamentGamePanel");
+        cardLayout.show(this, "tournamentGamePanel");
+    }
+
+    public void resetPanel() {
+        for (java.awt.Component component : getComponents()) {
+            if (component != tournamentPanelTournamentsTable) {
+                remove(component);
+            }
+        }
+        revalidate();
+        repaint();
+
+        cardLayout.show(this, "tournamentPanelTournamentsTable");
     }
 
 

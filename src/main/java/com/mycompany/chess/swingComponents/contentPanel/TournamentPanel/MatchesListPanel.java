@@ -4,15 +4,21 @@
  */
 package com.mycompany.chess.swingComponents.contentPanel.TournamentPanel;
 
+import entitites.Player;
 import entitites.Tournament;
 import entitites.TournamentMatch;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -44,20 +50,46 @@ public class MatchesListPanel extends JPanel {
         tableModel = new DefaultTableModel(columnNames, 0);
         matchesTable = new JTable(tableModel);
         
-        // Configurações de estilo
         matchesTable.setBackground(new Color(51, 51, 51));
         matchesTable.setForeground(Color.white);
         JTableHeader tableHeader = matchesTable.getTableHeader();
         tableHeader.setBackground(new Color(51, 51, 51));
         tableHeader.setForeground(Color.WHITE);
         
-        // Adicionando a tabela a um JScrollPane
         JScrollPane scrollPane = new JScrollPane(matchesTable);
         scrollPane.getViewport().setBackground(new Color(51, 51, 51));
         scrollPane.setForeground(Color.white);
         add(scrollPane, BorderLayout.CENTER);
         
-        // Preencher a tabela com os dados dos matches
+        matchesTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedRow = matchesTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    TournamentMatch selectedMatch = matches.get(selectedRow);
+
+                    Player player1ToCheck = selectedMatch.getPlayer1();
+                    Player player2ToCheck = selectedMatch.getPlayer2();
+
+                    if (tournamentPanel != null) {
+                        tournamentPanel.goToTournamentGamePanel(player1ToCheck, player2ToCheck, tournament, selectedMatch);
+                    }
+                }
+            }
+        });
+        matchesTable.addMouseMotionListener(new MouseInputAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                Point point = e.getPoint();
+                int row = matchesTable.rowAtPoint(point);
+                if (row != -1) {
+                    matchesTable.setCursor(Cursor.getDefaultCursor().getPredefinedCursor(Cursor.HAND_CURSOR));
+                } else {
+                    matchesTable.setCursor(Cursor.getDefaultCursor());
+                }
+            }
+        });
+        
         populateMatchesTable();
     }
 
@@ -67,7 +99,6 @@ public class MatchesListPanel extends JPanel {
     
     
     private void populateMatchesTable() {
-        // Limpa a tabela atual
         tableModel.setRowCount(0);
         
         // Percorre todas as partidas e adiciona à tabela
